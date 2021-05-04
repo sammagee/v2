@@ -4,15 +4,15 @@ export default function Who() {
   return (
     <section className="mt-56">
       <div className="w-full px-8 mx-auto md:max-w-4xl lg:max-w-6xl">
-        <p className="font-mono text-lg font-semibold text-brand-500">Hey, I'm</p>
-        <h1 className="mt-2 font-bold text-gray-900 dark:text-white text-7xl">Sam Magee</h1>
-        <p className="mt-3 text-3xl font-medium text-gray-600 dark:text-gray-400">
-          <span className="text-transparent bg-gradient-to-br from-gray-400 to-gray-600 bg-clip-text">My goal is to craft beautiful experiences that</span>
+        <h3 className="font-mono text-lg font-semibold text-brand-500">Hey, I'm</h3>
+        <h1 className="mt-2 font-bold text-white text-7xl">Sam Magee</h1>
+        <p className="mt-3 text-3xl font-medium text-gray-400">
+          <span className="text-gray-500">My goal is to craft beautiful experiences that</span>
           <br />
-          <span className="relative text-transparent bg-gradient-to-br from-brand-300 to-brand-500 bg-clip-text">solve your problems</span>
+          <span className="text-brand-400">solve your problems</span>
         </p>
 
-        <p className="w-full max-w-xl mt-6 prose prose-xl text-gray-600 dark:text-gray-200">
+        <p className="w-full max-w-xl mt-6 prose prose-xl text-gray-200">
           I am a{' '}
           <Tooltip content="Developer + Designer" placement="right"><span className="cursor-help">devsigner</span></Tooltip>{' '}
           working on the full stack. I currently work at IMT Insurance, and will be working on my Master's at Vanderbilt University.

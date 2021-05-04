@@ -5,7 +5,7 @@ export default function Words() {
         <div className="relative w-full h-64 max-w-6xl mx-auto">
           <div className="flex items-end space-x-3">
             <div>
-              <h2 className="text-5xl font-bold text-gray-900 dark:text-white">
+              <h2 className="text-5xl font-bold text-white">
                 <span>Words</span>
               </h2>
               <p className="mt-2 text-lg font-semibold text-gray-500">These are some of my most recent posts.</p>
@@ -14,7 +14,7 @@ export default function Words() {
             <div className="h-[2px] flex-1 mb-2 border-gray-500 border border-dashed opacity-25 rounded-full" />
           </div>
 
-          <span className="absolute bottom-0 left-0 font-mono font-black opacity-40 dark:opacity-25 text-8xl text-brand-500">02.</span>
+          <span className="absolute bottom-0 left-0 font-mono font-black opacity-25 text-8xl text-brand-500">02.</span>
         </div>
       </div>
     </section>

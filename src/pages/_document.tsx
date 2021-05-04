@@ -9,12 +9,12 @@ export default class Document extends NextDocument {
 
   render() {
     return (
-      <Html className="text-sm bg-white dark:bg-gray-900 sm:text-base" lang="en-US">
+      <Html className="text-sm bg-gray-900 sm:text-base" lang="en-US">
         <Head>
           <meta charSet="utf-8" />
           <meta httpEquiv="x-ua-compatible" content="ie=edge" />
         </Head>
-        <body className="antialiased bg-white font-inter dark:bg-gray-900">
+        <body className="antialiased bg-gray-900 font-inter">
           <Main />
           <NextScript />
         </body>

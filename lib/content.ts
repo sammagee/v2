@@ -4,6 +4,16 @@ import matter from 'gray-matter'
 import remark from 'remark'
 import html from 'remark-html'
 
+type Project = {
+  date: string
+  description: string
+  featured: boolean
+  link: string
+  git: string
+  title: string
+  tags: string
+}
+
 function getPath(type: string) {
   return path.join(process.cwd(), `content/${type}`)
 }
@@ -18,11 +28,14 @@ async function parseData(type: string, id: string) {
   const processedDescription = await remark()
     .use(html)
     .process(matterResult.data.description)
+  const matterData = {
+    projects: matterResult.data as Project
+  }[type]
 
   return {
     contentHtml: processedContent.toString(),
     descriptionHtml: processedDescription.toString(),
-    ...(matterResult.data as { date: string, description: string, link: string, git: string, title: string, tags: string }),
+    ...matterData,
     image: `/images/${type}/${matterResult.data.image}`,
   }
 }

@@ -3,7 +3,6 @@ const colors = require('tailwindcss/colors')
 module.exports = {
   mode: 'jit',
   purge: ['./src/pages/**/*.{js,ts,jsx,tsx}', './src/components/**/*.{js,ts,jsx,tsx}'],
-  darkMode: 'media',
   theme: {
     extend: {
       colors: {
@@ -11,7 +10,7 @@ module.exports = {
           ...colors.trueGray,
           1000: '#101010',
         },
-        brand: colors.yellow,
+        brand: colors.cyan,
       },
       fontSize: {
         '2xs': ['0.625rem', { lineHeight: '1rem' }],
@@ -28,6 +27,7 @@ module.exports = {
   variants: {
     extend: {
       animation: ['group-active'],
+      filter: ['group-hover'],
       opacity: ['group-hover', 'group-focus'],
       scale: ['active'],
       translate: ['focus-within', 'group-hover', 'group-focus'],
@@ -35,6 +35,7 @@ module.exports = {
     },
   },
   plugins: [
+    require('@tailwindcss/line-clamp'),
     require('@tailwindcss/typography'),
     require('tailwindcss-font-inter')(),
     require('tailwindcss-group-variants'),

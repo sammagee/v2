@@ -5,7 +5,7 @@ link: 'hanna.and.sammagee.me/'
 git: 'github.com/sammagee/s-h'
 image: 'hanna-and-sam.png'
 tags: 'Next.js, TailwindCSS'
-description: 'A cute little website put together with illustrations by my girlfriend Hanna'
+description: 'Just a little website put together with illustrations by my girlfriend Hanna'
 ---
 
-**TL;DR** — A cute little website put together with illustrations by my girlfriend Hanna
+**TL;DR** — Just a little website put together with illustrations by my girlfriend Hanna
