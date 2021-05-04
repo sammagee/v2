@@ -1,14 +1,15 @@
 ---
 title: 'Py'
-date: '2021-01-21'
+date: '2021-05-01'
 link: 'py.krafted.dev'
 git: 'github.com/krafted/py'
 image: 'py.png'
 tags: 'Laravel, WebAssembly, Vue, Python, TailwindCSS'
-description: 'An online Python editor with realtime output, using the `Pyodide` interpreter through WebAssembly'
+description: 'An Python editor with realtime output, using the Pyodide interpreter through WebAssembly. With this, you can write, share, and review Python code in the browser.'
+featured: true
 ---
 
-**TL;DR** — An online Python editor with realtime output, using the `Pyodide` interpreter through WebAssembly.
+**TL;DR** — An online Python editor with realtime output, using the Pyodide interpreter through WebAssembly.
 
 Py allows you to build and share your Python code without ever touching a native editor or command line — it works great on any device, including your tablet or phone!
 
