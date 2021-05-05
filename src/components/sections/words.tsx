@@ -1,8 +1,15 @@
-export default function Words() {
+import Link from "next/link";
+import Date from "../date";
+
+interface IWordsProps {
+  posts: Post[]
+}
+
+export default function Words({ posts }: IWordsProps) {
   return (
     <section id="words" className="relative w-full py-24">
       <div className="py-24 -my-8">
-        <div className="relative w-full h-64 max-w-6xl mx-auto">
+        <div className="relative w-full max-w-6xl mx-auto">
           <div className="flex items-end space-x-3">
             <div>
               <h2 className="text-5xl font-bold text-white">
@@ -14,7 +21,33 @@ export default function Words() {
             <div className="h-[2px] flex-1 mb-2 border-gray-500 border border-dashed opacity-25 rounded-full" />
           </div>
 
-          <span className="absolute bottom-0 left-0 font-mono font-black opacity-25 text-8xl text-brand-500">02.</span>
+          <div className="py-10">
+            <div className="space-y-3">
+              {posts.map(post => (
+                <article key={post.slug}>
+                  <h3 className="-ml-0.5 text-xl font-semibold">
+                    <Link
+                      href={`/posts/${post.slug}`}
+                      key={post.slug}
+                    >
+                      <a className="text-white border-2 border-transparent border-dashed focus:outline-none focus:border-brand-500">{post.title}</a>
+                    </Link>
+                  </h3>
+
+                  <div className="flex items-end w-full space-x-2">
+                    <p className="!my-0 text-base font-medium text-gray-500">
+                      <Date dateFormat="d LLLL yyyy" dateString={post.date} />
+                    </p>
+
+                    <div className="flex-1 mb-1.5 border-b opacity-75 border-gray-800 border-dashed" />
+                    <span className="font-mono text-lg text-gray-400">{(post.number).toString().padStart(2, '0')}.</span>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+
+          <div className="mt-20 font-mono font-black opacity-25 text-8xl text-brand-500">02.</div>
         </div>
       </div>
     </section>

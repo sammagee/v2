@@ -12,8 +12,10 @@ export default class Document extends NextDocument {
       <Html className="text-sm bg-gray-900 sm:text-base" lang="en-US">
         <Head>
           <meta charSet="utf-8" />
-          <meta httpEquiv="x-ua-compatible" content="ie=edge" />
+
+          <link rel="icon" type="image/png" sizes="196x196" href="/images/favicon.png" />
         </Head>
+
         <body className="antialiased bg-gray-900 font-inter">
           <Main />
           <NextScript />

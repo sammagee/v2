@@ -4,22 +4,10 @@ import matter from 'gray-matter'
 import remark from 'remark'
 import html from 'remark-html'
 
-type Project = {
-  date: string
-  description: string
-  featured: boolean
-  link: string
-  git: string
-  title: string
-  tags: string
-}
+const getPath = (type: string) => path.join(process.cwd(), `content/${type}`)
 
-function getPath(type: string) {
-  return path.join(process.cwd(), `content/${type}`)
-}
-
-async function parseData(type: string, id: string) {
-  const fullPath = path.join(getPath(type), `${id}.md`)
+const parseData = async(type: string, slug: string) => {
+  const fullPath = path.join(getPath(type), `${slug}.md`)
   const fileContents = fs.readFileSync(fullPath, 'utf8')
   const matterResult = matter(fileContents)
   const processedContent = await remark()
@@ -29,24 +17,24 @@ async function parseData(type: string, id: string) {
     .use(html)
     .process(matterResult.data.description)
   const matterData = {
-    projects: matterResult.data as Project
+    posts: matterResult.data as Post,
+    projects: matterResult.data as Project,
   }[type]
 
   return {
     contentHtml: processedContent.toString(),
     descriptionHtml: processedDescription.toString(),
     ...matterData,
-    image: `/images/${type}/${matterResult.data.image}`,
   }
 }
 
-export async function getSortedData(type: string) {
+export const getSortedData = async(type: string) => {
   const fileNames = fs.readdirSync(getPath(type))
   const allData = await Promise.all(fileNames.map(async (fileName) => {
-    const id = fileName.replace(/\.md$/, '')
-    const content = await parseData(type, id)
+    const slug = fileName.replace(/\.md$/, '')
+    const content = await parseData(type, slug)
 
-    return { id, ...content }
+    return { slug, ...content }
   }))
 
   return allData.sort((a, b) => {
@@ -55,20 +43,16 @@ export async function getSortedData(type: string) {
   })
 }
 
-export function getAllIds(type: string) {
+export const getAllSlugs = (type: string) => {
   const fileNames = fs.readdirSync(getPath(type))
 
   return fileNames.map(fileName => {
     return {
       params: {
-        id: fileName.replace(/\.md$/, ''),
+        slug: fileName.replace(/\.md$/, ''),
       }
     }
   })
 }
 
-export async function getData(type, id) {
-  const content = await parseData(type, id)
-
-  return { ...content }
-}
+export const getData = async(type, slug) => ({ ...(await parseData(type, slug)) })

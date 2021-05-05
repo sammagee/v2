@@ -1,6 +1,6 @@
 import { GetStaticProps } from 'next'
 import Head from 'next/head'
-import { getSortedData } from '../../lib/content'
+import { getSortedData } from '../lib/content'
 import Layout from '../components/layout'
 import Links from '../components/links'
 import Where from '../components/sections/where'
@@ -8,7 +8,7 @@ import Who from '../components/sections/who'
 import Words from '../components/sections/words'
 import Work from '../components/sections/work'
 
-export default function Home({ projects }) {
+export default function Home({ posts, projects }) {
   return (
     <>
       <Head>
@@ -22,7 +22,7 @@ export default function Home({ projects }) {
 
         <div id="content" className="mt-56">
           <Work projects={projects} />
-          <Words />
+          <Words posts={posts} />
           <Where />
         </div>
       </Layout>
@@ -31,11 +31,13 @@ export default function Home({ projects }) {
 }
 
 export const getStaticProps: GetStaticProps = async() => {
+  const posts = await getSortedData('posts')
   const projects = await getSortedData('projects')
 
   return {
     props: {
-      projects
-    }
+      posts,
+      projects,
+    },
   }
 }
