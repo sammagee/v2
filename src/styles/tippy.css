@@ -62,22 +62,17 @@
 }
 
 .tippy-arrow {
-  width: 16px;
-  height: 16px;
+  @apply w-4 h-4;
   color: #333;
 }
 
 .tippy-arrow:before {
-  content: "";
-  position: absolute;
-  border-color: transparent;
-  border-style: solid;
+  @apply absolute border-transparent border-solid;
+  content: '';
 }
 
 .tippy-content {
-  position: relative;
-  padding: 5px 9px;
-  z-index: 1;
+  @apply relative py-1 px-2 z-10;
 }
 
 .tippy-box[data-placement^="top"] > .tippy-backdrop {
