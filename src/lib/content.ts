@@ -17,6 +17,7 @@ const parseData = async(type: string, slug: string) => {
     .use(html)
     .process(matterResult.data.description)
   const matterData = {
+    positions: matterResult.data as Position,
     posts: matterResult.data as Post,
     projects: matterResult.data as Project,
   }[type]

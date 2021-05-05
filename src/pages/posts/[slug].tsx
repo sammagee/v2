@@ -17,6 +17,7 @@ export default function Post({ post }: IPostProps) {
         <meta name="title" content={post.title} />
         <meta name="description" content={post.description} />
 
+        <meta property="og:type" content="article" />
         <meta property="og:url" content={`https://sammagee.me/posts/${post.slug}`} />
         <meta property="og:title" content={post.title} />
         <meta property="og:description" content={post.description} />

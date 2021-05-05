@@ -11,7 +11,13 @@ import Work from '../components/sections/work'
 const TITLE = 'Sam Magee – Devsigner'
 const DESCRIPTION = "Hey, I'm Sam Magee. My goal is to craft beautiful experiences that solve your problems."
 
-export default function Home({ posts, projects }) {
+interface IHomeProps {
+  positions: Position[]
+  posts: Post[]
+  projects: Project[]
+}
+
+export default function Home({ positions, posts, projects }: IHomeProps) {
   return (
     <>
       <Head>
@@ -41,7 +47,7 @@ export default function Home({ posts, projects }) {
         <div id="content" className="mt-56">
           <Work projects={projects} />
           <Words posts={posts} />
-          <Where />
+          <Where positions={positions} />
         </div>
       </Layout>
     </>
@@ -49,11 +55,13 @@ export default function Home({ posts, projects }) {
 }
 
 export const getStaticProps: GetStaticProps = async() => {
+  const positions = await getSortedData('positions')
   const posts = await getSortedData('posts')
   const projects = await getSortedData('projects')
 
   return {
     props: {
+      positions,
       posts,
       projects,
     },

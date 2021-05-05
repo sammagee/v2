@@ -1,9 +1,16 @@
-export default function Where() {
+import clsx from 'clsx'
+import Date from '../date'
+
+interface IWhereProps {
+  positions: Position[]
+}
+
+export default function Where({ positions }: IWhereProps) {
   return (
     <section id="where" className="relative w-full pt-32 overflow-x-hidden">
       <div className="absolute inset-x-0 w-full h-32 transform top-8 bg-gray-1000 -skew-y-1"></div>
 
-      <div className="pt-32 pb-40 -mt-8 bg-gray-1000">
+      <div className="pt-32 -mt-8 pb-44 bg-gray-1000">
         <div className="relative w-full max-w-6xl mx-auto">
           <div className="flex items-end space-x-3">
             <div>
@@ -29,15 +36,53 @@ export default function Where() {
             </a>
           </div>
 
-          <div className="absolute bottom-0 left-0 flex items-end justify-between w-full">
-            <span className="font-mono font-black opacity-25 text-8xl text-brand-500">
-              03.
-            </span>
+          <div className="grid py-10 md:grid-cols-2">
+            {positions.map((position, index) => (
+              <article
+                className={clsx(
+                  'p-8 border-gray-800 border-opacity-75 border-dashed',
+                  index % 2 === 0 && 'md:pl-0',
+                  index % 2 !== 0 && 'md:border-l',
+                  index !== 0 && 'border-t',
+                  index === 0 && 'pt-0',
+                  index === 1 && 'border-t md:border-t-0 md:pt-0',
+                  (index === positions.length - 1 || index === positions.length - 2) && '!pb-0',
+                )}
+                key={index}
+              >
+                <h3 className="text-xl font-semibold text-white">
+                  {position.title}&nbsp;
+
+                  <a className="text-gray-400 focus:outline-none border-2 border-transparent -ml-0.5 focus:border-brand-500 border-dashed" href={`//${position.companyLink}`}>
+                    @ {position.company}
+                  </a>
+                </h3>
+
+                <p className="!my-0 text-base font-medium text-gray-500">
+                  <Date dateFormat="LLLL yyyy" dateString={position.date} />
+                  &nbsp;&ndash;&nbsp;
+                  {position.endDate !== 'Present'
+                    ? <Date dateFormat="LLLL yyyy" dateString={position.endDate} />
+                    : 'Present'
+                  }
+                </p>
+
+                <ul className="mt-3">
+                  {position.duties.map((duty, index) => (
+                    <li className="flex items-start space-x-2" key={index}>
+                      <svg className="flex-shrink-0 w-6 h-6 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                      </svg>
+
+                      <p className="text-gray-200">{duty}</p>
+                    </li>
+                  ))}
+                </ul>
+              </article>
+            ))}
           </div>
 
-          <div className="py-32">
-            
-          </div>
+          <div className="mt-20 font-mono font-black opacity-25 text-8xl text-brand-500">03.</div>
         </div>
       </div>
     </section>
