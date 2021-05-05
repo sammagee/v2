@@ -1,3 +1,13 @@
+type Position = {
+  company: string
+  companyLink: string
+  title: string
+  date: string
+  endDate: string
+  location: string
+  duties: string[]
+}
+
 type Post = {
   author: string
   contentHtml: string

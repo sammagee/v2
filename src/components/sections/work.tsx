@@ -169,7 +169,7 @@ export default function Work({ projects }: IWorkProps) {
                           <p className="flex-1 font-mono text-xs text-brand-400 line-clamp-1">{project.tags}</p>
 
                           {(project.git || project.link) && (
-                            <div className="absolute right-0 z-10 flex items-center p-1 transition duration-300 ease-in-out transform translate-x-24 rounded-full shadow-sm opacity-0 bg-brand-400 bg-opacity-10 backdrop-filter backdrop-blur group-hover:translate-x-0 group-hover:opacity-100 focus-within:translate-x-0 focus-within:opacity-100">
+                            <div className="absolute right-0 z-10 flex items-center p-1 transition duration-300 ease-in-out origin-bottom-right transform scale-75 rounded-full shadow-sm opacity-0 bg-brand-400 bg-opacity-10 backdrop-filter backdrop-blur group-hover:opacity-100 group-hover:scale-100 focus-within:scale-100 focus-within:opacity-100">
                               {project.git && (
                                 <Tooltip
                                   content={
