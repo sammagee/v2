@@ -97,10 +97,10 @@ module.exports = {
     extend: {
       animation: ['group-active'],
       filter: ['group-hover'],
-      opacity: ['group-hover', 'group-focus'],
+      opacity: ['focus-within', 'group-hover', 'group-focus'],
       scale: ['active'],
       translate: ['focus-within', 'group-hover', 'group-focus'],
-      visibility: ['group-hover', 'group-focus'],
+      visibility: ['focus-within', 'group-hover', 'group-focus'],
     },
   },
   plugins: [

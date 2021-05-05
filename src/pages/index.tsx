@@ -8,11 +8,29 @@ import Who from '../components/sections/who'
 import Words from '../components/sections/words'
 import Work from '../components/sections/work'
 
+const TITLE = 'Sam Magee – Devsigner'
+const DESCRIPTION = "Hey, I'm Sam Magee. My goal is to craft beautiful experiences that solve your problems."
+
 export default function Home({ posts, projects }) {
   return (
     <>
       <Head>
-        <title>Sam Magee &ndash; Devsigner</title>
+        <title>{TITLE}</title>
+
+        <meta name="description" content={DESCRIPTION} />
+
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://sammagee.me" />
+        <meta property="og:site_name" content={TITLE} />
+        <meta property="og:title" content={TITLE} />
+        <meta property="og:description" content={DESCRIPTION} />
+        <meta property="og:image" content="https://sammagee.me/social/social-card.jpg" />
+
+        <meta property="twitter:card" content="summary_large_image" />
+        <meta property="twitter:url" content="https://sammagee.me" />
+        <meta property="twitter:title" content={TITLE} />
+        <meta property="twitter:description" content={DESCRIPTION} />
+        <meta property="twitter:image" content="https://sammagee.me/social/social-card.jpg" />
       </Head>
 
       <Layout home={true}>
