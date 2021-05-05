@@ -12,6 +12,7 @@
     "@tailwindcss/line-clamp": "^0.2.0",
     "@tippyjs/react": "^4.2.5",
     "clsx": "^1.1.1",
+    "date-fns": "^2.21.1",
     "gray-matter": "^4.0.2",
     "lodash": "^4.17.21",
     "next": "^10.2.0",

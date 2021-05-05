@@ -3,7 +3,11 @@ import Image from 'next/image'
 import Tilt from 'react-parallax-tilt'
 import Tooltip from '../tooltip'
 
-export default function Work({ projects }) {
+interface IWorkProps {
+  projects: Project[]
+}
+
+export default function Work({ projects }: IWorkProps) {
   const getFeaturedProjects = projects => projects.filter(project => project.featured)
   const getUnfeaturedProjects = projects => projects.filter(project => !project.featured)
 
@@ -46,7 +50,7 @@ export default function Work({ projects }) {
                   >
                     <Image
                       className="w-full leading-[7rem] rounded-lg shadow-lg select-none filter grayscale group-hover:filter-none"
-                      src={project.image}
+                      src={`/images/projects/${project.image}`}
                       alt={project.title}
                       width={1920}
                       height={1080}
@@ -120,7 +124,7 @@ export default function Work({ projects }) {
                         )}
                       </div>
 
-                      <p className="text-lg text-gray-400">{project.description}</p>
+                      <div className="text-lg text-gray-400" dangerouslySetInnerHTML={{ __html: project.descriptionHtml }} />
                       <p className="font-mono text-sm text-gray-500">{project.tags}</p>
                     </div>
                   </Tilt>
@@ -144,7 +148,7 @@ export default function Work({ projects }) {
                       <div className="flex">
                         <Image
                           className="w-full leading-[7rem] rounded-lg shadow-lg select-none filter grayscale opacity-50"
-                          src={project.image}
+                          src={`/images/projects/${project.image}`}
                           alt={project.title}
                           width={1920}
                           height={1080}
