@@ -24,13 +24,13 @@ export default function Home({ posts, projects }) {
         <meta property="og:site_name" content={TITLE} />
         <meta property="og:title" content={TITLE} />
         <meta property="og:description" content={DESCRIPTION} />
-        <meta property="og:image" content="https://sammagee.me/social/social-card.jpg" />
+        <meta property="og:image" content="https://me-new.vercel.app/images/social/social-card.jpg" />
 
         <meta property="twitter:card" content="summary_large_image" />
         <meta property="twitter:url" content="https://sammagee.me" />
         <meta property="twitter:title" content={TITLE} />
         <meta property="twitter:description" content={DESCRIPTION} />
-        <meta property="twitter:image" content="https://sammagee.me/social/social-card.jpg" />
+        <meta property="twitter:image" content="https://me-new.vercel.app/images/social/social-card.jpg" />
       </Head>
 
       <Layout home={true}>

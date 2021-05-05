@@ -1,5 +1,6 @@
 {
   "display": "standalone",
+  "name": "Sam",
   "short_name": "Sam",
   "icons": [
     {

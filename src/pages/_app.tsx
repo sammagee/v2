@@ -11,7 +11,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <meta name="keywords" content="sam magee, sam, magee, devsigner, designer, developer, web designer, web developer, full stack, full stack developer, full-stack, fullstack" />
         <meta name="viewport" content="initial-scale=1, viewport-fit=cover, user-scalable=no" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="theme-color" content="#101010" />
+        <meta name="theme-color" content="#181818" />
 
         <link rel="apple-touch-icon" href="/pwa/images/apple-icon-180.png" />
         <link rel="apple-touch-startup-image" href="/pwa/images/apple-splash-2048-2732.jpg" media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)" />
