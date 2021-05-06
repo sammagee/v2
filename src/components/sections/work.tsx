@@ -220,6 +220,22 @@ export default function Work({ projects }: IWorkProps) {
                     </Tilt>
                   </article>
                 ))}
+
+                <Tooltip
+                  content={
+                    <span className="flex items-center space-x-2">
+                      <span>hi@sammagee.me</span>
+                      <svg className="w-3 h-3 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                      </svg>
+                    </span>
+                  }
+                  placement="top"
+                >
+                  <a className="flex items-center justify-center px-5 py-10 text-sm font-semibold tracking-wide text-gray-500 uppercase transition duration-200 ease-in-out origin-bottom transform border-2 border-gray-800 border-dashed rounded-lg hover:bg-gray-500 focus:bg-gray-500 focus:bg-opacity-10 hover:bg-opacity-10 hover:scale-105 active:scale-100 focus:outline-none focus:border-dashed" href="mailto:hi@sammagee.me">
+                    Your project here
+                  </a>
+                </Tooltip>
               </div>
             </div>
           </div>

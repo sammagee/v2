@@ -4,6 +4,7 @@ date: '2021-05-05'
 number: 1
 description: 'My first post on this website, containing information about what and why I will be writing.'
 author: 'Sam Magee'
+draft: 1
 ---
 This will be my first official blog post. I’ve recently decided this could be a good idea for a few reasons.
 
