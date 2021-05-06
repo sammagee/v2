@@ -69,7 +69,7 @@ export default function MobileNav() {
             leaveFrom="transform opacity-100 translate-x-0"
             leaveTo="transform opacity-0 translate-x-full"
           >
-            <div className="shadow-xl z-20 fixed inset-y-0 right-0 w-full max-w-[calc(100vw-8.5rem)] h-screen origin-right bg-gray-800 bg-opacity-75 backdrop-filter backdrop-blur">
+            <div className="shadow-xl pb-safe-bottom z-20 fixed inset-y-0 right-0 w-full max-w-[calc(100vw-8.5rem)] h-screen origin-right bg-gray-800 bg-opacity-75 backdrop-filter backdrop-blur">
               <div className="flex flex-col h-full overflow-hidden outline-none">
                 <div className="flex items-center justify-between w-full px-6 py-5 xs:px-12">
                   <Dialog.Title className="text-2xl font-semibold text-white">Menu</Dialog.Title>
