@@ -97,7 +97,7 @@ export default function MobileNav() {
                   </button>
                 </div>
 
-                <div className="flex flex-col flex-1">
+                <div className="flex flex-col flex-1 overflow-y-auto">
                   <div className="flex flex-col items-center justify-center flex-1 px-6 space-y-6 xs:px-12">
                     <Link href="/#work">
                       <a className="text-4xl font-semibold text-white border-2 border-transparent border-dashed focus:outline-none focus:border-brand-500">
