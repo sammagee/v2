@@ -3,11 +3,11 @@ import Tooltip from './tooltip'
 
 export default function Footer() {
   return (
-    <footer className="bg-black">
-      <div className="max-w-6xl py-16 mx-auto">
+    <footer className="px-12 bg-black">
+      <div className="w-full max-w-6xl py-16 mx-auto">
         <div className="flex items-center justify-between">
           <p className="font-semibold text-gray-500">
-            &copy; <Link href="/"><a className="transition-colors duration-200 border-2 border-transparent border-dashed hover:text-gray-600 focus:outline-none focus:border-brand-500">Sam Magee</a></Link>
+            &copy; <Link href="/"><a className="border-2 border-transparent border-dashed focus:outline-none focus:border-brand-500">Sam Magee</a></Link>
           </p>
 
           <div className="flex items-center space-x-6">

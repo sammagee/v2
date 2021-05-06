@@ -8,7 +8,7 @@ export default function Links() {
   const handleScrollToTop = () => scrollPos > 250 && window.scrollTo({ top: 0, behavior: 'smooth' })
 
   return (
-    <div className="fixed z-20 flex-col items-center hidden space-y-3 bottom-4 md:flex md:left-8 md:right-auto right-8 h-2/5">
+    <div className="fixed z-20 flex-col items-center hidden space-y-3 bottom-4 md:flex md:left-11 md:right-auto right-11 h-2/5">
       <Tooltip
         content={
           <span className="flex items-center space-x-2">

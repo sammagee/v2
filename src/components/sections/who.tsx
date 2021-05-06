@@ -3,7 +3,7 @@ import Tooltip from '../tooltip'
 export default function Who() {
   return (
     <section className="mt-56">
-      <div className="w-full px-8 mx-auto md:max-w-4xl lg:max-w-6xl">
+      <div className="w-full max-w-6xl px-12 mx-auto">
         <h3 className="font-mono text-lg font-semibold text-brand-500">Hey, I'm</h3>
         <h1 className="mt-2 font-bold text-white text-7xl">Sam Magee</h1>
         <p className="mt-3 text-3xl font-medium text-gray-400">

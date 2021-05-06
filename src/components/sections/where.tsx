@@ -11,7 +11,7 @@ export default function Where({ positions }: IWhereProps) {
       <div className="absolute inset-x-0 w-full h-32 transform top-8 bg-gray-1000 -skew-y-1"></div>
 
       <div className="pt-32 -mt-8 pb-44 bg-gray-1000">
-        <div className="relative w-full max-w-6xl mx-auto">
+        <div className="relative w-full max-w-6xl px-12 mx-auto">
           <div className="flex items-end space-x-3">
             <div>
               <h2 className="text-5xl font-bold text-white">
@@ -40,32 +40,49 @@ export default function Where({ positions }: IWhereProps) {
             {positions.map((position, index) => (
               <article
                 className={clsx(
-                  'p-8 border-gray-800 border-opacity-75 border-dashed',
+                  'py-8 md:px-8 border-gray-800 border-opacity-75 border-dashed',
                   index % 2 === 0 && 'md:pl-0',
                   index % 2 !== 0 && 'md:border-l',
                   index !== 0 && 'border-t',
                   index === 0 && 'pt-0',
                   index === 1 && 'border-t md:border-t-0 md:pt-0',
-                  (index === positions.length - 1 || index === positions.length - 2) && '!pb-0',
+                  (index === positions.length - 1 || index === positions.length - 2) && '!md:pb-0',
                 )}
                 key={index}
               >
-                <h3 className="text-xl font-semibold text-white">
-                  {position.title}&nbsp;
+                <div className="flex items-center space-x-3">
+                  <div className="flex items-center justify-center w-12 h-12 rounded-full bg-brand-400 bg-opacity-10">
+                    <svg
+                      className="w-6 h-6 text-brand-400"
+                      fill="currentColor"
+                      dangerouslySetInnerHTML={{ __html: position.companyLogo }}
+                      viewBox="0 0 96 96"
+                    />
+                  </div>
 
-                  <a className="text-gray-400 focus:outline-none border-2 border-transparent -ml-0.5 focus:border-brand-500 border-dashed" href={`//${position.companyLink}`}>
-                    @ {position.company}
-                  </a>
-                </h3>
+                  <div>
+                    <h3 className="text-xl font-semibold text-white">
+                      {position.title}&nbsp;
 
-                <p className="!my-0 text-base font-medium text-gray-500">
-                  <Date dateFormat="LLLL yyyy" dateString={position.date} />
-                  &nbsp;&ndash;&nbsp;
-                  {position.endDate !== 'Present'
-                    ? <Date dateFormat="LLLL yyyy" dateString={position.endDate} />
-                    : 'Present'
-                  }
-                </p>
+                      <a className="text-gray-400 focus:outline-none border-2 border-transparent -ml-0.5 focus:border-brand-500 border-dashed" href={`//${position.companyLink}`}>
+                        @ {position.company}
+                      </a>
+                    </h3>
+
+                    <div className="flex space-x-2 items-center !my-0 text-base font-medium text-gray-500">
+                      <p>
+                        <Date dateFormat="LLLL yyyy" dateString={position.date} />
+                        &nbsp;&ndash;&nbsp;
+                        {position.endDate !== 'Present'
+                          ? <Date dateFormat="LLLL yyyy" dateString={position.endDate} />
+                          : 'Present'
+                        }
+                      </p>
+
+                      {index === 0 && <span className="px-3 py-1 text-xs font-semibold rounded-full text-brand-400 bg-brand-400 bg-opacity-10">Most Recent</span>}
+                    </div>
+                  </div>
+                </div>
 
                 <ul className="mt-3">
                   {position.duties.map((duty, index) => (

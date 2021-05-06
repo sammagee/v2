@@ -17,7 +17,7 @@ export default function Work({ projects }: IWorkProps) {
       <div className="absolute inset-x-0 w-full h-32 transform bottom-8 bg-gray-1000 skew-y-1"></div>
 
       <div className="py-32 -my-8 bg-gray-1000">
-        <div className="relative w-full max-w-6xl mx-auto">
+        <div className="relative w-full max-w-6xl px-12 mx-auto">
           <div className="flex items-end space-x-3">
             <div>
               <h2 className="text-5xl font-bold text-white">

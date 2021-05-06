@@ -38,7 +38,7 @@ export const getSortedData = async(type: string) => {
     return { slug, ...content }
   }))
 
-  return allData.sort((a, b) => {
+  return allData.filter(item => !item.draft).sort((a, b) => {
     if (a.date < b.date) return 1
     else return -1
   })
