@@ -24,7 +24,7 @@ export default function Header({ home = false }) {
       </span>
 
       <Link href="/">
-        <a className="relative z-50 flex items-center flex-shrink-0 p-3 space-x-3 transition-colors duration-200 ease-in-out border-2 border-transparent border-dashed rounded-full focus:bg-gray-500 focus:bg-opacity-10 hover:bg-gray-500 hover:bg-opacity-10 focus:outline-none focus:border-brand-500 focus:border-2 group">
+        <a className="relative flex items-center flex-shrink-0 p-3 space-x-3 transition-colors duration-200 ease-in-out border-2 border-transparent border-dashed rounded-full focus:bg-gray-500 focus:bg-opacity-10 hover:bg-gray-500 hover:bg-opacity-10 focus:outline-none focus:border-brand-500 focus:border-2 group">
           <div className="relative w-12 h-12 transition duration-300 ease-in-out transform group-hover:scale-105 group-hover:-rotate-3">
             <Image
               className="pointer-events-none select-none"
