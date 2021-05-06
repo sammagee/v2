@@ -10,7 +10,7 @@ module.exports = {
           ...colors.trueGray,
           1000: '#101010',
         },
-        brand: colors.cyan,
+        brand: colors.amber,
       },
       fontSize: {
         '2xs': ['0.625rem', { lineHeight: '1rem' }],
