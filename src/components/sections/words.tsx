@@ -8,8 +8,8 @@ interface IWordsProps {
 export default function Words({ posts }: IWordsProps) {
   return (
     <section id="words" className="relative w-full py-24">
-      <div className="py-24 -my-8">
-        <div className="relative w-full max-w-6xl px-12 mx-auto">
+      <div className="py-24 -my-8 sm:pl-20 xl:pl-0">
+        <div className="relative w-full px-12 mx-auto lg:max-w-5xl xl:max-w-6xl">
           <div className="flex items-end space-x-3">
             <div>
               <h2 className="text-5xl font-bold text-white">

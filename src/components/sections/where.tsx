@@ -10,8 +10,8 @@ export default function Where({ positions }: IWhereProps) {
     <section id="where" className="relative w-full pt-32 overflow-x-hidden">
       <div className="absolute inset-x-0 w-full h-32 transform top-8 bg-gray-1000 -skew-y-1"></div>
 
-      <div className="pt-32 -mt-8 pb-44 bg-gray-1000">
-        <div className="relative w-full max-w-6xl px-12 mx-auto">
+      <div className="pt-32 -mt-8 sm:pl-20 pb-44 xl:pl-0 bg-gray-1000">
+        <div className="relative w-full px-12 mx-auto lg:max-w-5xl xl:max-w-6xl">
           <div className="flex items-end space-x-3">
             <div>
               <h2 className="text-5xl font-bold text-white">
@@ -36,22 +36,22 @@ export default function Where({ positions }: IWhereProps) {
             </a>
           </div>
 
-          <div className="grid py-10 md:grid-cols-2">
+          <div className="grid py-10 lg:grid-cols-2">
             {positions.map((position, index) => (
               <article
                 className={clsx(
-                  'py-8 md:px-8 border-gray-800 border-opacity-75 border-dashed',
-                  index % 2 === 0 && 'md:pl-0',
-                  index % 2 !== 0 && 'md:border-l',
+                  'py-8 lg:px-8 border-gray-800 border-opacity-75 border-dashed',
+                  index % 2 === 0 && 'lg:pl-0',
+                  index % 2 !== 0 && 'lg:border-l',
                   index !== 0 && 'border-t',
                   index === 0 && 'pt-0',
-                  index === 1 && 'border-t md:border-t-0 md:pt-0',
+                  index === 1 && 'border-t lg:border-t-0 lg:pt-0',
                   (index === positions.length - 1 || index === positions.length - 2) && '!md:pb-0',
                 )}
                 key={index}
               >
-                <div className="flex items-center space-x-3">
-                  <div className="flex items-center justify-center w-12 h-12 rounded-full bg-brand-400 bg-opacity-10">
+                <div className="flex items-start space-x-3 sm:items-center">
+                  <div className="flex items-center justify-center flex-shrink-0 w-12 h-12 rounded-full bg-brand-400 bg-opacity-10">
                     <svg
                       className="w-6 h-6 text-brand-400"
                       fill="currentColor"
@@ -69,7 +69,7 @@ export default function Where({ positions }: IWhereProps) {
                       </a>
                     </h3>
 
-                    <div className="flex space-x-2 items-center !my-0 text-base font-medium text-gray-500">
+                    <div className="flex flex-wrap sm:space-x-2 items-center !my-0 text-base font-medium text-gray-500">
                       <p>
                         <Date dateFormat="LLLL yyyy" dateString={position.date} />
                         &nbsp;&ndash;&nbsp;
@@ -79,7 +79,7 @@ export default function Where({ positions }: IWhereProps) {
                         }
                       </p>
 
-                      {index === 0 && <span className="px-3 py-1 text-xs font-semibold rounded-full text-brand-400 bg-brand-400 bg-opacity-10">Most Recent</span>}
+                      {index === 0 && <span className="px-3 py-1 mt-2 text-xs font-semibold rounded-full sm:mt-0 text-brand-400 bg-brand-400 bg-opacity-10">Most Recent</span>}
                     </div>
                   </div>
                 </div>
@@ -91,7 +91,7 @@ export default function Where({ positions }: IWhereProps) {
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                       </svg>
 
-                      <p className="text-gray-200">{duty}</p>
+                      <p className="leading-relaxed text-gray-200">{duty}</p>
                     </li>
                   ))}
                 </ul>
