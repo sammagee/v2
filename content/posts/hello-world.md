@@ -5,7 +5,7 @@ number: 1
 description: 'My first post on this website, containing information about what and why I will be writing.'
 author: 'Sam Magee'
 ---
-This will be my first official blog post. I’ve recently decided this could be a good idea for a few reasons.
+Yeah I know, HeLlO wOrLd, what a lame title. Oh well. This will be my first official blog post. I’ve recently decided this could be a good idea for a few reasons.
 
 ### I built this shiny new website
 
