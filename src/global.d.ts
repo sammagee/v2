@@ -1,8 +1,10 @@
 type Position = {
   company: string
   companyLink: string
+  companyLogo: string
   title: string
   date: string
+  draft?: boolean
   endDate: string
   location: string
   duties: string[]
@@ -13,6 +15,7 @@ type Post = {
   contentHtml: string
   date: string
   description: string
+  draft?: boolean
   number: number
   slug: string
   tags: string
@@ -24,6 +27,7 @@ type Project = {
   date: string
   description: string
   descriptionHtml: string
+  draft?: boolean
   featured: boolean
   git: string
   link: string

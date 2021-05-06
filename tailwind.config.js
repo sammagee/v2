@@ -17,6 +17,7 @@ module.exports = {
         '3xs': ['0.5rem', { lineHeight: '1rem' }],
       },
       screens: {
+        xs: '400px',
         print: {'raw': 'print'},
       },
       typography: theme => ({

@@ -2,7 +2,6 @@ import { GetStaticProps } from 'next'
 import Head from 'next/head'
 import { getSortedData } from '../lib/content'
 import Layout from '../components/layout'
-import Links from '../components/links'
 import Where from '../components/sections/where'
 import Who from '../components/sections/who'
 import Words from '../components/sections/words'
@@ -40,8 +39,6 @@ export default function Home({ positions, posts, projects }: IHomeProps) {
       </Head>
 
       <Layout home={true}>
-        <Links />
-
         <Who />
 
         <div id="content" className="mt-56">

@@ -16,8 +16,8 @@ export default function Work({ projects }: IWorkProps) {
       <div className="absolute inset-x-0 w-full h-32 transform top-8 bg-gray-1000 skew-y-1"></div>
       <div className="absolute inset-x-0 w-full h-32 transform bottom-8 bg-gray-1000 skew-y-1"></div>
 
-      <div className="py-32 -my-8 bg-gray-1000">
-        <div className="relative w-full max-w-6xl mx-auto">
+      <div className="py-32 -my-8 sm:pl-20 xl:pl-0 bg-gray-1000">
+        <div className="relative w-full px-12 mx-auto lg:max-w-5xl xl:max-w-6xl">
           <div className="flex items-end space-x-3">
             <div>
               <h2 className="text-5xl font-bold text-white">
@@ -36,13 +36,13 @@ export default function Work({ projects }: IWorkProps) {
               {getFeaturedProjects(projects).map((project, index) => (
                 <article
                   className={clsx(
-                    'flex items-start',
-                    index % 2 !== 0 && 'flex-row-reverse',
+                    'flex flex-col md:flex-row md:items-start',
+                    index % 2 !== 0 && 'md:flex-row-reverse',
                   )}
                   key={index}
                 >
                   <Tilt
-                    className="relative flex w-2/3 overflow-hidden rounded-lg group"
+                    className="relative flex w-full overflow-hidden rounded-lg md:w-2/3 group"
                     tiltMaxAngleX={15}
                     tiltMaxAngleY={15}
                     glareEnable={true}
@@ -61,8 +61,8 @@ export default function Work({ projects }: IWorkProps) {
 
                   <Tilt
                     className={clsx(
-                      'w-2/5 mt-6 p-6 bg-gray-900 bg-opacity-80 backdrop-filter border-t border-white border-opacity-5 backdrop-blur rounded-lg shadow-xl overflow-hidden',
-                      index % 2 === 0 ? '-ml-6' : '-mr-6',
+                      '-mt-6 w-full md:w-2/5 md:mt-6 p-6 bg-gray-900 bg-opacity-80 backdrop-filter border-t border-white border-opacity-5 backdrop-blur rounded-lg shadow-xl overflow-hidden',
+                      index % 2 === 0 ? 'ml-3 md:-ml-6' : '-ml-3 md:-mr-6',
                     )}
                     tiltMaxAngleX={15}
                     tiltMaxAngleY={15}
@@ -135,7 +135,7 @@ export default function Work({ projects }: IWorkProps) {
             <div className="mt-16">
               <h3 className="font-mono text-lg font-semibold text-brand-500">Other</h3>
 
-              <div className="grid grid-cols-4 gap-8 mt-3">
+              <div className="grid grid-cols-1 gap-6 mt-3 sm:grid-cols-2 lg:gap-8 lg:grid-cols-4">
                 {getUnfeaturedProjects(projects).map((project, index) => (
                   <article key={index}>
                     <Tilt
@@ -147,7 +147,7 @@ export default function Work({ projects }: IWorkProps) {
                     >
                       <div className="flex">
                         <Image
-                          className="w-full leading-[7rem] rounded-lg shadow-lg select-none filter grayscale opacity-50"
+                          className="w-full rounded-lg shadow-lg opacity-50 select-none filter grayscale"
                           src={`/images/projects/${project.image}`}
                           alt={project.title}
                           width={1920}
@@ -158,7 +158,7 @@ export default function Work({ projects }: IWorkProps) {
                         <div className="absolute inset-0 bg-opacity-25 border-t rounded-lg backdrop-filter backdrop-blur-sm bg-brand-500 border-brand-100 border-opacity-5" />
                       </div>
 
-                      <div className="absolute inset-0 z-10 flex flex-col justify-center px-6 py-4 space-y-2 overflow-hidden">
+                      <div className="absolute inset-0 z-10 flex flex-col justify-center px-6 py-4 overflow-hidden md:space-y-2">
                         <h4 className="text-xl font-bold text-white">
                           {project.title}
                         </h4>
@@ -166,7 +166,7 @@ export default function Work({ projects }: IWorkProps) {
                         <p className="text-sm text-brand-200 line-clamp-2">{project.description}</p>
 
                         <div className="relative flex items-center space-x-2">
-                          <p className="flex-1 font-mono text-xs text-brand-400 line-clamp-1">{project.tags}</p>
+                          <p className="flex-1 mt-2 font-mono text-xs text-brand-400 line-clamp-1 md:mt-0">{project.tags}</p>
 
                           {(project.git || project.link) && (
                             <div className="absolute right-0 z-10 flex items-center p-1 transition duration-300 ease-in-out origin-bottom-right transform scale-75 rounded-full shadow-sm opacity-0 bg-brand-400 bg-opacity-10 backdrop-filter backdrop-blur group-hover:opacity-100 group-hover:scale-100 focus-within:scale-100 focus-within:opacity-100">

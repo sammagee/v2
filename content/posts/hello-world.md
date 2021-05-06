@@ -22,3 +22,4 @@ Okay, I’ll admit it. I’ve never really written just for fun or for anything 
 I do think writing is an amazing skill and tool to have, especially when needed in a professional environment, but really in order to have good communication in general. I can’t be sure, but at this point I think writing the occasional post will help build and develop this skill
 
 ### Opinions are important
+Prior to the past few years, I never really had strongly formed opinions about many important topics. More recently
