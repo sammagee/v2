@@ -6,5 +6,3 @@ image: 'rillo.png'
 tags: 'Next.js, TailwindCSS'
 description: 'Landing page for an event discovery app'
 ---
-
-**TL;DR** — Landing page for an event discovery app

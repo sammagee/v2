@@ -8,6 +8,4 @@ tags: 'Next.js, TailwindCSS'
 description: 'Simple website for my independent studio'
 ---
 
-**TL;DR** — Simple website for my independent studio.
-
 (Hint: hit the logo to change to/from dark mode 🌛)

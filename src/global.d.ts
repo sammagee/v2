@@ -30,6 +30,7 @@ type Project = {
   draft?: boolean
   featured: boolean
   git: string
+  image: string
   link: string
   slug: string
   tags: string

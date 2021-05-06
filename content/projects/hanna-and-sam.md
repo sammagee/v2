@@ -7,5 +7,3 @@ image: 'hanna-and-sam.png'
 tags: 'Next.js, TailwindCSS'
 description: 'Just a little website put together with illustrations by my girlfriend Hanna'
 ---
-
-**TL;DR** — Just a little website put together with illustrations by my girlfriend Hanna

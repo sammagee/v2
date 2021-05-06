@@ -1,5 +1,6 @@
 import clsx from 'clsx'
 import Image from 'next/image'
+import Link from 'next/link'
 import Tilt from 'react-parallax-tilt'
 import Tooltip from '../tooltip'
 
@@ -72,7 +73,12 @@ export default function Work({ projects }: IWorkProps) {
                     <div className="relative z-10 space-y-2">
                       <div className="flex items-center justify-between">
                         <h4 className="text-3xl font-bold text-white">
-                          {project.title}
+                          <Link
+                            href={`/projects/${project.slug}`}
+                            key={project.slug}
+                          >
+                            <a className="-ml-0.5 border-2 border-transparent border-dashed focus:outline-none focus:border-brand-500">{project.title}</a>
+                          </Link>
                         </h4>
 
                         {(project.git || project.link) && (
@@ -160,7 +166,12 @@ export default function Work({ projects }: IWorkProps) {
 
                       <div className="absolute inset-0 z-10 flex flex-col justify-center px-6 py-4 overflow-hidden md:space-y-2">
                         <h4 className="text-xl font-bold text-white">
-                          {project.title}
+                          <Link
+                            href={`/projects/${project.slug}`}
+                            key={project.slug}
+                          >
+                            <a className="-ml-0.5 border-2 border-transparent border-dashed focus:outline-none focus:border-brand-500">{project.title}</a>
+                          </Link>
                         </h4>
 
                         <p className="text-sm text-brand-200 line-clamp-2">{project.description}</p>
