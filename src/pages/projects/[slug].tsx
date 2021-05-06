@@ -11,6 +11,8 @@ interface IProjectProps {
 }
 
 export default function Project({ project }: IProjectProps) {
+  const copy = () => (typeof window !== 'undefined' || typeof navigator.clipboard !== 'undefined') && navigator.clipboard.writeText(window.location.href)
+
   return (
     <Layout>
       <Head>
@@ -67,10 +69,21 @@ export default function Project({ project }: IProjectProps) {
 
             <h1 className="!mt-12 !mb-0">{project.title}</h1>
 
-            <p className="!mt-3 !mb-0 text-base font-medium text-gray-500">
-              <Date dateFormat="d LLLL yyyy" dateString={project.date} />
-            </p>
-            <p className="!my-0 font-mono text-sm text-gray-500">{project.tags}</p>
+            <div className="flex items-end justify-between mt-3">
+              <div>
+                <p className="!mt-3 !mb-0 text-base font-medium text-gray-500">
+                  <Date dateFormat="d LLLL yyyy" dateString={project.date} />
+                </p>
+
+                <p className="!my-0 font-mono text-sm text-gray-500">{project.tags}</p>
+              </div>
+
+              <button className="p-2 -mb-1.5 text-gray-500 transition-colors duration-200 ease-in-out border-2 border-transparent border-dashed rounded-full focus:bg-gray-500 focus:bg-opacity-10 hover:bg-gray-500 hover:bg-opacity-10 hover:text-gray-400 focus:outline-none focus:border-brand-500" onClick={copy}>
+                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                </svg>
+              </button>
+            </div>
           </header>
 
           <div className="px-6 py-4 mt-6 bg-gray-800 bg-opacity-75 border-t border-white rounded-lg shadow-lg backdrop-filter border-opacity-5 backdrop-blur">
