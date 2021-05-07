@@ -38,6 +38,8 @@ export default function Words({ posts }: IWordsProps) {
                     <div className="flex items-end w-full space-x-2">
                       <p className="!my-0 text-base font-medium text-gray-500">
                         <Date dateFormat="d LLLL yyyy" dateString={post.date} />
+                        &nbsp;&middot;&nbsp;
+                        <span>{post.readTime}</span>
                       </p>
 
                       <div className="flex-1 mb-1.5 border-b opacity-75 border-gray-800 border-dashed" />
