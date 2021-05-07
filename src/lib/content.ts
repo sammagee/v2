@@ -4,6 +4,8 @@ import matter from 'gray-matter'
 import remark from 'remark'
 import html from 'remark-html'
 
+const AVG_WPM = 200;
+
 const getPath = (type: string) => path.join(process.cwd(), `content/${type}`)
 
 const parseData = async(type: string, slug: string) => {
@@ -21,10 +23,13 @@ const parseData = async(type: string, slug: string) => {
     posts: matterResult.data as Post,
     projects: matterResult.data as Project,
   }[type]
+  const contentLength = processedContent.toString().split(' ').length
+  const readTime = `${Math.ceil(contentLength / AVG_WPM)} min read`
 
   return {
     contentHtml: processedContent.toString(),
     descriptionHtml: processedDescription.toString(),
+    readTime,
     ...matterData,
   }
 }

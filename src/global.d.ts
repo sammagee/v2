@@ -17,6 +17,7 @@ type Post = {
   description: string
   draft?: boolean
   number: number
+  readTime: string
   slug: string
   tags: string
   title: string

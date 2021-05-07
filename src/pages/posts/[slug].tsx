@@ -54,6 +54,8 @@ export default function Post({ post }: IPostProps) {
 
                 <p className="!my-0 text-base font-medium text-gray-500">
                   <Date ariaLabel="Published date: " dateFormat="d LLLL yyyy" dateString={post.date} />
+                  &nbsp;&middot;&nbsp;
+                  <span>{post.readTime}</span>
                 </p>
               </div>
 
