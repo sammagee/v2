@@ -35,7 +35,7 @@ export default function Project({ project }: IProjectProps) {
         <meta property="twitter:image" content="https://sammagee.me/images/social/social-square.jpg" />
       </Head>
 
-      <div id="content" role="main" aria-label="Main content" className="mt-32 mb-32 md:mt-56">
+      <div id="content" role="main" aria-label="Main content" className="mt-48 mb-32 md:mt-56">
         <article className="w-full px-12 mx-auto prose prose-lg sm:pl-32 lg:pl-0">
           <Link href="/#work">
             <a className="inline-flex items-center space-x-2 !text-gray-400 !no-underline focus:outline-none border-2 border-transparent border-dashed focus:border-brand-500 -ml-0.5">
