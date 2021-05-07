@@ -5,6 +5,7 @@ import Layout from '../../components/layout'
 import Tilt from 'react-parallax-tilt'
 import { getAllSlugs, getData } from '../../lib/content'
 import Image from 'next/image'
+import Tooltip from '../../components/tooltip'
 
 interface IProjectProps {
   project: Project
@@ -70,7 +71,7 @@ export default function Project({ project }: IProjectProps) {
             <h1 className="!mt-12 !mb-0">{project.title}</h1>
 
             <div className="flex items-end justify-between mt-3">
-              <div>
+              <div className="flex-1">
                 <p className="!mt-3 !mb-0 text-base font-medium text-gray-500">
                   <Date ariaLabel="Release date: " dateFormat="d LLLL yyyy" dateString={project.date} />
                 </p>
@@ -78,11 +79,69 @@ export default function Project({ project }: IProjectProps) {
                 <p aria-label="Languages/Frameworks used:" className="!my-0 font-mono text-sm text-gray-500">{project.tags}</p>
               </div>
 
-              <button className="p-2 -mb-1.5 text-gray-500 transition-colors duration-200 ease-in-out border-2 border-transparent border-dashed rounded-full focus:bg-gray-500 focus:bg-opacity-10 hover:bg-gray-500 hover:bg-opacity-10 hover:text-gray-400 focus:outline-none focus:border-brand-500" onClick={copy}>
-                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                </svg>
-              </button>
+              <div className="flex items-center flex-shrink-0 space-x-2">
+                {project.git && (
+                  <Tooltip
+                    content={
+                      <span className="flex items-center space-x-2">
+                        <span>{project.git}</span>
+                        <svg className="w-3 h-3 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                        </svg>
+                      </span>
+                    }
+                    placement="left"
+                  >
+                    <a href={`//${project.git}`} className="p-2 -mb-1.5 !text-gray-500 transition-colors duration-200 ease-in-out border-2 border-transparent border-dashed rounded-full focus:bg-gray-500 focus:bg-opacity-10 hover:bg-gray-500 hover:bg-opacity-10 hover:!text-gray-400 focus:outline-none focus:!text-gray-400 focus:border-brand-500" target="_blank" rel="noopener noreferrer">
+                      <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+                      </svg>
+
+                      <span className="sr-only">View Code</span>
+                    </a>
+                  </Tooltip>
+                )}
+
+                {project.link && (
+                  <Tooltip
+                    content={
+                      <span className="flex items-center space-x-2">
+                        <span>{project.link}</span>
+                        <svg className="w-3 h-3 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                        </svg>
+                      </span>
+                    }
+                    placement="left"
+                  >
+                    <a href={`//${project.link}`} className="p-2 -mb-1.5 !text-gray-500 transition-colors duration-200 ease-in-out border-2 border-transparent border-dashed rounded-full focus:bg-gray-500 focus:bg-opacity-10 hover:bg-gray-500 hover:bg-opacity-10 hover:!text-gray-400 focus:outline-none focus:!text-gray-400 focus:border-brand-500" target="_blank" rel="noopener noreferrer">
+                      <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                      </svg>
+
+                      <span className="sr-only">View Project</span>
+                    </a>
+                  </Tooltip>
+                )}
+
+                <Tooltip
+                  content={
+                    <span className="flex items-center space-x-2">
+                      <span>Copy link to clipboard</span>
+                      <svg className="w-3 h-3 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                      </svg>
+                    </span>
+                  }
+                  placement="left"
+                >
+                  <button className="p-2 -mb-1.5 text-gray-500 transition-colors duration-200 ease-in-out border-2 border-transparent border-dashed rounded-full focus:bg-gray-500 focus:bg-opacity-10 hover:bg-gray-500 hover:bg-opacity-10 hover:text-gray-400 focus:outline-none focus:text-gray-400 focus:border-brand-500" onClick={copy}>
+                    <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                    </svg>
+                  </button>
+                </Tooltip>
+              </div>
             </div>
           </header>
 

@@ -2,6 +2,7 @@ import Head from 'next/head'
 import Link from 'next/link'
 import Date from '../../components/date'
 import Layout from '../../components/layout'
+import Tooltip from '../../components/tooltip'
 import { getAllSlugs, getData } from '../../lib/content'
 
 interface IPostProps {
@@ -48,7 +49,7 @@ export default function Post({ post }: IPostProps) {
             <h1 className="!m-0">{post.title}</h1>
 
             <div className="flex items-end justify-between mt-3">
-              <div>
+              <div className="flex-1">
                 <p className="!mt-3 !mb-0 text-gray-300" aria-label={`Published by: ${post.author}`}>{post.author}</p>
 
                 <p className="!my-0 text-base font-medium text-gray-500">
@@ -56,11 +57,23 @@ export default function Post({ post }: IPostProps) {
                 </p>
               </div>
 
-              <button className="p-2 -mb-1.5 text-gray-500 transition-colors duration-200 ease-in-out border-2 border-transparent border-dashed rounded-full focus:bg-gray-500 focus:bg-opacity-10 hover:bg-gray-500 hover:bg-opacity-10 hover:text-gray-400 focus:outline-none focus:border-brand-500" onClick={copy}>
-                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
-                </svg>
-              </button>
+              <Tooltip
+                content={
+                  <span className="flex items-center space-x-2">
+                    <span>Copy link to clipboard</span>
+                    <svg className="w-3 h-3 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                    </svg>
+                  </span>
+                }
+                placement="left"
+              >
+                <button className="flex-shrink-0 p-2 -mb-1.5 text-gray-500 transition-colors duration-200 ease-in-out border-2 border-transparent border-dashed rounded-full focus:bg-gray-500 focus:bg-opacity-10 hover:bg-gray-500 hover:bg-opacity-10 hover:text-gray-400 focus:outline-none focus:border-brand-500" onClick={copy}>
+                  <svg className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                  </svg>
+                </button>
+              </Tooltip>
             </div>
           </header>
 
