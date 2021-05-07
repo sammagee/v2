@@ -43,7 +43,7 @@ export default function MobileNav() {
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <Dialog.Overlay className="fixed inset-0 z-20 w-screen h-screen bg-black bg-opacity-50 backdrop-filter backdrop-blur">
+            <Dialog.Overlay className="fixed inset-0 z-20 w-screen h-full bg-black bg-opacity-50 backdrop-filter backdrop-blur">
               <Link href="/">
                 <a className="absolute z-50 flex items-center flex-shrink-0 p-3 space-x-3 transition-colors duration-200 ease-in-out border-2 border-transparent border-dashed rounded-full top-2.5 left-7 focus:bg-gray-500 focus:bg-opacity-10 hover:bg-gray-500 hover:bg-opacity-10 focus:outline-none focus:border-brand-500 focus:border-2 group">
                   <div className="relative w-12 h-12 transition duration-300 ease-in-out transform group-hover:scale-105 group-hover:-rotate-3">
@@ -69,7 +69,7 @@ export default function MobileNav() {
             leaveFrom="transform opacity-100 translate-x-0"
             leaveTo="transform opacity-0 translate-x-full"
           >
-            <div className="shadow-xl pb-safe-bottom z-20 fixed inset-y-0 right-0 w-full max-w-[calc(100vw-8.5rem)] h-screen origin-right bg-gray-800 bg-opacity-75 backdrop-filter backdrop-blur">
+            <div className="shadow-xl pb-safe-bottom z-20 fixed inset-y-0 right-0 w-full max-w-[calc(100vw-8.5rem)] h-full origin-right bg-gray-800 bg-opacity-75 backdrop-filter backdrop-blur">
               <div className="flex flex-col h-full overflow-hidden outline-none">
                 <div className="flex items-center justify-between w-full px-6 py-5 xs:px-12">
                   <Dialog.Title className="text-2xl font-semibold text-white">Menu</Dialog.Title>
