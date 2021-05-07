@@ -18,6 +18,7 @@ module.exports = {
       },
       screens: {
         xs: '400px',
+        vsm: {'raw': '(min-height: 640px)'},
         print: {'raw': 'print'},
       },
       spacing: {

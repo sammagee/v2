@@ -41,7 +41,7 @@ export default function Home({ positions, posts, projects }: IHomeProps) {
       <Layout home={true}>
         <Who />
 
-        <div id="content" className="mt-56">
+        <div id="content" role="main" aria-label="Main content" className="mt-56">
           <Work projects={projects} />
           <Words posts={posts} />
           <Where positions={positions} />

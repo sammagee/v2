@@ -70,7 +70,7 @@ export default function Where({ positions }: IWhereProps) {
                       </a>
                     </h3>
 
-                    <div className="flex flex-wrap xs:space-x-2 items-center !my-0 text-base font-medium text-gray-500">
+                    <div className="flex flex-col sm:flex-row flex-wrap sm:space-x-2 items-start sm:items-center !my-0 text-base font-medium text-gray-500">
                       <p>
                         <Date dateFormat="LLLL yyyy" dateString={position.date} />
                         &nbsp;&ndash;&nbsp;

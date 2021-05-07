@@ -34,7 +34,7 @@ export default function Project({ project }: IProjectProps) {
         <meta property="twitter:image" content="https://sammagee.me/images/social/social-square.jpg" />
       </Head>
 
-      <div id="content" className="mt-32 mb-32 md:mt-56">
+      <div id="content" role="main" aria-label="Main content" className="mt-32 mb-32 md:mt-56">
         <article className="w-full px-12 mx-auto prose prose-lg sm:pl-32 lg:pl-0">
           <Link href="/#work">
             <a className="inline-flex items-center space-x-2 !text-gray-400 !no-underline focus:outline-none border-2 border-transparent border-dashed focus:border-brand-500 -ml-0.5">
@@ -72,10 +72,10 @@ export default function Project({ project }: IProjectProps) {
             <div className="flex items-end justify-between mt-3">
               <div>
                 <p className="!mt-3 !mb-0 text-base font-medium text-gray-500">
-                  <Date dateFormat="d LLLL yyyy" dateString={project.date} />
+                  <Date ariaLabel="Release date: " dateFormat="d LLLL yyyy" dateString={project.date} />
                 </p>
 
-                <p className="!my-0 font-mono text-sm text-gray-500">{project.tags}</p>
+                <p aria-label="Languages/Frameworks used:" className="!my-0 font-mono text-sm text-gray-500">{project.tags}</p>
               </div>
 
               <button className="p-2 -mb-1.5 text-gray-500 transition-colors duration-200 ease-in-out border-2 border-transparent border-dashed rounded-full focus:bg-gray-500 focus:bg-opacity-10 hover:bg-gray-500 hover:bg-opacity-10 hover:text-gray-400 focus:outline-none focus:border-brand-500" onClick={copy}>

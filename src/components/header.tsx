@@ -16,6 +16,7 @@ export default function Header({ home = false }) {
         direction.isUp && scrollPos > HEADER_HEIGHT && 'shadow-xl translate-y-0 bg-opacity-75 backdrop-filter backdrop-blur',
         direction.isDown && scrollPos > HEADER_HEIGHT && 'shadow-xl -translate-y-full bg-opacity-75 backdrop-filter backdrop-blur',
       )}
+      role="banner"
     >
       <span className="absolute left-0 z-20 inline-flex transition duration-200 ease-in-out origin-left transform -translate-x-full bg-gray-900 rounded-lg focus-within:translate-x-8">
         <a href="#content" className="inline-flex items-center justify-center h-12 px-5 font-semibold transition-colors duration-200 ease-in-out border-2 rounded-lg hover:bg-brand-400 focus:bg-brand-400 hover:bg-opacity-10 focus:bg-opacity-10 hover:scale-105 border-brand-400 text-brand-400 active:scale-100 focus:outline-none focus:border-dashed">

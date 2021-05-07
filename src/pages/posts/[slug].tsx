@@ -32,7 +32,7 @@ export default function Post({ post }: IPostProps) {
         <meta property="twitter:image" content="https://sammagee.me/images/social/social-square.jpg" />
       </Head>
 
-      <div id="content" className="mt-32 mb-32 md:mt-56">
+      <div id="content" role="main" aria-label="Main content" className="mt-32 mb-32 md:mt-56">
         <article className="w-full px-12 mx-auto prose prose-lg sm:pl-32 lg:pl-0">
           <Link href="/#words">
             <a className="inline-flex items-center space-x-2 !text-gray-400 !no-underline focus:outline-none border-2 border-transparent border-dashed focus:border-brand-500 -ml-0.5">
@@ -49,10 +49,10 @@ export default function Post({ post }: IPostProps) {
 
             <div className="flex items-end justify-between mt-3">
               <div>
-                <p className="!mt-3 !mb-0 text-gray-300">{post.author}</p>
+                <p className="!mt-3 !mb-0 text-gray-300" aria-label={`Published by: ${post.author}`}>{post.author}</p>
 
                 <p className="!my-0 text-base font-medium text-gray-500">
-                  <Date dateFormat="d LLLL yyyy" dateString={post.date} />
+                  <Date ariaLabel="Published date: " dateFormat="d LLLL yyyy" dateString={post.date} />
                 </p>
               </div>
 
