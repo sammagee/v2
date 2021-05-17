@@ -29,7 +29,7 @@
     "@types/node": "^14.14.37",
     "@types/react": "^17.0.3",
     "autoprefixer": "^10.2.5",
-    "postcss": "^8.2.9",
+    "postcss": "^8.2.10",
     "tailwindcss": "^2.1.1",
     "tailwindcss-font-inter": "^2.0.3",
     "tailwindcss-group-variants": "^0.0.9",
