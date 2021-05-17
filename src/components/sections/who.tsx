@@ -13,10 +13,10 @@ export default function Who() {
         </p>
 
         <p className="w-full max-w-xl mt-6 prose prose-xl text-gray-200">
-          I am a{' '}
-          <Tooltip content="Developer + Designer" placement="right"><span className="cursor-help">devsigner</span></Tooltip>{' '}
-          working on the full stack. I currently work at IMT Insurance, and will be working on my Master's at Vanderbilt University.
-          Check out some of my favorite projects below, as well as a list of my posts.
+          I am a{' '}full-stack{' '}
+          <Tooltip content="Developer + Designer" placement="right"><span className="cursor-help">devsigner</span></Tooltip>.{' '}
+          I currently work at IMT Insurance and am also currently working toward my Master's at Vanderbilt University.
+          Below, you can find some of my favorite projects, as well as a list of my posts and experience.
         </p>
 
         <Tooltip
