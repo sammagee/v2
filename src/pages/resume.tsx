@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import Tooltip from '../components/tooltip'
 
 export default function Resume() {
   return (
@@ -7,7 +8,7 @@ export default function Resume() {
         <title>Résumé &ndash; Sam Magee</title>
       </Head>
 
-      <div className="bg-white w-[8.5in] h-[11in] mx-auto my-16 print:m-0 shadow-xl p-[0.5in] text-gray-900 text-sm">
+      <div className="bg-white w-[8.5in] h-[11in] mx-auto my-16 print:m-0 shadow-xl print:shadow-none p-[0.5in] text-gray-900 text-sm">
         <h1 className="mt-3 text-3xl font-bold text-brand-500">Sam Magee</h1>
         <h2 className="text-xl font-semibold text-brand-700">Full Stack Developer + Designer</h2>
         <nav className="flex mt-2 space-x-4 text-sm">
@@ -16,7 +17,21 @@ export default function Resume() {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
             </svg>
 
-            <span className="text-gray-700 filter blur-sm">hidden@email.com</span>
+            <Tooltip
+              content={
+                <span className="flex items-center space-x-2">
+                  <span>Request Information</span>
+                  <svg className="w-3 h-3 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </span>
+              }
+              placement="right"
+            >
+              <a href="mailto:hi@sammagee.me?subject=Résumé Inquiry" className="text-gray-700 filter blur-sm" rel="noopener" target="_blank">
+                hidden@email.com
+              </a>
+            </Tooltip>
           </div>
 
           <div className="flex items-center space-x-2">
@@ -24,7 +39,21 @@ export default function Resume() {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
             </svg>
 
-            <span className="text-gray-700 filter blur-sm">(555) 555-5555</span>
+            <Tooltip
+              content={
+                <span className="flex items-center space-x-2">
+                  <span>Request Information</span>
+                  <svg className="w-3 h-3 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </span>
+              }
+              placement="right"
+            >
+              <a href="mailto:hi@sammagee.me?subject=Résumé Inquiry" className="text-gray-700 filter blur-sm" rel="noopener" target="_blank">
+                (555) 555-5555
+              </a>
+            </Tooltip>
           </div>
 
           <div className="flex items-center space-x-2">
@@ -32,7 +61,21 @@ export default function Resume() {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
             </svg>
 
-            <span className="text-gray-700 filter blur-sm">555 Hidden Ave., Blocked, CA, 55555</span>
+            <Tooltip
+              content={
+                <span className="flex items-center space-x-2">
+                  <span>Request Information</span>
+                  <svg className="w-3 h-3 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  </svg>
+                </span>
+              }
+              placement="right"
+            >
+              <a href="mailto:hi@sammagee.me?subject=Résumé Inquiry" className="text-gray-700 filter blur-sm" rel="noopener" target="_blank">
+                555 Hidden Ave., Blocked, CA, 55555
+              </a>
+            </Tooltip>
           </div>
         </nav>
 
