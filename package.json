@@ -15,7 +15,7 @@
     "date-fns": "^2.21.1",
     "gray-matter": "^4.0.2",
     "lodash": "^4.17.21",
-    "next": "^10.2.0",
+    "next": "^11.1.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-parallax-tilt": "^1.5.8",
@@ -33,6 +33,6 @@
     "tailwindcss": "^2.1.1",
     "tailwindcss-font-inter": "^2.0.3",
     "tailwindcss-group-variants": "^0.0.9",
-    "typescript": "^4.2.4"
+    "typescript": "^4.3.0"
   }
 }
