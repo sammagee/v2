@@ -107,9 +107,9 @@ export default function Resume() {
                 <p className="text-xs">
                   React, Vue, Svelte, Angular,
                   Tailwind CSS, React Native,
-                  Next.js, Laravel, Django, .NET,
-                  Swift UI, Jetpack Compose, jQuery,
-                  WebAssembly, and WordPress
+                  Next.js, Laravel, Django, Node.js,
+                  .NET, Swift UI, Jetpack Compose,
+                  jQuery, WebAssembly, and WordPress
                 </p>
               </div>
 
