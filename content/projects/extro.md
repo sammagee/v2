@@ -13,4 +13,4 @@ This project allows you to view and download your past iMessage conversations. Y
 
 It works by utilizing the File System Access API, which allows it to run entirely within the browser. This allows for total security and ownership of your data, as it never hits the server.
 
-If you'd like to consider supporting this project, please visit [my sponsor page on GitHub](https://github.com/sponsors/sammagee)
+If you'd like to consider supporting this project, please visit [my sponsor page on GitHub](https://github.com/sponsors/sammagee).
