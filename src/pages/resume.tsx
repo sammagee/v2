@@ -220,10 +220,11 @@ export default function Resume() {
               </div>
 
               <div>
-                <strong className="flex items-center font-semibold">Recover <span className="font-mono text-xs text-gray-500">&nbsp;//&nbsp;<a className="font-medium underline text-brand-500" href="//recover.krafted.dev" rel="noopener" target="_blank">View</a>&nbsp;<a className="font-medium underline text-brand-500" href="//github.com/sammagee/recover" rel="noopener" target="_blank">GitHub</a></span></strong>
+                <strong className="flex items-center font-semibold">Extro <span className="font-mono text-xs text-gray-500">&nbsp;//&nbsp;<a className="font-medium underline text-brand-500" href="//extro.app" rel="noopener" target="_blank">View</a>&nbsp;<a className="font-medium underline text-brand-500" href="//github.com/sammagee/extro" rel="noopener" target="_blank">GitHub</a></span></strong>
                 <ul className="ml-4 text-xs list-disc">
                   <li>Privacy-focused solution for retrieving messages from an iOS backup</li>
                   <li>Allows the user to view messages in the browser and/or download them as a PDF</li>
+                  <li>Allows the user to listen to and download voicemails in the same interface</li>
                 </ul>
               </div>
             </div>
