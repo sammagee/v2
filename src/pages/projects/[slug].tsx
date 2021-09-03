@@ -4,8 +4,9 @@ import Date from '../../components/date'
 import Layout from '../../components/layout'
 import Tilt from 'react-parallax-tilt'
 import { getAllSlugs, getData } from '../../lib/content'
-import Image from 'next/image'
 import Tooltip from '../../components/tooltip'
+import Image from '../../components/image'
+import clsx from 'clsx'
 
 interface IProjectProps {
   project: Project
@@ -57,11 +58,13 @@ export default function Project({ project }: IProjectProps) {
                 glareMaxOpacity={0.05}
               >
                 <Image
-                  className="w-full leading-[7rem] rounded-lg shadow-lg select-none filter grayscale group-hover:filter-none"
-                  src={`/images/projects/${project.image}`}
                   alt={project.title}
-                  width={1920}
+                  className="w-full leading-[7rem] rounded-lg shadow-lg select-none filter grayscale group-hover:filter-none"
+                  containerClassName={isLoaded => clsx('w-full transition-opacity duration-500 ease-in', isLoaded ? 'opacity-100' : 'opacity-0')}
                   height={1080}
+                  src={`/images/projects/${project.image}`}
+                  width={1920}
+                  showLoadingIndicator
                 />
 
                 <div className="absolute inset-0 transition-opacity duration-200 ease-in-out bg-opacity-25 border-t rounded-lg bg-brand-500 border-brand-100 border-opacity-5 group-hover:opacity-0" />

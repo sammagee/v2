@@ -1,8 +1,8 @@
-import Image from 'next/image'
 import Link from 'next/link'
-import clsx from 'clsx';
+import clsx from 'clsx'
 import useScrollDirection from '../hooks/useScrollDirection'
-import MobileNav from './mobile-nav';
+import MobileNav from './mobile-nav'
+import Image from './image'
 
 const HEADER_HEIGHT = 96;
 
@@ -29,6 +29,7 @@ export default function Header({ home = false }) {
           <div className="relative w-12 h-12 transition duration-300 ease-in-out transform group-hover:scale-105 group-hover:-rotate-3">
             <Image
               className="pointer-events-none select-none"
+              containerClassName={isLoaded => clsx('w-full transition-opacity duration-250 ease-in', isLoaded ? 'opacity-100' : 'opacity-0')}
               src="/images/me.png"
               alt="me"
               layout="fill"

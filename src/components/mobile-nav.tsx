@@ -1,8 +1,8 @@
 import { Dialog, Transition } from '@headlessui/react'
 import clsx from 'clsx'
-import Image from 'next/image'
 import Link from 'next/link'
 import { Fragment, useRef, useState } from 'react'
+import Image from './image'
 import Tooltip from './tooltip'
 
 export default function MobileNav() {
@@ -49,6 +49,7 @@ export default function MobileNav() {
                   <div className="relative w-12 h-12 transition duration-300 ease-in-out transform group-hover:scale-105 group-hover:-rotate-3">
                     <Image
                       className="pointer-events-none select-none"
+                      containerClassName={isLoaded => clsx('w-full transition-opacity duration-250 ease-in', isLoaded ? 'opacity-100' : 'opacity-0')}
                       src="/images/me.png"
                       alt="me"
                       layout="fill"

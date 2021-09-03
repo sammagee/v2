@@ -1,7 +1,7 @@
 import clsx from 'clsx'
-import Image from 'next/image'
 import Link from 'next/link'
 import Tilt from 'react-parallax-tilt'
+import Image from '../image'
 import Tooltip from '../tooltip'
 
 interface IWorkProps {
@@ -50,11 +50,14 @@ export default function Work({ projects }: IWorkProps) {
                     glareMaxOpacity={0.05}
                   >
                     <Image
-                      className="w-full leading-[7rem] rounded-lg shadow-lg select-none filter grayscale group-hover:filter-none"
-                      src={`/images/projects/${project.image}`}
                       alt={project.title}
-                      width={1920}
+                      className="w-full leading-[7rem] rounded-lg shadow-lg select-none filter grayscale group-hover:filter-none"
+                      containerClassName={isLoaded => clsx('flex w-full transition-opacity duration-500 ease-in', isLoaded ? 'opacity-100' : 'opacity-0')}
                       height={1080}
+                      objectFit="cover"
+                      src={`/images/projects/${project.image}`}
+                      width={1920}
+                      showLoadingIndicator
                     />
 
                     <div className="absolute inset-0 transition-opacity duration-200 ease-in-out bg-opacity-25 border-t rounded-lg bg-brand-500 border-brand-100 border-opacity-5 group-hover:opacity-0" />
@@ -153,11 +156,13 @@ export default function Work({ projects }: IWorkProps) {
                     >
                       <div className="flex">
                         <Image
-                          className="w-full rounded-lg shadow-lg opacity-50 select-none filter grayscale"
-                          src={`/images/projects/${project.image}`}
                           alt={project.title}
-                          width={1920}
+                          className="w-full rounded-lg shadow-lg opacity-50 select-none filter grayscale"
+                          containerClassName={isLoaded => clsx('flex w-full transition-opacity duration-500 ease-in', isLoaded ? 'opacity-100' : 'opacity-0')}
                           height={1080}
+                          src={`/images/projects/${project.image}`}
+                          width={1920}
+                          showLoadingIndicator
                         />
 
                         <div className="absolute inset-0 bg-black bg-opacity-75 rounded-lg" />
@@ -243,7 +248,7 @@ export default function Work({ projects }: IWorkProps) {
                   }
                   placement="top"
                 >
-                  <a className="flex items-center justify-center px-5 py-10 text-sm font-mono font-semibold tracking-wide text-gray-500 uppercase transition duration-200 ease-in-out origin-bottom transform border-2 border-gray-800 border-dashed rounded-lg hover:bg-gray-500 focus:bg-gray-500 focus:bg-opacity-10 hover:bg-opacity-10 hover:scale-105 active:scale-100 focus:outline-none focus:border-dashed" href="mailto:sam@magee.one">
+                  <a className="flex items-center justify-center px-5 py-10 font-mono text-sm font-semibold tracking-wide text-gray-500 uppercase transition duration-200 ease-in-out origin-bottom transform border-2 border-gray-800 border-dashed rounded-lg hover:bg-gray-500 focus:bg-gray-500 focus:bg-opacity-10 hover:bg-opacity-10 hover:scale-105 active:scale-100 focus:outline-none focus:border-dashed" href="mailto:sam@magee.one">
                     Your project here
                   </a>
                 </Tooltip>

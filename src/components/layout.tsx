@@ -9,7 +9,7 @@ export default function Home({ children, home = false }) {
 
       <Links />
 
-      <div className="relative flex flex-col flex-1">
+      <div className="relative flex flex-col flex-1 overflow-x-hidden">
         {children}
       </div>
 
