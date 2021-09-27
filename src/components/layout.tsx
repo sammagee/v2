@@ -1,11 +1,11 @@
-import Header from './header';
-import Footer from './footer';
-import Links from './links';
+import Footer from './footer'
+import Header from './header'
+import Links from './links'
 
-export default function Home({ children, home = false }) {
+export default function Home({ children }) {
   return (
     <main className="flex flex-col min-h-screen">
-      <Header home={home} />
+      <Header />
 
       <Links />
 

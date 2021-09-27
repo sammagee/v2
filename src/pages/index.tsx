@@ -45,7 +45,7 @@ export default function Home({ positions, posts, projects }: IHomeProps) {
         />
       </Head>
 
-      <Layout home={true}>
+      <Layout>
         <Who />
 
         <div
