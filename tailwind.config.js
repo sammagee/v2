@@ -2,6 +2,7 @@ const colors = require('tailwindcss/colors')
 
 module.exports = {
   mode: 'jit',
+  darkMode: 'media',
   purge: ['./src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
@@ -18,8 +19,8 @@ module.exports = {
       },
       screens: {
         xs: '400px',
-        vsm: {'raw': '(min-height: 640px)'},
-        print: {'raw': 'print'},
+        vsm: { raw: '(min-height: 640px)' },
+        print: { raw: 'print' },
       },
       spacing: {
         'safe-top': 'env(safe-area-inset-top)',
@@ -27,7 +28,7 @@ module.exports = {
         'safe-left': 'env(safe-area-inset-left)',
         'safe-right': 'env(safe-area-inset-right)',
       },
-      typography: theme => ({
+      typography: (theme) => ({
         DEFAULT: {
           css: [
             {
@@ -36,7 +37,14 @@ module.exports = {
                 color: theme('colors.gray.500'),
               },
               a: {
-                color: theme('colors.brand.500'),
+                border: theme('borderWidth.2'),
+                borderColor: theme('borderColor.transparent'),
+                borderStyle: 'dashed',
+                color: theme('colors.brand.400'),
+              },
+              'a:focus': {
+                outline: 'none',
+                borderColor: theme('borderColor.brand.400'),
               },
               strong: {
                 color: theme('colors.gray.300'),
