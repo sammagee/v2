@@ -26,7 +26,7 @@ export default function Resume({
   skills,
 }: IResumeProps) {
   return (
-    <main className="w-screen min-h-screen py-16 text-lg print:py-0 bg-gray-50 dark:bg-gray-1000">
+    <main className="min-w-screen min-h-screen py-16 text-lg print:py-0 bg-gray-50 dark:bg-gray-1000">
       <Head>
         <title>Résumé &ndash; Sam Magee</title>
       </Head>
