@@ -40,6 +40,10 @@
   - Sketch
   - Illustrator
   - Photoshop
+'Cloud':
+  - AWS (Lambda, EC2, S3, etc.)
+  - Azure DevOps
+  - Google Cloud Platform
 'Miscellaneous':
   - Test Driven Development (TDD)
   - Behavior Driven Development (BDD)

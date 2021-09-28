@@ -27,7 +27,7 @@ export const getPositions = async () => {
   return allData
     .filter((item) => !item.draft)
     .sort((a, b) => {
-      if (a.date < b.date) return 1
+      if (a.endDate < b.endDate) return 1
       else return -1
     })
 }

@@ -32,7 +32,7 @@ export default function Header() {
           </a>
         </div>
 
-        <Tooltip
+        {/* <Tooltip
           content={
             <span className="flex items-center space-x-2">
               <span>Request Information</span>
@@ -75,9 +75,9 @@ export default function Header() {
               (555) 555-5555
             </a>
           </div>
-        </Tooltip>
+        </Tooltip> */}
 
-        {/* <div className="flex items-center">
+        <div className="flex items-center">
           <svg
             className="w-4 h-4 text-gray-500"
             viewBox="0 0 20 20"
@@ -98,7 +98,7 @@ export default function Header() {
           >
             {process.env.NEXT_PUBLIC_PHONE}
           </a>
-        </div> */}
+        </div>
 
         <div className="flex items-center space-x-1">
           <svg

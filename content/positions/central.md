@@ -9,6 +9,6 @@ featured: true
 location: 'Pella, IA'
 duties:
   - Built the website to apply for admission to the college
-  - Began by converting old code in the student and employee intranet to newer, more maintainable code
-  - Evolved to creating new web applications for the college, including a visual browser for the Facilities Management department
+  - Converted old code in the student and employee intranet to newer, more maintainable code
+  - Created new web applications for the college, including a visual browser for the Facilities Management department
 ---
