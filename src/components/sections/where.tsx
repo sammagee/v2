@@ -105,7 +105,7 @@ export default function Where({ positions }: IWhereProps) {
 
                           {index === 0 && (
                             <span className="px-3 py-1 mt-2 text-xs font-semibold rounded-full sm:mt-0 text-brand-400 bg-brand-400 bg-opacity-10">
-                              Most Recent
+                              Current
                             </span>
                           )}
                         </div>

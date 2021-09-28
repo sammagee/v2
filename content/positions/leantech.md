@@ -5,6 +5,7 @@ companyLogo: '<path fill-rule="evenodd" clip-rule="evenodd" d="M39.334 25.367l-.
 title: 'Software Developer'
 date: '2018-05'
 endDate: '2020-05'
+featured: true
 location: 'Pella, IA'
 duties:
   - Built software that directly impacted thousands of workers in many manufacturing companies

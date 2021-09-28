@@ -4,7 +4,8 @@ import Button from '../../components/button'
 import Date from '../../components/date'
 import Layout from '../../components/layout'
 import Tooltip from '../../components/tooltip'
-import { getAllSlugs, getData } from '../../lib/content'
+import { Content, getAllSlugs } from '../../lib/content'
+import { getPost } from '../../lib/posts'
 
 interface IPostProps {
   post: Post
@@ -152,7 +153,7 @@ export default function Post({ post }: IPostProps) {
 }
 
 export async function getStaticPaths() {
-  const paths = getAllSlugs('posts')
+  const paths = getAllSlugs(Content.Posts)
 
   return {
     paths,
@@ -161,7 +162,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const post = await getData('posts', params.slug)
+  const post = await getPost(params.slug)
 
   return {
     props: {

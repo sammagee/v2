@@ -1,11 +1,11 @@
 import { GetStaticProps } from 'next'
 import Head from 'next/head'
 import Layout from '../components/layout'
-import What from '../components/sections/what'
 import Where from '../components/sections/where'
 import Who from '../components/sections/who'
 import Words from '../components/sections/words'
-import { getSortedData } from '../lib/content'
+import Work from '../components/sections/work'
+import { getPositions, getPosts, getProjects } from '../lib/content'
 
 const TITLE = 'Sam Magee – Devsigner'
 const DESCRIPTION =
@@ -54,7 +54,7 @@ export default function Home({ positions, posts, projects }: IHomeProps) {
           aria-label="Main content"
           className="mt-56"
         >
-          <What projects={projects} />
+          <Work projects={projects} />
           <Words posts={posts} />
           <Where positions={positions} />
         </div>
@@ -64,9 +64,9 @@ export default function Home({ positions, posts, projects }: IHomeProps) {
 }
 
 export const getStaticProps: GetStaticProps = async () => {
-  const positions = await getSortedData('positions')
-  const posts = await getSortedData('posts')
-  const projects = await getSortedData('projects')
+  const positions = await getPositions()
+  const posts = await getPosts()
+  const projects = await getProjects()
 
   return {
     props: {

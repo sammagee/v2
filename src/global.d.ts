@@ -6,6 +6,7 @@ type Position = {
   date: string
   draft?: boolean
   endDate: string
+  featured: boolean
   location: string
   duties: string[]
 }
@@ -33,7 +34,17 @@ type Project = {
   git: string
   image: string
   link: string
+  points?: string[]
   slug: string
   tags: string
   title: string
 }
+
+type School = {
+  name: string
+  endDate: string
+  location: string
+  points: string[]
+}
+
+type Skills = Record<string, string[]>

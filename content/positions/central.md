@@ -5,6 +5,7 @@ companyLogo: '<path fill-rule="evenodd" clip-rule="evenodd" d="M24.155 44.143c-2
 title: 'Web Developer'
 date: '2018-08'
 endDate: '2020-05'
+featured: true
 location: 'Pella, IA'
 duties:
   - Built the website to apply for admission to the college

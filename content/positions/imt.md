@@ -5,6 +5,7 @@ companyLogo: '<path d="M27.2 39.6H32v16.7h-4.8zM52.4 39.6v16.7H48v-12l-3 12h-3l-
 title: 'Full Stack Developer I'
 date: '2020-06'
 endDate: '2021-08'
+featured: true
 location: 'WDM, IA'
 duties:
   - Developed new dynamic software for the replacement of an existing, legacy system

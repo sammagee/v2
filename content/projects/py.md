@@ -7,6 +7,10 @@ image: 'py.png'
 tags: 'Laravel, WebAssembly, Vue, Python, TailwindCSS'
 description: 'An Python editor with realtime output, using the Pyodide interpreter through WebAssembly. With this, you can write, share, and review Python code in the browser.'
 featured: true
+points:
+  - Social Python editor playground in the browser
+  - User can create, view, share, and annotate Python snippets
+  - Can be used in multiple contexts; one popular area being learning environments
 ---
 
 Py allows you to build and share your Python code without ever touching a native editor or command line — it works great on any device, including your tablet or phone!

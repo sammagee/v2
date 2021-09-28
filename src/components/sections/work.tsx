@@ -9,7 +9,7 @@ interface IWorkProps {
   projects: Project[]
 }
 
-export default function What({ projects }: IWorkProps) {
+export default function Work({ projects }: IWorkProps) {
   const getFeaturedProjects = (projects) =>
     projects.filter((project) => project.featured)
   const getUnfeaturedProjects = (projects) =>

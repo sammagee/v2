@@ -8,7 +8,7 @@ import Date from '../../components/date'
 import Image from '../../components/image'
 import Layout from '../../components/layout'
 import Tooltip from '../../components/tooltip'
-import { getAllSlugs, getData } from '../../lib/content'
+import { Content, getAllSlugs, getProject } from '../../lib/content'
 
 interface IProjectProps {
   project: Project
@@ -289,7 +289,7 @@ export default function Project({ project }: IProjectProps) {
 }
 
 export async function getStaticPaths() {
-  const paths = getAllSlugs('projects')
+  const paths = getAllSlugs(Content.Projects)
 
   return {
     paths,
@@ -298,7 +298,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-  const project = await getData('projects', params.slug)
+  const project = await getProject(params.slug)
 
   return {
     props: {

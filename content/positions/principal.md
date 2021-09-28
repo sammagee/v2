@@ -5,6 +5,7 @@ companyLogo: '<path d="M9 44.77C9 71.348 29.388 93.536 55.838 96V62.19c-12.39-1.
 title: 'Software Engineer II'
 date: '2021-08'
 endDate: 'Present'
+featured: true
 location: 'Des Moines, IA'
 duties:
   - Develop enterprise-grade programs for automation of tasks

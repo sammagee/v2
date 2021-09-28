@@ -5,6 +5,7 @@ companyLogo: '<path fill-rule="evenodd" clip-rule="evenodd" d="M16.58 26.763c13.
 title: 'Software Engineering Consultant'
 date: '2010'
 endDate: 'Present'
+featured: false
 location: 'Waukee, IA'
 duties:
   - Started as a hobby, expanded to a small business working on projects for various local businesses
