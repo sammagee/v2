@@ -11,14 +11,14 @@ export default function Projects({ projects }: IProjectsProps) {
 
       {projects.map((project) => (
         <div key={project.title}>
-          <strong className="flex items-center font-semibold">
+          <strong className="flex items-center">
             {project.title}{' '}
             {(project.link || project.git) && (
               <span className="space-x-5 font-mono text-xs text-gray-500 print:space-x-2 print:text-2xs">
                 &nbsp;//&nbsp;
                 {project.link && (
                   <a
-                    className="relative inline-block font-semibold"
+                    className="relative inline-block"
                     href={`https://${project.link}`}
                     rel="noopener noreferrer"
                     target="_blank"
@@ -41,7 +41,7 @@ export default function Projects({ projects }: IProjectsProps) {
                 )}
                 {project.git && (
                   <a
-                    className="relative inline-block font-semibold"
+                    className="relative inline-block"
                     href={`https://${project.git}`}
                     rel="noopener noreferrer"
                     target="_blank"

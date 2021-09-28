@@ -9,7 +9,7 @@ export default function Header() {
       </h2>
 
       <nav className="flex mt-2 space-x-4 text-sm">
-        <div className="flex items-center space-x-2">
+        <div className="flex items-center space-x-1">
           <svg
             className="w-4 h-4 text-gray-500"
             viewBox="0 0 20 20"
@@ -23,7 +23,7 @@ export default function Header() {
           </svg>
 
           <a
-            href="https://magee.one"
+            href="https://sammagee.me"
             className="text-gray-700 dark:text-gray-500"
             rel="noopener noreferrer"
             target="_blank"
@@ -53,7 +53,7 @@ export default function Header() {
           }
           placement="right"
         >
-          <div className="flex items-center space-x-1">
+          <div className="flex items-center">
             <svg
               className="w-4 h-4 text-gray-500"
               viewBox="0 0 20 20"
@@ -76,6 +76,29 @@ export default function Header() {
             </a>
           </div>
         </Tooltip>
+
+        {/* <div className="flex items-center">
+          <svg
+            className="w-4 h-4 text-gray-500"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+          >
+            <path
+              fillRule="evenodd"
+              d="M7 2a2 2 0 00-2 2v12a2 2 0 002 2h6a2 2 0 002-2V4a2 2 0 00-2-2H7zm3 14a1 1 0 100-2 1 1 0 000 2z"
+              clipRule="evenodd"
+            />
+          </svg>
+
+          <a
+            href={`tel:${process.env.NEXT_PUBLIC_PHONE}`}
+            className="text-gray-700 dark:text-gray-500"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            {process.env.NEXT_PUBLIC_PHONE}
+          </a>
+        </div> */}
 
         <div className="flex items-center space-x-1">
           <svg
