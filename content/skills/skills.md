@@ -1,6 +1,7 @@
 ---
 'Coding Languages':
   - JavaScript/TypeScript
+  - GraphQL
   - Python
   - PHP/Hack
   - Java
