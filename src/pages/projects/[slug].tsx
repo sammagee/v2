@@ -1,7 +1,6 @@
 import clsx from 'clsx'
 import Head from 'next/head'
 import Link from 'next/link'
-import Tilt from 'react-parallax-tilt'
 import AnchorButton from '../../components/anchor-button'
 import Button from '../../components/button'
 import Date from '../../components/date'
@@ -61,7 +60,7 @@ export default function Project({ project }: IProjectProps) {
       >
         <article className="w-full px-12 mx-auto prose prose-lg sm:pl-32 lg:pl-0">
           <Link href="/#work">
-            <a className="inline-flex items-center space-x-2 !text-gray-400 !no-underline focus:outline-none border-2 border-transparent border-dashed focus:border-brand-500 -ml-0.5">
+            <a className="inline-flex items-center space-x-2 !text-gray-400 !no-underline focus:outline-none border-2 border-transparent border-dashed focus-visible:border-brand-500 -ml-0.5">
               <svg
                 className="w-4 h-4 text-gray-500"
                 fill="none"
@@ -82,30 +81,26 @@ export default function Project({ project }: IProjectProps) {
 
           <header className="mt-6">
             <div className="transform scale-105">
-              <Tilt
-                className="relative flex w-full overflow-hidden rounded-lg group"
-                tiltMaxAngleX={15}
-                tiltMaxAngleY={15}
-                glareEnable={true}
-                glareMaxOpacity={0.05}
-              >
+              <div className="relative flex w-full overflow-hidden rounded-lg group">
                 <Image
                   alt={project.title}
                   className="w-full leading-[7rem] rounded-lg shadow-lg select-none filter grayscale group-hover:filter-none"
                   containerClassName={(isLoaded) =>
                     clsx(
-                      'w-full transition-opacity duration-500 ease-in',
+                      'flex w-full transition-opacity duration-500 ease-in',
                       isLoaded ? 'opacity-100' : 'opacity-0'
                     )
                   }
                   height={1080}
+                  objectFit="cover"
                   src={`/images/projects/${project.image}`}
                   width={1920}
                   showLoadingIndicator
                 />
 
-                <div className="absolute inset-0 transition-opacity duration-200 ease-in-out bg-opacity-25 border-t rounded-lg bg-brand-500 border-brand-100 border-opacity-5 group-hover:opacity-0" />
-              </Tilt>
+                <div className="absolute inset-0 transition-opacity duration-200 ease-in-out bg-transparent rounded-lg opacity-50 backdrop-filter backdrop-blur-sm bg-brand-dots backdrop-brightness-100 group-hover:opacity-0" />
+                <div className="absolute inset-0 rounded-lg bg-gradient-to-b from-transparent to-black/25" />
+              </div>
             </div>
 
             <h1 className="!mt-12 !mb-0">{project.title}</h1>
@@ -273,7 +268,7 @@ export default function Project({ project }: IProjectProps) {
             </div>
           </header>
 
-          <div className="px-6 py-4 mt-6 bg-gray-800 bg-opacity-75 border-t border-white rounded-lg shadow-lg backdrop-filter border-opacity-5 backdrop-blur">
+          <div className="px-6 py-4 mt-6 bg-transparent rounded-lg shadow-lg backdrop-brightness-100 backdrop-filter bg-dark-dots backdrop-blur">
             <span className="px-3 py-1 text-sm font-semibold rounded-full bg-brand-400 bg-opacity-10 text-brand-400">
               TL;DR
             </span>

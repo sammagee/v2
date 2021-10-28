@@ -19,13 +19,13 @@ export default function Header() {
   return (
     <header
       className={clsx(
-        'fixed z-20 top-0 flex items-center justify-between w-full pl-7 pr-12 h-24 bg-gray-900 transform transition ease-in-out duration-500',
+        'fixed z-20 top-0 flex items-center justify-between w-full pl-7 pr-12 h-24 bg-transparent bg-dots transform transition ease-in-out duration-500',
         direction.isUp &&
           scrollPos > HEADER_HEIGHT &&
-          'shadow-xl translate-y-0 bg-opacity-75 backdrop-filter backdrop-blur',
+          'shadow-xl translate-y-0 backdrop-filter backdrop-blur backdrop-brightness-100',
         direction.isDown &&
           scrollPos > HEADER_HEIGHT &&
-          'shadow-xl -translate-y-full bg-opacity-75 backdrop-filter backdrop-blur'
+          'shadow-xl -translate-y-full backdrop-filter backdrop-blur backdrop-brightness-100'
       )}
       role="banner"
     >
@@ -53,21 +53,21 @@ export default function Header() {
 
       <nav className="items-center hidden space-x-6 sm:flex">
         <Link href="/#work">
-          <a className="font-semibold text-white border-2 border-transparent border-dashed focus:outline-none focus:border-brand-500">
+          <a className="font-semibold text-white border-2 border-transparent border-dashed focus:outline-none focus-visible:border-brand-500">
             <span className="font-mono opacity-25 text-brand-500">01.</span>{' '}
             Work
           </a>
         </Link>
 
         <Link href="/#words">
-          <a className="font-semibold text-white border-2 border-transparent border-dashed focus:outline-none focus:border-brand-500">
+          <a className="font-semibold text-white border-2 border-transparent border-dashed focus:outline-none focus-visible:border-brand-500">
             <span className="font-mono opacity-25 text-brand-500">02.</span>{' '}
             Words
           </a>
         </Link>
 
         <Link href="/#where">
-          <a className="font-semibold text-white border-2 border-transparent border-dashed focus:outline-none focus:border-brand-500">
+          <a className="font-semibold text-white border-2 border-transparent border-dashed focus:outline-none focus-visible:border-brand-500">
             <span className="font-mono opacity-25 text-brand-500">03.</span>{' '}
             Where
           </a>

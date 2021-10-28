@@ -9,16 +9,14 @@
   },
   "dependencies": {
     "@headlessui/react": "^1.1.1",
-    "@tailwindcss/line-clamp": "^0.2.0",
     "@tippyjs/react": "^4.2.5",
     "clsx": "^1.1.1",
     "date-fns": "^2.21.1",
     "gray-matter": "^4.0.2",
     "lodash": "^4.17.21",
-    "next": "^11.1.1",
+    "next": "^12.0.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
-    "react-parallax-tilt": "^1.5.8",
     "react-scroll": "^1.8.2",
     "react-use": "^17.3.1",
     "remark": "^13.0.0",
@@ -26,12 +24,13 @@
     "tippy.js": "^6.3.1"
   },
   "devDependencies": {
-    "@tailwindcss/typography": "^0.4.0",
+    "@tailwindcss/line-clamp": "^0.2.0",
+    "@tailwindcss/typography": "^0.5.0-alpha.2",
     "@types/node": "^14.14.37",
     "@types/react": "^17.0.3",
     "autoprefixer": "^10.2.5",
     "postcss": "^8.2.10",
-    "tailwindcss": "^2.2.7",
+    "tailwindcss": "^3.0.0-alpha.1",
     "tailwindcss-font-inter": "^2.0.3",
     "tailwindcss-group-variants": "^0.0.9",
     "typescript": "^4.3.0"

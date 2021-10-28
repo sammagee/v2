@@ -11,7 +11,7 @@ export default function Footer() {
             <p className="mt-12 font-semibold text-gray-500 sm:mt-0">
               &copy;{' '}
               <Link href="/">
-                <a className="border-2 border-transparent border-dashed focus:outline-none focus:border-brand-500">
+                <a className="border-2 border-transparent border-dashed focus:outline-none focus-visible:border-brand-500">
                   Sam Magee
                 </a>
               </Link>

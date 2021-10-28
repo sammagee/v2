@@ -6,7 +6,7 @@ export const AVG_WPM = 200
 export const getPost = async (slug: string) => {
   const { matterResult, processedContent, processedDescription } =
     await processData({ type: Content.Posts, slug, withDescription: true })
-  const matterData = <Post>matterResult.data
+  const matterData = matterResult.data as Post
   const contentLength = processedContent.toString().split(' ').length
   const readTime = `${Math.ceil(contentLength / AVG_WPM)} min read`
 

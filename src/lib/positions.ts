@@ -4,7 +4,7 @@ import { Content, getPath, processData } from './content'
 export const getPosition = async (slug: string) => {
   const { matterResult, processedContent, processedDescription } =
     await processData({ type: Content.Positions, slug, withDescription: true })
-  const matterData = <Position>matterResult.data
+  const matterData = matterResult.data as Position
 
   return {
     contentHtml: processedContent.toString(),

@@ -88,7 +88,7 @@ export default function MobileNav() {
             leaveFrom="transform opacity-100 translate-x-0"
             leaveTo="transform opacity-0 translate-x-full"
           >
-            <div className="shadow-xl pb-safe-bottom z-20 fixed inset-y-0 right-0 w-full max-w-[calc(100vw-8.5rem)] h-full origin-right bg-gray-800 bg-opacity-75 backdrop-filter backdrop-blur">
+            <div className="shadow-xl pb-safe-bottom z-20 fixed inset-y-0 right-0 w-full max-w-[calc(100vw-8.5rem)] h-full origin-right bg-transparent backdrop-filter backdrop-blur backdrop-brightness-100 bg-dots">
               <div className="flex flex-col h-full overflow-hidden outline-none">
                 <div className="flex items-center justify-between w-full px-6 py-5 xs:px-12">
                   <Dialog.Title className="text-2xl font-semibold text-white">
@@ -127,7 +127,7 @@ export default function MobileNav() {
                 <div className="flex flex-col flex-1 overflow-y-auto">
                   <div className="flex flex-col items-center justify-center flex-1 px-6 space-y-6 xs:px-12">
                     <Link href="/#work">
-                      <a className="text-4xl font-semibold text-white border-2 border-transparent border-dashed focus:outline-none focus:border-brand-500">
+                      <a className="text-4xl font-semibold text-white border-2 border-transparent border-dashed focus:outline-none focus-visible:border-brand-500">
                         <span className="font-mono opacity-25 text-brand-500">
                           01.
                         </span>{' '}
@@ -136,7 +136,7 @@ export default function MobileNav() {
                     </Link>
 
                     <Link href="/#words">
-                      <a className="text-4xl font-semibold text-white border-2 border-transparent border-dashed focus:outline-none focus:border-brand-500">
+                      <a className="text-4xl font-semibold text-white border-2 border-transparent border-dashed focus:outline-none focus-visible:border-brand-500">
                         <span className="font-mono opacity-25 text-brand-500">
                           02.
                         </span>{' '}
@@ -145,7 +145,7 @@ export default function MobileNav() {
                     </Link>
 
                     <Link href="/#where">
-                      <a className="text-4xl font-semibold text-white border-2 border-transparent border-dashed focus:outline-none focus:border-brand-500">
+                      <a className="text-4xl font-semibold text-white border-2 border-transparent border-dashed focus:outline-none focus-visible:border-brand-500">
                         <span className="font-mono opacity-25 text-brand-500">
                           03.
                         </span>{' '}

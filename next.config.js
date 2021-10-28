@@ -11,6 +11,7 @@ module.exports = {
         destination: '/#work',
         permanent: true,
       },
-    ];
+    ]
   },
-};
+  swcMinify: true,
+}

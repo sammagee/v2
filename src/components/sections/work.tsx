@@ -1,6 +1,5 @@
 import clsx from 'clsx'
 import Link from 'next/link'
-import Tilt from 'react-parallax-tilt'
 import AnchorButton from '../anchor-button'
 import Image from '../image'
 import Tooltip from '../tooltip'
@@ -47,13 +46,7 @@ export default function Work({ projects }: IWorkProps) {
                   )}
                   key={index}
                 >
-                  <Tilt
-                    className="relative flex w-full overflow-hidden rounded-lg md:w-2/3 group"
-                    tiltMaxAngleX={15}
-                    tiltMaxAngleY={15}
-                    glareEnable={true}
-                    glareMaxOpacity={0.05}
-                  >
+                  <div className="relative flex w-full overflow-hidden rounded-lg md:w-2/3 group">
                     <Image
                       alt={project.title}
                       className="w-full leading-[7rem] rounded-lg shadow-lg select-none filter grayscale group-hover:filter-none"
@@ -70,18 +63,15 @@ export default function Work({ projects }: IWorkProps) {
                       showLoadingIndicator
                     />
 
-                    <div className="absolute inset-0 transition-opacity duration-200 ease-in-out bg-opacity-25 border-t rounded-lg bg-brand-500 border-brand-100 border-opacity-5 group-hover:opacity-0" />
-                  </Tilt>
+                    <div className="absolute inset-0 transition-opacity duration-200 ease-in-out bg-transparent rounded-lg opacity-50 backdrop-filter backdrop-blur-sm bg-brand-dots backdrop-brightness-100 group-hover:opacity-0" />
+                    <div className="absolute inset-0 rounded-lg bg-gradient-to-b from-transparent to-black/25" />
+                  </div>
 
-                  <Tilt
+                  <div
                     className={clsx(
-                      '-mt-6 w-full md:w-2/5 md:mt-6 p-6 bg-gray-900 bg-opacity-80 backdrop-filter border-t border-white border-opacity-5 backdrop-blur rounded-lg shadow-xl overflow-hidden',
+                      '-mt-6 w-full md:w-2/5 md:mt-6 p-6 bg-transparent backdrop-brightness-100 backdrop-filter bg-dots backdrop-blur rounded-lg shadow-xl overflow-hidden',
                       index % 2 === 0 ? 'ml-3 md:-ml-6' : '-ml-3 md:-mr-6'
                     )}
-                    tiltMaxAngleX={15}
-                    tiltMaxAngleY={15}
-                    glareEnable={true}
-                    glareMaxOpacity={0.05}
                   >
                     <div className="relative z-10 space-y-2">
                       <div className="flex items-center justify-between">
@@ -90,7 +80,7 @@ export default function Work({ projects }: IWorkProps) {
                             href={`/projects/${project.slug}`}
                             key={project.slug}
                           >
-                            <a className="-ml-0.5 border-2 border-transparent border-dashed focus:outline-none focus:border-brand-500">
+                            <a className="-ml-0.5 border-2 border-transparent border-dashed focus:outline-none focus-visible:border-brand-500">
                               {project.title}
                             </a>
                           </Link>
@@ -207,7 +197,7 @@ export default function Work({ projects }: IWorkProps) {
                         {project.tags}
                       </p>
                     </div>
-                  </Tilt>
+                  </div>
                 </article>
               ))}
             </div>
@@ -220,13 +210,7 @@ export default function Work({ projects }: IWorkProps) {
               <div className="grid grid-cols-1 gap-6 mt-3 sm:grid-cols-2 lg:gap-8 lg:grid-cols-4">
                 {getUnfeaturedProjects(projects).map((project, index) => (
                   <article key={index}>
-                    <Tilt
-                      className="overflow-hidden rounded-lg group"
-                      tiltMaxAngleX={15}
-                      tiltMaxAngleY={15}
-                      glareEnable={true}
-                      glareMaxOpacity={0.1}
-                    >
+                    <div className="relative overflow-hidden rounded-lg group">
                       <div className="flex">
                         <Image
                           alt={project.title}
@@ -243,8 +227,8 @@ export default function Work({ projects }: IWorkProps) {
                           showLoadingIndicator
                         />
 
-                        <div className="absolute inset-0 bg-black bg-opacity-75 rounded-lg" />
-                        <div className="absolute inset-0 bg-opacity-25 border-t rounded-lg backdrop-filter backdrop-blur-sm bg-brand-500 border-brand-100 border-opacity-5" />
+                        <div className="absolute inset-0 bg-transparent rounded-lg opacity-25 backdrop-filter backdrop-blur-sm bg-brand-dots backdrop-brightness-100" />
+                        <div className="absolute inset-0 rounded-lg bg-gradient-to-b from-transparent to-black/25" />
                       </div>
 
                       <div className="absolute inset-0 z-10 flex flex-col justify-center px-6 py-4 overflow-hidden md:space-y-2">
@@ -253,7 +237,7 @@ export default function Work({ projects }: IWorkProps) {
                             href={`/projects/${project.slug}`}
                             key={project.slug}
                           >
-                            <a className="-ml-0.5 border-2 border-transparent border-dashed focus:outline-none focus:border-brand-500">
+                            <a className="-ml-0.5 border-2 border-transparent border-dashed focus:outline-none focus-visible:border-brand-500">
                               {project.title}
                             </a>
                           </Link>
@@ -369,7 +353,7 @@ export default function Work({ projects }: IWorkProps) {
                           )}
                         </div>
                       </div>
-                    </Tilt>
+                    </div>
                   </article>
                 ))}
 
@@ -395,7 +379,7 @@ export default function Work({ projects }: IWorkProps) {
                   placement="top"
                 >
                   <a
-                    className="flex items-center justify-center px-5 py-10 font-mono text-sm font-semibold tracking-wide text-gray-500 uppercase transition duration-200 ease-in-out origin-bottom transform border-2 border-gray-800 border-dashed rounded-lg hover:bg-gray-500 focus:bg-gray-500 focus:bg-opacity-10 hover:bg-opacity-10 hover:scale-105 active:scale-100 focus:outline-none focus:border-dashed"
+                    className="flex items-center justify-center px-5 py-10 font-mono text-sm font-semibold tracking-wide text-gray-500 uppercase transition duration-200 ease-in-out origin-bottom transform border-2 border-gray-800 border-dashed rounded-lg hover:bg-gray-500 focus-visible:bg-gray-500 focus-visible:bg-opacity-10 hover:bg-opacity-10 hover:scale-105 active:scale-100 focus:outline-none focus-visible:border-dashed"
                     href="mailto:sam@magee.one"
                   >
                     Your project here

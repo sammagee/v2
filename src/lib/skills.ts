@@ -7,5 +7,5 @@ export const getSkills = async () => {
     withDescription: true,
   })
 
-  return <Skills>matterResult.data
+  return matterResult.data as Skills
 }

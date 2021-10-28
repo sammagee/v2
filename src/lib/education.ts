@@ -2,10 +2,9 @@ import fs from 'fs'
 import { Content, getPath, processData } from './content'
 
 export const getSchool = async (slug: string) => {
-  const { matterResult, processedContent, processedDescription } =
-    await processData({ type: Content.Education, slug })
+  const { matterResult } = await processData({ type: Content.Education, slug })
 
-  return <School>matterResult.data
+  return matterResult.data as School
 }
 
 export const getSchools = async () => {

@@ -1,17 +1,32 @@
 const colors = require('tailwindcss/colors')
 
 module.exports = {
-  mode: 'jit',
   darkMode: 'media',
-  purge: ['./src/**/*.{js,ts,jsx,tsx}'],
+  content: ['./src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
       colors: {
         gray: {
-          ...colors.trueGray,
+          ...colors.neutral,
           1000: '#101010',
         },
         brand: colors.amber,
+      },
+      backgroundImage: (theme) => ({
+        dots: `radial-gradient(rgba(0, 0, 0, 0) 1px, ${theme(
+          'colors.gray.900'
+        )} 1px)`,
+        'dark-dots': `radial-gradient(rgba(0, 0, 0, 0) 1px, ${theme(
+          'colors.gray.1000'
+        )} 1px)`,
+        'brand-dots': `radial-gradient(${theme(
+          'colors.brand.500'
+        )} 1px, rgba(0, 0, 0, 0) 1px)`,
+      }),
+      backgroundSize: {
+        dots: '4px 4px',
+        'dark-dots': '4px 4px',
+        'brand-dots': '4px 4px',
       },
       fontSize: {
         '2xs': ['0.625rem', { lineHeight: '1rem' }],

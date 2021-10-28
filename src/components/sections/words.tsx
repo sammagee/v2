@@ -15,7 +15,9 @@ export default function Words({ posts }: IWordsProps) {
               <h2 className="text-5xl font-bold text-white">
                 <span>Words</span>
               </h2>
-              <p className="mt-2 text-lg font-semibold text-gray-500">These are some of my most recent posts.</p>
+              <p className="mt-2 text-lg font-semibold text-gray-500">
+                These are some of my most recent posts.
+              </p>
             </div>
 
             <div className="h-[2px] flex-1 mb-2 border-gray-500 border border-dashed opacity-25 rounded-full" />
@@ -24,14 +26,13 @@ export default function Words({ posts }: IWordsProps) {
           <div className="py-10">
             {posts.length ? (
               <div className="space-y-3">
-                {posts.map(post => (
+                {posts.map((post) => (
                   <article key={post.slug}>
                     <h3 className="-ml-0.5 text-xl font-semibold">
-                      <Link
-                        href={`/posts/${post.slug}`}
-                        key={post.slug}
-                      >
-                        <a className="text-white border-2 border-transparent border-dashed focus:outline-none focus:border-brand-500">{post.title}</a>
+                      <Link href={`/posts/${post.slug}`} key={post.slug}>
+                        <a className="text-white border-2 border-transparent border-dashed focus:outline-none focus-visible:border-brand-500">
+                          {post.title}
+                        </a>
                       </Link>
                     </h3>
 
@@ -43,19 +44,25 @@ export default function Words({ posts }: IWordsProps) {
                       </p>
 
                       <div className="flex-1 mb-1.5 border-b opacity-75 border-gray-800 border-dashed" />
-                      <span className="font-mono text-lg text-gray-400">{(post.number).toString().padStart(2, '0')}.</span>
+                      <span className="font-mono text-lg text-gray-400">
+                        {post.number.toString().padStart(2, '0')}.
+                      </span>
                     </div>
                   </article>
                 ))}
               </div>
             ) : (
               <div className="flex items-center justify-center">
-                <span className="px-3 py-1 text-sm font-semibold rounded-full bg-brand-400 bg-opacity-10 text-brand-400">Posts coming soon</span>
+                <span className="px-3 py-1 text-sm font-semibold rounded-full bg-brand-400 bg-opacity-10 text-brand-400">
+                  Posts coming soon
+                </span>
               </div>
             )}
           </div>
 
-          <div className="mt-20 font-mono font-black opacity-25 text-8xl text-brand-500">02.</div>
+          <div className="mt-20 font-mono font-black opacity-25 text-8xl text-brand-500">
+            02.
+          </div>
         </div>
       </div>
     </section>

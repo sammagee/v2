@@ -4,6 +4,8 @@ import Image from './image'
 export default function Dots() {
   return (
     <Image
+      alt="Logo Dots"
+      aria-hidden="true"
       className="relative w-full pointer-events-none select-none"
       containerClassName={(isLoaded) =>
         clsx(
