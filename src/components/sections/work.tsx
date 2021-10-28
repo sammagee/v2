@@ -227,8 +227,8 @@ export default function Work({ projects }: IWorkProps) {
                           showLoadingIndicator
                         />
 
-                        <div className="absolute inset-0 bg-transparent rounded-lg opacity-25 backdrop-filter backdrop-blur-sm bg-brand-dots backdrop-brightness-100" />
-                        <div className="absolute inset-0 rounded-lg bg-gradient-to-b from-transparent to-black/25" />
+                        <div className="absolute inset-0 rounded-lg bg-gradient-to-b from-transparent backdrop-filter backdrop-blur-sm to-black/25" />
+                        <div className="absolute inset-0 bg-transparent rounded-lg opacity-25 bg-brand-dots backdrop-brightness-100" />
                       </div>
 
                       <div className="absolute inset-0 z-10 flex flex-col justify-center px-6 py-4 overflow-hidden md:space-y-2">
