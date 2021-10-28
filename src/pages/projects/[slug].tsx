@@ -81,7 +81,7 @@ export default function Project({ project }: IProjectProps) {
 
           <header className="mt-6">
             <div className="transform scale-105">
-              <div className="relative flex w-full overflow-hidden rounded-lg group">
+              <div className="relative flex w-full overflow-hidden transition-transform duration-200 ease-in-out rounded-lg group hover:scale-105">
                 <Image
                   alt={project.title}
                   className="w-full leading-[7rem] rounded-lg shadow-lg select-none filter grayscale group-hover:filter-none"

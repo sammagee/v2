@@ -46,7 +46,7 @@ export default function Work({ projects }: IWorkProps) {
                   )}
                   key={index}
                 >
-                  <div className="relative flex w-full overflow-hidden rounded-lg md:w-2/3 group">
+                  <div className="relative flex w-full overflow-hidden transition-transform duration-200 ease-in-out rounded-lg md:w-2/3 group hover:scale-105">
                     <Image
                       alt={project.title}
                       className="w-full leading-[7rem] rounded-lg shadow-lg select-none filter grayscale group-hover:filter-none"
@@ -210,7 +210,7 @@ export default function Work({ projects }: IWorkProps) {
               <div className="grid grid-cols-1 gap-6 mt-3 sm:grid-cols-2 lg:gap-8 lg:grid-cols-4">
                 {getUnfeaturedProjects(projects).map((project, index) => (
                   <article key={index}>
-                    <div className="relative overflow-hidden rounded-lg group">
+                    <div className="relative overflow-hidden transition-transform duration-200 ease-in-out rounded-lg group hover:scale-105">
                       <div className="flex">
                         <Image
                           alt={project.title}
@@ -379,7 +379,7 @@ export default function Work({ projects }: IWorkProps) {
                   placement="top"
                 >
                   <a
-                    className="flex items-center justify-center px-5 py-10 font-mono text-sm font-semibold tracking-wide text-gray-500 uppercase transition duration-200 ease-in-out origin-bottom transform border-2 border-gray-800 border-dashed rounded-lg hover:bg-gray-500 focus-visible:bg-gray-500 focus-visible:bg-opacity-10 hover:bg-opacity-10 hover:scale-105 active:scale-100 focus:outline-none focus-visible:border-dashed"
+                    className="flex items-center justify-center px-5 py-10 font-mono text-sm font-semibold tracking-wide text-gray-500 uppercase transition duration-200 ease-in-out transform border-2 border-gray-800 border-dashed rounded-lg hover:bg-gray-500 focus-visible:bg-gray-500 focus-visible:bg-opacity-10 hover:bg-opacity-10 hover:scale-105 active:scale-100 focus:outline-none focus-visible:border-dashed"
                     href="mailto:sam@magee.one"
                   >
                     Your project here
