@@ -6,10 +6,9 @@ title: 'Software Engineer II, Frontend'
 date: '2021-11'
 endDate: 'Present'
 featured: true
-location: 'Des Moines, IA'
 duties:
-  - Increase the design system development speed and developer experience by introducing new build tooling and TypeScript compatability
+  - Increase design system component library productivity by decreasing development startup times by 75% and introducing new build system
+  - Refactor and expand existing design system components and patterns to increase performance, understandability, and stability of the overall system
   - Build pixel-perfect, functional screens and components to match designs
-  - Refactor and expand existing patterns to increase performance, understandability, and stability of the overall system
   - Introduce new opportunities for the developer experience and increased scalability for the frontend monorepo
 ---
