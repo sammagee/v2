@@ -15,17 +15,17 @@ export default function Who() {
           <h1 className="mt-2 font-bold text-white text-7xl">Sam Magee</h1>
           <p className="mt-3 text-3xl font-medium text-gray-400">
             <span className="text-gray-500">
-              I craft beautiful experiences that
+              I craft elegant experiences that intuitively
             </span>
             <br />
             <span className="text-brand-400">solve your problems</span>
           </p>
 
           <p className="w-full max-w-xl mt-6 prose prose-xl text-gray-200">
-            I am a frontend engineer. I currently work at Uber and am also
-            currently working toward my Master's at Vanderbilt University.
-            Below, you can find some of myfavorite projects, as well as a list
-            of my posts and experience.
+            I am a frontend engineer at Uber, working on solving complex and
+            interesting problems in the marketplace. I am also currently working
+            on achieving my Master's in Computer Science at Vanderbilt
+            University (last semester, woohoo!).
           </p>
 
           <Tooltip

@@ -28,7 +28,7 @@ export default function Where({ positions }: IWhereProps) {
 
             <AnchorButton
               className="mb-2"
-              href="/resume"
+              href="/resume.pdf"
               rel="noopener noreferrer"
               target="_blank"
             >

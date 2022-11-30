@@ -26,12 +26,12 @@ export default function Resume({
   skills,
 }: IResumeProps) {
   return (
-    <main className="min-w-screen min-h-screen py-16 text-lg print:py-0 bg-gray-50 dark:bg-gray-1000">
+    <main className="min-h-screen py-16 text-lg min-w-screen print:py-0 bg-gray-50 dark:bg-gray-1000">
       <Head>
         <title>Résumé &ndash; Sam Magee</title>
       </Head>
 
-      <div className="bg-white dark:bg-gray-900 w-[8.5in] h-[11in] mx-auto print:m-0 shadow-xl print:shadow-none p-[0.5in] text-gray-900 dark:text-gray-300 text-sm">
+      <div className="bg-white dark:bg-gray-900 w-[8.5in] mx-auto print:m-0 shadow-xl print:shadow-none p-[0.5in] text-gray-900 dark:text-gray-300 text-sm">
         <Header />
 
         <hr className="my-6 border border-gray-100 dark:border-gray-800" />

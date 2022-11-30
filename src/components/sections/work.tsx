@@ -63,7 +63,6 @@ export default function Work({ projects }: IWorkProps) {
                       showLoadingIndicator
                     />
 
-                    <div className="absolute inset-0 transition-opacity duration-200 ease-in-out bg-transparent rounded-lg opacity-50 backdrop-filter backdrop-blur-sm bg-brand-dots backdrop-brightness-100 group-hover:opacity-0" />
                     <div className="absolute inset-0 rounded-lg bg-gradient-to-b from-transparent to-black/25" />
                   </div>
 
