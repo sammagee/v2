@@ -1,10 +1,10 @@
 import { GetStaticProps } from 'next'
 import Head from 'next/head'
-import Education from '../components/resume/education'
-import Experience from '../components/resume/experience'
-import Header from '../components/resume/header'
-import Projects from '../components/resume/projects'
-import Skills from '../components/resume/skills'
+import Education from '../components/resume.deprecated/education'
+import Experience from '../components/resume.deprecated/experience'
+import Header from '../components/resume.deprecated/header'
+import Projects from '../components/resume.deprecated/projects'
+import Skills from '../components/resume.deprecated/skills'
 import {
   getPositions,
   getProjects,
