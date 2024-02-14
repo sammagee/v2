@@ -17,7 +17,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <meta name="copyright" content="Sam Magee" />
         <meta
           name="keywords"
-          content="sam magee, sam, magee, devsigner, designer, developer, web designer, web developer, full stack, full stack developer, full-stack, fullstack"
+          content="sam magee, sam, magee, design engineer, devsigner, designer, developer, web designer, web developer, full stack, full stack developer, full-stack, fullstack"
         />
         <meta
           name="viewport"

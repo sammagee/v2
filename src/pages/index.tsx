@@ -7,7 +7,7 @@ import Words from '../components/sections/words'
 import Work from '../components/sections/work'
 import { getPositions, getPosts, getProjects } from '../lib/content'
 
-const TITLE = 'Sam Magee – Devsigner'
+const TITLE = 'Sam Magee – Web Engineer'
 const DESCRIPTION =
   "Hey, I'm Sam Magee. My goal is to craft beautiful experiences that solve your problems."
 
