@@ -57,24 +57,25 @@ export default function Post({ post }: IPostProps) {
         className="mt-48 mb-32 md:mt-56"
       >
         <article className="w-full px-12 mx-auto prose prose-lg sm:pl-32 lg:pl-0">
-          <Link href="/#words">
-            <a className="inline-flex items-center space-x-2 !text-gray-400 !no-underline focus:outline-none border-2 border-transparent border-dashed focus-visible:border-brand-500 -ml-0.5">
-              <svg
-                className="w-4 h-4 text-gray-500"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M11 17l-5-5m0 0l5-5m-5 5h12"
-                />
-              </svg>
+          <Link
+            href="/#words"
+            className="inline-flex items-center space-x-2 !text-gray-400 !no-underline focus:outline-none border-2 border-transparent border-dashed focus-visible:border-brand-500 -ml-0.5"
+          >
+            <svg
+              className="w-4 h-4 text-gray-500"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M11 17l-5-5m0 0l5-5m-5 5h12"
+              />
+            </svg>
 
-              <span>Back</span>
-            </a>
+            <span>Back</span>
           </Link>
 
           <header className="mt-3">

@@ -14,6 +14,7 @@ export default function MobileNav() {
   return (
     <div className="relative sm:hidden">
       <Button
+        aria-label={isOpen ? 'Close menu' : 'Open menu'}
         className="relative flex items-center justify-center -mr-3 select-none w-14 h-14"
         intent="secondary"
         onClick={() => setIsOpen(true)}
@@ -60,19 +61,19 @@ export default function MobileNav() {
                 intent="secondary"
                 icon
               >
-                <div className="relative w-12 h-12 transition duration-300 ease-in-out transform group-hover:scale-105 group-hover:-rotate-3">
+                <div className="relative object-contain transition duration-300 ease-in-out transform group-hover:scale-105 group-hover:-rotate-3">
                   <Image
-                    className="relative pointer-events-none select-none"
+                    className="relative object-contain pointer-events-none select-none"
                     containerClassName={(isLoaded) =>
                       clsx(
-                        'w-full transition-opacity duration-250 ease-in',
+                        'relative w-12 h-12 transition-opacity duration-250 ease-in',
                         isLoaded ? 'opacity-100' : 'opacity-0'
                       )
                     }
                     src="/images/me.png"
                     alt="me"
-                    layout="fill"
-                    objectFit="contain"
+                    sizes="48px"
+                    fill
                   />
                 </div>
               </AnchorButton>
@@ -96,6 +97,7 @@ export default function MobileNav() {
                   </Dialog.Title>
 
                   <Button
+                    aria-label="Close menu"
                     className="relative flex items-center justify-center -mr-3 select-none w-14 h-14"
                     intent="secondary"
                     onClick={() => setIsOpen(false)}
@@ -126,31 +128,34 @@ export default function MobileNav() {
 
                 <div className="flex flex-col flex-1 overflow-y-auto">
                   <div className="flex flex-col items-center justify-center flex-1 px-6 space-y-6 xs:px-12">
-                    <Link href="/#work">
-                      <a className="text-4xl font-semibold text-white border-2 border-transparent border-dashed focus:outline-none focus-visible:border-brand-500">
-                        <span className="font-mono opacity-25 text-brand-500">
-                          01.
-                        </span>{' '}
-                        Work
-                      </a>
+                    <Link
+                      href="/#work"
+                      className="text-4xl font-semibold text-white border-2 border-transparent border-dashed focus:outline-none focus-visible:border-brand-500"
+                    >
+                      <span className="font-mono opacity-25 text-brand-500">
+                        01.
+                      </span>{' '}
+                      Work
                     </Link>
 
-                    <Link href="/#words">
-                      <a className="text-4xl font-semibold text-white border-2 border-transparent border-dashed focus:outline-none focus-visible:border-brand-500">
-                        <span className="font-mono opacity-25 text-brand-500">
-                          02.
-                        </span>{' '}
-                        Words
-                      </a>
+                    <Link
+                      href="/#words"
+                      className="text-4xl font-semibold text-white border-2 border-transparent border-dashed focus:outline-none focus-visible:border-brand-500"
+                    >
+                      <span className="font-mono opacity-25 text-brand-500">
+                        02.
+                      </span>{' '}
+                      Words
                     </Link>
 
-                    <Link href="/#where">
-                      <a className="text-4xl font-semibold text-white border-2 border-transparent border-dashed focus:outline-none focus-visible:border-brand-500">
-                        <span className="font-mono opacity-25 text-brand-500">
-                          03.
-                        </span>{' '}
-                        Where
-                      </a>
+                    <Link
+                      href="/#where"
+                      className="text-4xl font-semibold text-white border-2 border-transparent border-dashed focus:outline-none focus-visible:border-brand-500"
+                    >
+                      <span className="font-mono opacity-25 text-brand-500">
+                        03.
+                      </span>{' '}
+                      Where
                     </Link>
                   </div>
 

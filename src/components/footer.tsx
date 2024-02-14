@@ -10,10 +10,11 @@ export default function Footer() {
           <div className="flex flex-col-reverse items-center justify-between sm:flex-row">
             <p className="mt-12 font-semibold text-gray-500 sm:mt-0">
               &copy;{' '}
-              <Link href="/">
-                <a className="border-2 border-transparent border-dashed focus:outline-none focus-visible:border-brand-500">
-                  Sam Magee
-                </a>
+              <Link
+                href="/"
+                className="border-2 border-transparent border-dashed focus:outline-none focus-visible:border-brand-500"
+              >
+                Sam Magee
               </Link>
             </p>
 

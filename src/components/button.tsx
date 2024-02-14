@@ -1,5 +1,6 @@
 import clsx from 'clsx'
-import React, {
+import {
+  ComponentPropsWithoutRef,
   ForwardedRef,
   forwardRef,
   MouseEventHandler,
@@ -8,7 +9,7 @@ import React, {
 
 export type ButtonIntent = 'primary' | 'secondary'
 
-export interface IButtonProps {
+export interface IButtonProps extends ComponentPropsWithoutRef<'button'> {
   children: ReactElement[] | ReactElement | string
   className?: string
   disabled?: boolean
@@ -65,6 +66,7 @@ const Button = forwardRef(
       icon,
       intent = 'primary',
       onClick,
+      ...props
     }: IButtonProps,
     ref: ForwardedRef<HTMLButtonElement>
   ) => {
@@ -74,6 +76,7 @@ const Button = forwardRef(
         disabled={disabled}
         onClick={onClick}
         ref={ref}
+        {...props}
       >
         {children}
       </button>

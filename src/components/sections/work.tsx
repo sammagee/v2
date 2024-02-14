@@ -49,7 +49,7 @@ export default function Work({ projects }: IWorkProps) {
                   <div className="relative flex w-full overflow-hidden transition-transform duration-200 ease-in-out rounded-lg md:w-2/3 group hover:scale-105">
                     <Image
                       alt={project.title}
-                      className="w-full leading-[7rem] rounded-lg shadow-lg select-none filter grayscale group-hover:filter-none"
+                      className="w-full leading-[7rem] rounded-lg shadow-lg object-cover select-none filter grayscale group-hover:filter-none"
                       containerClassName={(isLoaded) =>
                         clsx(
                           'flex w-full transition-opacity duration-500 ease-in',
@@ -57,7 +57,6 @@ export default function Work({ projects }: IWorkProps) {
                         )
                       }
                       height={1080}
-                      objectFit="cover"
                       src={`/images/projects/${project.image}`}
                       width={1920}
                       showLoadingIndicator
@@ -78,10 +77,9 @@ export default function Work({ projects }: IWorkProps) {
                           <Link
                             href={`/projects/${project.slug}`}
                             key={project.slug}
+                            className="-ml-0.5 border-2 border-transparent border-dashed focus:outline-none focus-visible:border-brand-500"
                           >
-                            <a className="-ml-0.5 border-2 border-transparent border-dashed focus:outline-none focus-visible:border-brand-500">
-                              {project.title}
-                            </a>
+                            {project.title}
                           </Link>
                         </h4>
 
@@ -235,10 +233,9 @@ export default function Work({ projects }: IWorkProps) {
                           <Link
                             href={`/projects/${project.slug}`}
                             key={project.slug}
+                            className="-ml-0.5 border-2 border-transparent border-dashed focus:outline-none focus-visible:border-brand-500"
                           >
-                            <a className="-ml-0.5 border-2 border-transparent border-dashed focus:outline-none focus-visible:border-brand-500">
-                              {project.title}
-                            </a>
+                            {project.title}
                           </Link>
                         </h4>
 

@@ -59,24 +59,25 @@ export default function Project({ project }: IProjectProps) {
         className="mt-48 mb-32 md:mt-56"
       >
         <article className="w-full px-12 mx-auto prose prose-lg sm:pl-32 lg:pl-0">
-          <Link href="/#work">
-            <a className="inline-flex items-center space-x-2 !text-gray-400 !no-underline focus:outline-none border-2 border-transparent border-dashed focus-visible:border-brand-500 -ml-0.5">
-              <svg
-                className="w-4 h-4 text-gray-500"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M11 17l-5-5m0 0l5-5m-5 5h12"
-                />
-              </svg>
+          <Link
+            href="/#work"
+            className="inline-flex items-center space-x-2 !text-gray-400 !no-underline focus:outline-none border-2 border-transparent border-dashed focus-visible:border-brand-500 -ml-0.5"
+          >
+            <svg
+              className="w-4 h-4 text-gray-500"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M11 17l-5-5m0 0l5-5m-5 5h12"
+              />
+            </svg>
 
-              <span>Back</span>
-            </a>
+            <span>Back</span>
           </Link>
 
           <header className="mt-6">
@@ -84,7 +85,7 @@ export default function Project({ project }: IProjectProps) {
               <div className="relative flex w-full overflow-hidden transition-transform duration-200 ease-in-out rounded-lg group hover:scale-105">
                 <Image
                   alt={project.title}
-                  className="w-full leading-[7rem] rounded-lg shadow-lg select-none filter grayscale group-hover:filter-none"
+                  className="w-full leading-[7rem] rounded-lg shadow-lg object-cover select-none filter grayscale group-hover:filter-none"
                   containerClassName={(isLoaded) =>
                     clsx(
                       'flex w-full transition-opacity duration-500 ease-in',
@@ -92,7 +93,6 @@ export default function Project({ project }: IProjectProps) {
                     )
                   }
                   height={1080}
-                  objectFit="cover"
                   src={`/images/projects/${project.image}`}
                   width={1920}
                   showLoadingIndicator

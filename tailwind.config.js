@@ -5,6 +5,9 @@ module.exports = {
   content: ['./src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
+      fontFamily: {
+        inter: ['var(--font-inter)'],
+      },
       colors: {
         gray: {
           ...colors.neutral,
@@ -121,12 +124,8 @@ module.exports = {
       }),
     },
   },
-  groupVariants: {
-    'group-active': ['group', 'active', ':active'],
-  },
   variants: {
     extend: {
-      animation: ['group-active'],
       filter: ['group-hover'],
       opacity: ['focus-within', 'group-hover', 'group-focus'],
       scale: ['active'],
@@ -134,10 +133,5 @@ module.exports = {
       visibility: ['focus-within', 'group-hover', 'group-focus'],
     },
   },
-  plugins: [
-    require('@tailwindcss/line-clamp'),
-    require('@tailwindcss/typography'),
-    require('tailwindcss-font-inter')(),
-    require('tailwindcss-group-variants'),
-  ],
+  plugins: [require('@tailwindcss/typography')],
 }

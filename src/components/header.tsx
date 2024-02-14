@@ -34,43 +34,43 @@ export default function Header() {
       </span>
 
       <AnchorButton className="p-3 group" href="/" intent="secondary" icon>
-        <div className="relative w-12 h-12 transition duration-300 ease-in-out transform group-hover:scale-105 group-hover:-rotate-3">
+        <div className="relative transition duration-300 ease-in-out transform group-hover:scale-105 group-hover:-rotate-3">
           <Image
-            className="relative pointer-events-none select-none"
+            className="relative object-contain pointer-events-none select-none"
             containerClassName={(isLoaded) =>
               clsx(
-                'w-full transition-opacity duration-250 ease-in',
+                'relative w-12 h-12 transition-opacity duration-250 ease-in',
                 isLoaded ? 'opacity-100' : 'opacity-0'
               )
             }
             src="/images/me.png"
             alt="me"
-            layout="fill"
-            objectFit="contain"
+            sizes="48px"
+            fill
           />
         </div>
       </AnchorButton>
 
       <nav className="items-center hidden space-x-6 sm:flex">
-        <Link href="/#work">
-          <a className="font-semibold text-white border-2 border-transparent border-dashed focus:outline-none focus-visible:border-brand-500">
-            <span className="font-mono opacity-25 text-brand-500">01.</span>{' '}
-            Work
-          </a>
+        <Link
+          href="/#work"
+          className="font-semibold text-white border-2 border-transparent border-dashed focus:outline-none focus-visible:border-brand-500"
+        >
+          <span className="font-mono opacity-25 text-brand-500">01.</span> Work
         </Link>
 
-        <Link href="/#words">
-          <a className="font-semibold text-white border-2 border-transparent border-dashed focus:outline-none focus-visible:border-brand-500">
-            <span className="font-mono opacity-25 text-brand-500">02.</span>{' '}
-            Words
-          </a>
+        <Link
+          href="/#words"
+          className="font-semibold text-white border-2 border-transparent border-dashed focus:outline-none focus-visible:border-brand-500"
+        >
+          <span className="font-mono opacity-25 text-brand-500">02.</span> Words
         </Link>
 
-        <Link href="/#where">
-          <a className="font-semibold text-white border-2 border-transparent border-dashed focus:outline-none focus-visible:border-brand-500">
-            <span className="font-mono opacity-25 text-brand-500">03.</span>{' '}
-            Where
-          </a>
+        <Link
+          href="/#where"
+          className="font-semibold text-white border-2 border-transparent border-dashed focus:outline-none focus-visible:border-brand-500"
+        >
+          <span className="font-mono opacity-25 text-brand-500">03.</span> Where
         </Link>
       </nav>
 

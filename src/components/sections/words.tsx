@@ -29,10 +29,12 @@ export default function Words({ posts }: IWordsProps) {
                 {posts.map((post) => (
                   <article key={post.slug}>
                     <h3 className="-ml-0.5 text-xl font-semibold">
-                      <Link href={`/posts/${post.slug}`} key={post.slug}>
-                        <a className="text-white border-2 border-transparent border-dashed focus:outline-none focus-visible:border-brand-500">
-                          {post.title}
-                        </a>
+                      <Link
+                        href={`/posts/${post.slug}`}
+                        key={post.slug}
+                        className="text-white border-2 border-transparent border-dashed focus:outline-none focus-visible:border-brand-500"
+                      >
+                        {post.title}
                       </Link>
                     </h3>
 

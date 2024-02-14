@@ -1,6 +1,6 @@
 import Link from 'next/link'
-import React, { ForwardedRef, forwardRef } from 'react'
-import { buttonClasses, IButtonProps } from './button'
+import { ForwardedRef, forwardRef } from 'react'
+import { IButtonProps, buttonClasses } from './button'
 
 interface IAnchorButtonProps {
   href: URL | string
@@ -24,16 +24,15 @@ const AnchorButton = forwardRef(
     ref: ForwardedRef<HTMLAnchorElement>
   ) => {
     return (
-      <Link href={href}>
-        <a
-          className={buttonClasses(className, disabled, icon, intent)}
-          onClick={onClick}
-          ref={ref}
-          rel={rel}
-          target={target}
-        >
-          {children}
-        </a>
+      <Link
+        href={href}
+        className={buttonClasses(className, disabled, icon, intent)}
+        onClick={onClick}
+        ref={ref}
+        rel={rel}
+        target={target}
+      >
+        {children}
       </Link>
     )
   }
