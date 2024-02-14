@@ -1,3 +1,4 @@
+import { SpeedInsights } from '@vercel/speed-insights/next'
 import clsx from 'clsx'
 import { AppProps } from 'next/app'
 import { Inter } from 'next/font/google'
@@ -12,6 +13,7 @@ const inter = Inter({
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
+      <SpeedInsights />
       <Head>
         <meta name="author" content="Sam Magee" />
         <meta name="copyright" content="Sam Magee" />
