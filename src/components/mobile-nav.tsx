@@ -11,6 +11,10 @@ export default function MobileNav() {
   const [isOpen, setIsOpen] = useState(false)
   const initialFocusRef = useRef(null)
 
+  function close() {
+    setIsOpen(false)
+  }
+
   return (
     <div className="relative sm:hidden">
       <Button
@@ -131,6 +135,7 @@ export default function MobileNav() {
                     <Link
                       href="/#work"
                       className="text-4xl font-semibold text-white border-2 border-transparent border-dashed focus:outline-none focus-visible:border-brand-500"
+                      onClick={close}
                     >
                       <span className="font-mono opacity-25 text-brand-500">
                         01.
@@ -141,6 +146,7 @@ export default function MobileNav() {
                     <Link
                       href="/#words"
                       className="text-4xl font-semibold text-white border-2 border-transparent border-dashed focus:outline-none focus-visible:border-brand-500"
+                      onClick={close}
                     >
                       <span className="font-mono opacity-25 text-brand-500">
                         02.
@@ -151,6 +157,7 @@ export default function MobileNav() {
                     <Link
                       href="/#where"
                       className="text-4xl font-semibold text-white border-2 border-transparent border-dashed focus:outline-none focus-visible:border-brand-500"
+                      onClick={close}
                     >
                       <span className="font-mono opacity-25 text-brand-500">
                         03.
@@ -292,7 +299,7 @@ export default function MobileNav() {
                     <Tooltip
                       content={
                         <span className="flex items-center space-x-2">
-                          <span>sam@magee.one</span>
+                          <span>{process.env.NEXT_PUBLIC_EMAIL}</span>
                           <svg
                             className="w-3 h-3 text-gray-400"
                             fill="none"
@@ -312,7 +319,7 @@ export default function MobileNav() {
                     >
                       <AnchorButton
                         className="w-full"
-                        href="mailto:sam@magee.one"
+                        href={`mailto:${process.env.NEXT_PUBLIC_EMAIL}`}
                       >
                         <span>Let's Talk</span>
 

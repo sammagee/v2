@@ -9,6 +9,7 @@ type Position = {
   featured: boolean
   location: string
   duties: string[]
+  isCurrent?: boolean
 }
 
 type Post = {

@@ -68,14 +68,15 @@ export default function Where({ positions }: IWhereProps) {
                       </div>
 
                       <div>
+                        <a
+                          className="text-gray-400 focus:outline-none border-2 border-transparent -ml-0.5 focus-visible:border-brand-500 border-dashed"
+                          href={`//${position.companyLink}`}
+                        >
+                          {position.company}
+                        </a>
+
                         <h3 className="text-xl font-semibold text-white">
                           {position.title}&nbsp;
-                          <a
-                            className="text-gray-400 focus:outline-none border-2 border-transparent -ml-0.5 focus-visible:border-brand-500 border-dashed"
-                            href={`//${position.companyLink}`}
-                          >
-                            @ {position.company}
-                          </a>
                         </h3>
 
                         <div className="flex flex-col sm:flex-row flex-wrap sm:space-x-2 items-start sm:items-center !my-0 text-base font-medium text-gray-500">
@@ -95,7 +96,7 @@ export default function Where({ positions }: IWhereProps) {
                             )}
                           </p>
 
-                          {index === 0 && (
+                          {position.isCurrent && (
                             <span className="px-3 py-1 mt-2 text-xs font-semibold rounded-full sm:mt-0 text-brand-400 bg-brand-400 bg-opacity-10">
                               Current
                             </span>

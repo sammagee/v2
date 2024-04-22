@@ -5,6 +5,7 @@ companyLogo: '<path d="M5.52321 54.795C5.92889 55.8714 6.49056 56.7916 7.2083 57
 title: 'Software Engineer II, Frontend'
 date: '2022-06'
 endDate: 'Present'
+isCurrent: true
 featured: true
 duties:
   - Build functionality and components for a server-driven UI framework used by multiple teams in the company

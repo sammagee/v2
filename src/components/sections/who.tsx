@@ -15,23 +15,23 @@ export default function Who() {
           <h1 className="mt-2 font-bold text-white text-7xl">Sam Magee</h1>
           <p className="mt-3 text-3xl font-medium text-gray-400">
             <span className="text-gray-500">
-              I craft elegant experiences that intuitively
+              I craft elegant experiences that
             </span>
             <br />
             <span className="text-brand-400">solve your problems</span>
           </p>
 
           <p className="w-full max-w-xl mt-6 prose prose-xl text-gray-200">
-            I am a frontend engineer at Uber, where I focus on solving complex
-            and interesting problems within the marketplace. I have also
-            completed my Master's degree in Computer Science at Vanderbilt
-            University.
+            I'm a web engineer at Uber, where I focus on solving complex, global
+            problems within the marketplace. I also have a Master's degree in
+            Computer Science from Vanderbilt University, where I extensively
+            studied software design.
           </p>
 
           <Tooltip
             content={
               <span className="flex items-center space-x-2">
-                <span>sam@magee.one</span>
+                <span>{process.env.NEXT_PUBLIC_EMAIL}</span>
                 <svg
                   className="w-3 h-3 text-gray-400"
                   fill="none"
@@ -49,7 +49,10 @@ export default function Who() {
             }
             placement="right"
           >
-            <AnchorButton className="mt-12" href="mailto:sam@magee.one">
+            <AnchorButton
+              className="mt-12"
+              href={`mailto:${process.env.NEXT_PUBLIC_EMAIL}`}
+            >
               <span>Let's Talk</span>
 
               <svg

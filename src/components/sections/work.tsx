@@ -201,7 +201,7 @@ export default function Work({ projects }: IWorkProps) {
 
             <div className="mt-16">
               <h3 className="font-mono text-lg font-semibold text-brand-500">
-                Other
+                More
               </h3>
 
               <div className="grid grid-cols-1 gap-6 mt-3 sm:grid-cols-2 lg:gap-8 lg:grid-cols-4">
@@ -225,7 +225,7 @@ export default function Work({ projects }: IWorkProps) {
                         />
 
                         <div className="absolute inset-0 rounded-lg bg-gradient-to-b from-transparent backdrop-filter backdrop-blur-sm to-black/25" />
-                        <div className="absolute inset-0 bg-transparent rounded-lg opacity-25 bg-brand-dots backdrop-brightness-100" />
+                        {/* <div className="absolute inset-0 bg-transparent rounded-lg opacity-25 bg-brand-dots backdrop-brightness-100" /> */}
                       </div>
 
                       <div className="absolute inset-0 z-10 flex flex-col justify-center px-6 py-4 overflow-hidden md:space-y-2">
@@ -356,7 +356,7 @@ export default function Work({ projects }: IWorkProps) {
                 <Tooltip
                   content={
                     <span className="flex items-center space-x-2">
-                      <span>sam@magee.one</span>
+                      <span>{process.env.NEXT_PUBLIC_EMAIL}</span>
                       <svg
                         className="w-3 h-3 text-gray-400"
                         fill="none"
@@ -376,7 +376,7 @@ export default function Work({ projects }: IWorkProps) {
                 >
                   <a
                     className="flex items-center justify-center px-5 py-10 font-mono text-sm font-semibold tracking-wide text-gray-500 uppercase transition duration-200 ease-in-out transform border-2 border-gray-800 border-dashed rounded-lg hover:bg-gray-500 focus-visible:bg-gray-500 focus-visible:bg-opacity-10 hover:bg-opacity-10 hover:scale-105 active:scale-100 focus:outline-none focus-visible:border-dashed"
-                    href="mailto:sam@magee.one"
+                    href={`mailto:${process.env.NEXT_PUBLIC_EMAIL}`}
                   >
                     Your project here
                   </a>
