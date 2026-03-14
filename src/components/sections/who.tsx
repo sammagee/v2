@@ -22,10 +22,10 @@ export default function Who() {
           </p>
 
           <p className="w-full max-w-xl mt-6 prose prose-xl text-gray-200">
-            I'm a web engineer at Uber, where I focus on solving complex, global
-            problems within the marketplace. I also have a Master's degree in
-            Computer Science from Vanderbilt University, where I extensively
-            studied software design.
+            I'm a senior software engineer at Vanta, where I lead frontend engineering
+            for cloud, code, and security integrations. I also have a Master's
+            degree in Computer Science from Vanderbilt University, where
+            I extensively studied software design.
           </p>
 
           <Tooltip
