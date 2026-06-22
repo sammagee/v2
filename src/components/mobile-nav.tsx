@@ -233,21 +233,17 @@ export default function MobileNav() {
                         placement="top"
                       >
                         <AnchorButton
-                          href="https://twitter.com/sammagee"
+                          href="https://x.com/sammagee"
                           rel="noopener noreferrer"
                           target="_blank"
                           icon
                         >
                           <svg
                             className="w-6 h-6"
+                            fill="currentColor"
                             viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth="2"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
                           >
-                            <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
+                            <path d="m14.248 10.658 8.048-9.354h-1.907L13.4 9.426l-5.58-8.122H1.382l8.44 12.282-8.44 9.81H3.29l7.38-8.578 5.893 8.577H23zm-2.612 3.036-.855-1.223L3.978 2.74h2.929l5.49 7.854.855 1.223 7.137 10.21H17.46z"/>
                           </svg>
                         </AnchorButton>
                       </Tooltip>
