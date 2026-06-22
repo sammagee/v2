@@ -8,8 +8,11 @@ endDate: '2025-09'
 isCurrent: false
 featured: true
 duties:
-  - Build functionality and components for a server-driven UI framework used by multiple teams in the company
-  - Create platform for creating and taking advantage of pricing and incentives, for use by our customers and earners
-  - Design the UI and systems for incentive platforms used by over 5 million users
-  - Evangelize and communicate the efforts of the server-driven UI framework to current and new consumers
+  - Designed the UI and systems for incentive platforms used by over 5 million earners, utilizing over $1 billion in business investment.
+  - Ideated, designed, and built an incentive management platform utilized by operations, data science, and engineering teams across the globe, taking user workflows from hours to minutes.
+  - Built core functionality and components for a UI library that is used by 15 different apps, in client and server-driven contexts.
+  - Lead engineer for web platform libraries, including a component library, utility library, and automatic API documentation library used by web engineers across the company.
+  - Presented new techniques for testing and building internal tooling to all web engineers at the company.
+  - Mentored other web engineers on web best practices and adding analytics capabilities to their apps.
+  - Repeatedly stood at the 95th+ percentile on change and review count.
 ---
