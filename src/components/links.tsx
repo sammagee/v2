@@ -92,7 +92,7 @@ export default function Links() {
             <path d="m14.248 10.658 8.048-9.354h-1.907L13.4 9.426l-5.58-8.122H1.382l8.44 12.282-8.44 9.81H3.29l7.38-8.578 5.893 8.577H23zm-2.612 3.036-.855-1.223L3.978 2.74h2.929l5.49 7.854.855 1.223 7.137 10.21H17.46z"/>
           </svg>
 
-          <span className="sr-only">Twitter</span>
+          <span className="sr-only">X</span>
         </AnchorButton>
       </Tooltip>
 
