@@ -23,7 +23,7 @@ export default function Who() {
 
           <p className="w-full max-w-xl mt-6 prose prose-xl text-gray-200">
             I'm a senior software engineer at Vanta, where I lead frontend engineering
-            for cloud, code, and security integrations. I also have a Master's
+            for the authoring experience team. I also have a Master's
             degree in Computer Science from Vanderbilt University, where
             I extensively studied software design.
           </p>
