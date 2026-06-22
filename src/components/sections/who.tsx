@@ -15,17 +15,14 @@ export default function Who() {
           <h1 className="mt-2 font-bold text-white text-7xl">Sam Magee</h1>
           <p className="mt-3 text-3xl font-medium text-gray-400">
             <span className="text-gray-500">
-              I craft elegant experiences that
+              I design software that
             </span>
             <br />
-            <span className="text-brand-400">solve your problems</span>
+            <span className="text-brand-400">makes complex work feel simple</span>
           </p>
 
           <p className="w-full max-w-xl mt-6 prose prose-xl text-gray-200">
-            I'm a senior software engineer at Vanta, where I lead frontend engineering
-            for the authoring experience team. I also have a Master's
-            degree in Computer Science from Vanderbilt University, where
-            I extensively studied software design.
+            I'm a Senior Software Engineer at Vanta, building the future experiences for trust and compliance software.
           </p>
 
           <Tooltip
