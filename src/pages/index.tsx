@@ -55,7 +55,7 @@ export default function Home({ positions, posts, projects }: IHomeProps) {
           className="mt-56"
         >
           <Work projects={projects} />
-          <Words posts={posts} />
+          {/* <Words posts={posts} /> */}
           <Where positions={positions} />
         </div>
       </Layout>
