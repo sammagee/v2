@@ -15,7 +15,7 @@ export default function Who() {
           <h1 className="mt-2 font-bold text-white text-7xl">Sam Magee</h1>
           <p className="mt-3 text-3xl font-medium text-gray-400">
             <span className="text-gray-500">
-              I design software that
+              I design and build software that
             </span>
             <br />
             <span className="text-brand-400">makes complex work feel simple</span>
