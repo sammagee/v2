@@ -4,10 +4,10 @@ import Tooltip from './tooltip'
 
 export default function Footer() {
   return (
-    <footer className="relative w-full pt-32 -mb-48">
+    <footer className="relative w-full pt-32">
       <div className="absolute inset-x-0 w-full h-32 transform top-8 bg-gray-1000 -skew-y-1"></div>
 
-      <div className="w-full py-32 -my-8 mx-auto sm:pl-20 lg:max-w-5xl xl:max-w-6xl xl:pl-0 bg-gray-1000">
+      <div className="w-full py-24 -my-8 mx-auto sm:pl-20 lg:max-w-5xl xl:max-w-6xl xl:pl-0 bg-gray-1000">
         <div className="px-12">
           <div className="flex flex-col-reverse items-center justify-between sm:flex-row">
             <p className="mt-12 font-semibold text-gray-500 sm:mt-0">
