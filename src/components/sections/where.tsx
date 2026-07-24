@@ -20,7 +20,7 @@ export default function Where({ positions }: IWhereProps) {
               <h2 className="text-5xl font-bold text-white">Where</h2>
 
               <p className="mt-2 text-lg font-semibold text-gray-500">
-                These are the places I've worked.
+                The places I've worked
               </p>
             </div>
 
