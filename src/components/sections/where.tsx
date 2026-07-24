@@ -49,7 +49,7 @@ export default function Where({ positions }: IWhereProps) {
           </div>
 
           <div className="py-10">
-            <div className="grid bg-transparent divide-y divide-white rounded-lg shadow-lg divide-opacity-5 divide-dashed lg:divide-y-0 lg:shadow-none lg:rounded-none lg:border-0 lg:gap-6 lg:bg-transparent lg:bg-none lg:grid-cols-2 bg-dots backdrop-filter backdrop-blur backdrop-brightness-100">
+            <div className="grid bg-gray-1000 divide-y divide-white rounded-lg shadow-lg divide-opacity-5 divide-dashed lg:divide-y-0 lg:shadow-none lg:rounded-none lg:border-0 lg:gap-6 lg:bg-transparent lg:bg-none lg:grid-cols-2 bg-dots backdrop-filter backdrop-blur backdrop-brightness-100">
               {positions.map((position, index) => (
                 <article key={index}>
                   <div className="p-6 lg:bg-transparent lg:backdrop-filter lg:rounded-lg lg:backdrop-blur lg:backdrop-brightness-100 lg:bg-dots lg:shadow-lg lg:overflow-hidden">
