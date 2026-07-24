@@ -59,18 +59,18 @@ export default function Header() {
           <span className="font-mono opacity-25 text-brand-500">01.</span> Work
         </Link>
 
-        <Link
+        {/* <Link
           href="/#words"
           className="font-semibold text-white border-2 border-transparent border-dashed focus:outline-none focus-visible:border-brand-500"
         >
           <span className="font-mono opacity-25 text-brand-500">02.</span> Words
-        </Link>
+        </Link> */}
 
         <Link
           href="/#where"
           className="font-semibold text-white border-2 border-transparent border-dashed focus:outline-none focus-visible:border-brand-500"
         >
-          <span className="font-mono opacity-25 text-brand-500">03.</span> Where
+          <span className="font-mono opacity-25 text-brand-500">02.</span> Where
         </Link>
       </nav>
 
