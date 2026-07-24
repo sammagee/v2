@@ -143,7 +143,7 @@ export default function MobileNav() {
                       Work
                     </Link>
 
-                    <Link
+                    {/* <Link
                       href="/#words"
                       className="text-4xl font-semibold text-white border-2 border-transparent border-dashed focus:outline-none focus-visible:border-brand-500"
                       onClick={close}
@@ -152,7 +152,7 @@ export default function MobileNav() {
                         02.
                       </span>{' '}
                       Words
-                    </Link>
+                    </Link> */}
 
                     <Link
                       href="/#where"
@@ -160,7 +160,7 @@ export default function MobileNav() {
                       onClick={close}
                     >
                       <span className="font-mono opacity-25 text-brand-500">
-                        03.
+                        02.
                       </span>{' '}
                       Where
                     </Link>
