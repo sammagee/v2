@@ -25,7 +25,7 @@ export default function Work({ projects }: IWorkProps) {
             <div>
               <h2 className="text-5xl font-bold text-white">Work</h2>
               <p className="mt-2 text-lg font-semibold text-gray-500">
-                These are some of my favorite projects I've worked on.
+                Some of my favorite personal projects
               </p>
             </div>
 
