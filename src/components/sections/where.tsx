@@ -111,7 +111,7 @@ export default function Where({ positions }: IWhereProps) {
           </div>
 
           <div className="mt-20 font-mono font-black opacity-25 text-8xl text-brand-500">
-            03.
+            02.
           </div>
         </div>
       </div>
