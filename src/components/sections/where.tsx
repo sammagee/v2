@@ -11,9 +11,7 @@ export default function Where({ positions }: IWhereProps) {
 
   return (
     <section id="where" className="relative w-full pt-32 overflow-x-hidden">
-      <div className="absolute inset-x-0 w-full h-32 transform top-8 bg-gray-1000 -skew-y-1"></div>
-
-      <div className="pt-32 -mt-8 sm:pl-20 pb-44 xl:pl-0 bg-gray-1000">
+      <div className="pt-32 -mt-8 sm:pl-20 pb-44 xl:pl-0">
         <div className="relative w-full px-12 mx-auto lg:max-w-5xl xl:max-w-6xl">
           <div className="flex items-end space-x-3">
             <div>
