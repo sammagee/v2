@@ -385,9 +385,9 @@ export default function Work({ projects }: IWorkProps) {
             </div>
           </div>
 
-          <div className="mt-20 font-mono font-black opacity-25 text-8xl text-brand-500">
+          {/* <div className="mt-20 font-mono font-black opacity-25 text-8xl text-brand-500">
             01.
-          </div>
+          </div> */}
         </div>
       </div>
     </section>
