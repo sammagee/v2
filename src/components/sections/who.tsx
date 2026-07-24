@@ -22,7 +22,7 @@ export default function Who() {
           </p>
 
           <p className="w-full max-w-xl mt-6 prose prose-xl text-gray-200">
-            I'm a Senior Software Engineer at Vanta, building the future experiences for trust and compliance software.
+            I'm a Senior Software Engineer at Vanta, building the future of trust and compliance software.
           </p>
 
           <Tooltip
