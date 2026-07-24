@@ -16,7 +16,7 @@ export default function Words({ posts }: IWordsProps) {
                 <span>Words</span>
               </h2>
               <p className="mt-2 text-lg font-semibold text-gray-500">
-                These are some of my most recent posts.
+                Recent blog posts
               </p>
             </div>
 
