@@ -1,4 +1,5 @@
 type Position = {
+  slug?: string
   company: string
   companyLink: string
   companyLogo: string

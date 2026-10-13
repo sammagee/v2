@@ -33,3 +33,18 @@
     @apply bg-brand-500/50;
   }
 }
+
+/* Die-cut sticker: a thick light outline traced around the logo's shape,
+   then a soft drop shadow so it looks peeled off the page. */
+.sticker {
+  --sticker-edge: #f5f5f5;
+  filter: drop-shadow(1.5px 0 0 var(--sticker-edge))
+    drop-shadow(-1.5px 0 0 var(--sticker-edge))
+    drop-shadow(0 1.5px 0 var(--sticker-edge))
+    drop-shadow(0 -1.5px 0 var(--sticker-edge))
+    drop-shadow(1.5px 0 0 var(--sticker-edge))
+    drop-shadow(-1.5px 0 0 var(--sticker-edge))
+    drop-shadow(0 1.5px 0 var(--sticker-edge))
+    drop-shadow(0 -1.5px 0 var(--sticker-edge))
+    drop-shadow(0 4px 5px rgb(0 0 0 / 0.55));
+}
