@@ -1,4 +1,3 @@
-import Link from 'next/link'
 import Image from '../image'
 import clsx from 'clsx'
 
@@ -27,6 +26,11 @@ export default function ProjectList({ projects }: IProjectListProps) {
                 .map((tag) => tag.trim())
                 .filter(Boolean)
             : []
+          const primaryUrl = project.link
+            ? toUrl(project.link)
+            : project.git
+              ? toUrl(project.git)
+              : null
 
           return (
             <li key={project.slug}>
@@ -49,12 +53,19 @@ export default function ProjectList({ projects }: IProjectListProps) {
 
                 <div className="p-6">
                   <h3 className="text-2xl font-bold text-white">
-                    <Link
-                      href={`/projects/${project.slug}`}
-                      className="border-2 border-transparent border-dashed -ml-0.5 focus:outline-hidden focus-visible:border-brand-500"
-                    >
-                      {project.title}
-                    </Link>
+                    {primaryUrl ? (
+                      <a
+                        href={primaryUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="border-2 border-transparent border-dashed -ml-0.5 hover:text-brand-200 focus:outline-hidden focus-visible:border-brand-500"
+                      >
+                        {project.title}
+                        <span className="sr-only"> (opens in a new tab)</span>
+                      </a>
+                    ) : (
+                      project.title
+                    )}
                   </h3>
 
                   {project.description && (

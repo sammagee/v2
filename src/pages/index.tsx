@@ -10,8 +10,6 @@ const TITLE = 'Sam Magee – Web Engineer'
 const DESCRIPTION =
   "Hey, I'm Sam Magee. My goal is to craft beautiful experiences that solve your problems."
 
-const HIDDEN_PROJECTS = ['v1', 'v2', 'hanna-and-sam']
-
 interface IHomeProps {
   positions: Position[]
   posts: Post[]
@@ -66,10 +64,7 @@ export default function Home({ positions, posts, projects }: IHomeProps) {
 export const getStaticProps: GetStaticProps = async () => {
   const positions = await getPositions()
   const posts = await getPosts()
-  // Portfolio projects (v1, v2) and the S + H site are not listed on the home page
-  const projects = (await getProjects()).filter(
-    (project) => !HIDDEN_PROJECTS.includes(project.slug)
-  )
+  const projects = await getProjects()
 
   return {
     props: {

@@ -7,6 +7,11 @@ module.exports = {
         permanent: true,
       },
       {
+        source: '/projects/:path*',
+        destination: '/',
+        permanent: true,
+      },
+      {
         source: '/work',
         destination: '/#work',
         permanent: true,

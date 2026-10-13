@@ -16,7 +16,7 @@ export default class Document extends NextDocument {
   render() {
     return (
       <Html
-        className="text-sm bg-gray-900 sm:text-base print:text-base"
+        className="dark text-sm bg-gray-900 sm:text-base print:text-base"
         lang="en-US"
       >
         <Head>

@@ -10,7 +10,7 @@ export default function Squiggle({ className }: ISquiggleProps) {
       aria-hidden="true"
       focusable="false"
       className={clsx(
-        'block h-4 w-full max-w-xs text-brand-500 sm:h-5',
+        'block h-4 w-full max-w-xs text-gray-800 sm:h-5',
         className
       )}
       viewBox="0 0 240 20"

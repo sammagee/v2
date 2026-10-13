@@ -1,116 +1,142 @@
-import { useMedia } from 'react-use'
+import { useMemo } from 'react'
 import AnchorButton from '../anchor-button'
-import Date from '../date'
+import { Lifeline } from '../lifeline'
+import { registerCompanyIcons } from '../lifeline/company-icon'
+import type { LifelineMarker } from '../lifeline/types'
+import {
+  defineLifeline,
+  type LifelineMilestones,
+} from '../../lib/lifeline-data'
 
 interface IWhereProps {
   positions: Position[]
 }
 
+const toUrl = (value: string) =>
+  value.startsWith('http') ? value : `https://${value}`
+
+const yearOf = (date: string) => parseInt(date.slice(0, 4), 10)
+
+const slugify = (value: string) =>
+  value.toLowerCase().replace(/[^a-z0-9]+/g, '-')
+
+// Each position's existing SVG logo becomes a Lifeline company mark.
+function registerLogos(positions: Position[]) {
+  registerCompanyIcons(
+    Object.fromEntries(
+      positions
+        .filter((position) => position.companyLogo)
+        .map((position) => [
+          slugify(position.company),
+          {
+            icon: ({ className }: { className?: string }) => (
+              <svg
+                className={className}
+                fill="currentColor"
+                viewBox="0 0 96 96"
+                aria-hidden="true"
+                dangerouslySetInnerHTML={{ __html: position.companyLogo }}
+              />
+            ),
+          },
+        ])
+    )
+  )
+}
+
+function buildCareer(positions: Position[]) {
+  const sorted = [...positions].sort((a, b) => (a.date < b.date ? -1 : 1))
+  const birthYear = yearOf(sorted[0].date)
+  const milestones: LifelineMilestones = {}
+
+  for (const position of sorted) {
+    const year = yearOf(position.date)
+    const milestone = (milestones[year] ??= {
+      id: `year-${year}`,
+      events: [],
+      companies: [],
+    })
+
+    milestone.events.push([
+      { type: 'text', value: `${position.title} at ` },
+      {
+        type: 'link',
+        value: position.company,
+        href: toUrl(position.companyLink),
+      },
+    ])
+    milestone.companies.push({
+      id: slugify(position.company),
+      name: position.company,
+    })
+  }
+
+  return defineLifeline({
+    slug: 'career',
+    name: 'Where I’ve worked',
+    birthYear,
+    description: 'The places I’ve worked',
+    milestones,
+  })
+}
+
 export default function Where({ positions }: IWhereProps) {
-  const isLg = useMedia('(min-width: 768px)')
+  const career = useMemo(() => {
+    registerLogos(positions)
+    return buildCareer(positions)
+  }, [positions])
 
   return (
-    <section id="where" className="relative w-full pt-32 overflow-x-hidden">
-      <div className="pt-32 -mt-8 sm:pl-20 pb-44 xl:pl-0">
-        <div className="relative w-full px-12 mx-auto lg:max-w-5xl xl:max-w-6xl">
-          <div className="flex items-end space-x-3">
-            <div>
-              <h2 className="text-5xl font-bold text-white">Where</h2>
+    <section
+      id="where"
+      aria-labelledby="where-heading"
+      className="relative w-full pt-32 pb-32"
+    >
+      <div className="w-full px-6 mx-auto xs:px-12 max-w-7xl">
+        <div className="flex items-end gap-3">
+          <div>
+            <h2 id="where-heading" className="text-5xl font-bold text-white">
+              Where
+            </h2>
+            <p className="mt-2 text-lg font-semibold text-gray-500">
+              The places I&apos;ve worked
+            </p>
+          </div>
 
-              <p className="mt-2 text-lg font-semibold text-gray-500">
-                The places I&apos;ve worked
-              </p>
-            </div>
+          <div className="h-[2px] flex-1 mb-2 border-gray-500 border border-dashed opacity-25 rounded-full" />
 
-            <div className="h-[2px] flex-1 mb-2 border-gray-500 border border-dashed opacity-25 rounded-full" />
-
-            <AnchorButton
-              className="mb-2"
-              href="/resume.pdf"
-              rel="noopener noreferrer"
-              target="_blank"
+          <AnchorButton
+            className="mb-2"
+            href="/resume.pdf"
+            rel="noopener noreferrer"
+            target="_blank"
+          >
+            <span>Résumé</span>
+            <svg
+              className="w-4 h-4 text-brand-600"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              aria-hidden="true"
             >
-              <span>Résumé</span>
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"
+              />
+            </svg>
+          </AnchorButton>
+        </div>
 
-              <svg
-                className="w-4 h-4 text-brand-600"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"
-                />
-              </svg>
-            </AnchorButton>
-          </div>
-
-          <div className="py-10">
-            <div className="grid bg-transparent divide-y divide-white/5 rounded-lg shadow-lg divide-dashed lg:divide-y-0 lg:shadow-none lg:rounded-none lg:border-0 lg:gap-6 lg:bg-transparent lg:bg-none lg:grid-cols-2 bg-dots backdrop-filter backdrop-blur-sm backdrop-brightness-100">
-              {positions.map((position, index) => (
-                <article key={index}>
-                  <div className="p-6 lg:bg-transparent lg:backdrop-filter lg:rounded-lg lg:backdrop-blur-sm lg:backdrop-brightness-100 lg:bg-dots lg:shadow-lg lg:overflow-hidden">
-                    <div className="relative z-10 flex items-start space-x-3 sm:items-center">
-                      <div className="flex items-center justify-center flex-shrink-0 w-12 h-12 rounded-full bg-brand-400/10">
-                        <svg
-                          className="w-6 h-6 text-brand-400"
-                          fill="currentColor"
-                          dangerouslySetInnerHTML={{
-                            __html: position.companyLogo,
-                          }}
-                          viewBox="0 0 96 96"
-                        />
-                      </div>
-
-                      <div>
-                        <a
-                          className="text-gray-400 focus:outline-hidden border-2 border-transparent -ml-0.5 focus-visible:border-brand-500 border-dashed"
-                          href={`//${position.companyLink}`}
-                        >
-                          {position.company}
-                        </a>
-
-                        <h3 className="text-xl font-semibold text-white">
-                          {position.title}&nbsp;
-                        </h3>
-
-                        <div className="flex flex-col sm:flex-row flex-wrap sm:space-x-2 items-start sm:items-center !my-0 text-base font-medium text-gray-500">
-                          <p>
-                            <Date
-                              dateFormat="LLLL yyyy"
-                              dateString={position.date}
-                            />
-                            &nbsp;&ndash;&nbsp;
-                            {position.endDate !== 'Present' ? (
-                              <Date
-                                dateFormat="LLLL yyyy"
-                                dateString={position.endDate}
-                              />
-                            ) : (
-                              'Present'
-                            )}
-                          </p>
-
-                          {position.isCurrent && (
-                            <span className="px-3 py-1 mt-2 text-xs font-semibold rounded-full sm:mt-0 text-brand-400 bg-brand-400/10">
-                              Current
-                            </span>
-                          )}
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </article>
-              ))}
-            </div>
-          </div>
-
-          {/* <div className="mt-20 font-mono font-black opacity-25 text-8xl text-brand-500">
-            02.
-          </div> */}
+        <div className="mt-10 h-[70vh] md:h-[460px]">
+          <Lifeline
+            mode="embed"
+            className="h-full"
+            markers={career.markers as LifelineMarker[]}
+            birthYear={career.birthYear}
+            title={career.name}
+          />
         </div>
       </div>
     </section>
