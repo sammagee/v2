@@ -416,15 +416,9 @@ export function useLifelineScroll(
         lastMarker.offsetWidth
       : track.scrollWidth
 
-    // Never scroll the last marker in under the sticky label shield: on a
-    // narrow stage its wide final column would otherwise push the latest
-    // year off to the left.
     const max = Math.max(
       0,
-      Math.min(
-        startInset.current + lastMarkerRight - endInset.current,
-        lastMarker ? lastMarker.offsetLeft : Number.POSITIVE_INFINITY,
-      ),
+      startInset.current + lastMarkerRight - endInset.current,
     )
     maxTranslate.current = max
 

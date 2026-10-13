@@ -1,4 +1,5 @@
 import { useMemo } from 'react'
+import { useMedia } from 'react-use'
 import { Lifeline } from '../lifeline'
 import { registerCompanyIcons } from '../lifeline/company-icon'
 import type { LifelineMarker } from '../lifeline/types'
@@ -108,18 +109,28 @@ export default function Where({ positions, projects }: IWhereProps) {
     return buildCareer(positions, projects)
   }, [positions, projects])
 
+  // Lifeline goes vertical below md (its own breakpoint). There we list the
+  // years newest-first so the latest job or project is at the top.
+  const isMd = useMedia('(min-width: 768px)', false)
+  const markers = useMemo(
+    () =>
+      (isMd
+        ? career.markers
+        : [...career.markers].reverse()) as LifelineMarker[],
+    [career, isMd]
+  )
+
   return (
     <section
       id="where"
       aria-label="Where I’ve worked, and what I’ve built"
       className="relative w-full mt-4"
     >
-      <div className="h-[380px] md:h-[420px]">
+      <div className="h-[70vh] md:h-[420px]">
         <Lifeline
           mode="embed"
-          layout="horizontal"
           className="h-full"
-          markers={career.markers as LifelineMarker[]}
+          markers={markers}
           birthYear={career.birthYear}
           title={career.name}
         />
@@ -128,11 +139,11 @@ export default function Where({ positions, projects }: IWhereProps) {
       {/* Soft edge fades into the page background */}
       <div
         aria-hidden="true"
-        className="absolute inset-y-0 left-0 z-30 w-8 pointer-events-none sm:w-16 lg:w-32 bg-gradient-to-r from-gray-900 to-transparent"
+        className="absolute inset-y-0 left-0 z-30 hidden w-16 pointer-events-none md:block lg:w-32 bg-gradient-to-r from-gray-900 to-transparent"
       />
       <div
         aria-hidden="true"
-        className="absolute inset-y-0 right-0 z-30 w-8 pointer-events-none sm:w-16 lg:w-32 bg-gradient-to-l from-gray-900 to-transparent"
+        className="absolute inset-y-0 right-0 z-30 hidden w-16 pointer-events-none md:block lg:w-32 bg-gradient-to-l from-gray-900 to-transparent"
       />
     </section>
   )

@@ -33,7 +33,7 @@ export function Lifeline(props: LifelineProps) {
     return <div className="invisible h-full" aria-hidden="true" />
   }
 
-  if (isMobile && props.layout !== "horizontal") {
+  if (isMobile) {
     return (
       <LifelineFireworksProvider>
         {/*
