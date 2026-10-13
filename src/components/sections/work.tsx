@@ -67,7 +67,7 @@ export default function Work({ projects }: IWorkProps) {
 
                   <div
                     className={clsx(
-                      '-mt-6 w-full md:w-2/5 md:mt-6 p-6 bg-transparent backdrop-brightness-100 backdrop-filter bg-dots backdrop-blur rounded-lg shadow-xl overflow-hidden',
+                      '-mt-6 w-full md:w-2/5 md:mt-6 p-6 bg-transparent backdrop-brightness-100 backdrop-filter bg-dots backdrop-blur-sm rounded-lg shadow-xl overflow-hidden',
                       index % 2 === 0 ? 'ml-3 md:-ml-6' : '-ml-3 md:-mr-6'
                     )}
                   >
@@ -77,7 +77,7 @@ export default function Work({ projects }: IWorkProps) {
                           <Link
                             href={`/projects/${project.slug}`}
                             key={project.slug}
-                            className="-ml-0.5 border-2 border-transparent border-dashed focus:outline-none focus-visible:border-brand-500"
+                            className="-ml-0.5 border-2 border-transparent border-dashed focus:outline-hidden focus-visible:border-brand-500"
                           >
                             {project.title}
                           </Link>
@@ -224,7 +224,7 @@ export default function Work({ projects }: IWorkProps) {
                           showLoadingIndicator
                         />
 
-                        <div className="absolute inset-0 rounded-lg bg-gradient-to-b from-transparent backdrop-filter backdrop-blur-sm to-black/25" />
+                        <div className="absolute inset-0 rounded-lg bg-gradient-to-b from-transparent backdrop-filter backdrop-blur-xs to-black/25" />
                         {/* <div className="absolute inset-0 bg-transparent rounded-lg opacity-25 bg-brand-dots backdrop-brightness-100" /> */}
                       </div>
 
@@ -233,7 +233,7 @@ export default function Work({ projects }: IWorkProps) {
                           <Link
                             href={`/projects/${project.slug}`}
                             key={project.slug}
-                            className="-ml-0.5 border-2 border-transparent border-dashed focus:outline-none focus-visible:border-brand-500"
+                            className="-ml-0.5 border-2 border-transparent border-dashed focus:outline-hidden focus-visible:border-brand-500"
                           >
                             {project.title}
                           </Link>
@@ -249,7 +249,7 @@ export default function Work({ projects }: IWorkProps) {
                           </p>
 
                           {(project.git || project.link) && (
-                            <div className="absolute right-0 z-10 flex items-center p-1 transition duration-300 ease-in-out origin-bottom-right transform scale-75 rounded-full shadow-sm opacity-0 bg-brand-400 bg-opacity-10 backdrop-filter backdrop-blur group-hover:opacity-100 group-hover:scale-100 focus-within:scale-100 focus-within:opacity-100">
+                            <div className="absolute right-0 z-10 flex items-center p-1 transition duration-300 ease-in-out origin-bottom-right transform scale-75 rounded-full shadow-xs opacity-0 bg-brand-400/10 backdrop-filter backdrop-blur-sm group-hover:opacity-100 group-hover:scale-100 focus-within:scale-100 focus-within:opacity-100">
                               {project.git && (
                                 <Tooltip
                                   content={
@@ -375,7 +375,7 @@ export default function Work({ projects }: IWorkProps) {
                   placement="top"
                 >
                   <a
-                    className="flex items-center justify-center px-5 py-10 font-mono text-sm font-semibold tracking-wide text-gray-500 uppercase transition duration-200 ease-in-out transform border-2 border-gray-800 border-dashed rounded-lg hover:bg-gray-500 focus-visible:bg-gray-500 focus-visible:bg-opacity-10 hover:bg-opacity-10 hover:scale-105 active:scale-100 focus:outline-none focus-visible:border-dashed"
+                    className="flex items-center justify-center px-5 py-10 font-mono text-sm font-semibold tracking-wide text-gray-500 uppercase transition duration-200 ease-in-out transform border-2 border-gray-800 border-dashed rounded-lg hover:bg-gray-500/10 focus-visible:bg-gray-500/10 hover:scale-105 active:scale-100 focus:outline-hidden focus-visible:border-dashed"
                     href={`mailto:${process.env.NEXT_PUBLIC_EMAIL}`}
                   >
                     Your project here

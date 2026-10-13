@@ -1,4 +1,10 @@
-import { Dialog, Transition } from '@headlessui/react'
+import {
+  Dialog,
+  DialogPanel,
+  DialogTitle,
+  Transition,
+  TransitionChild,
+} from '@headlessui/react'
 import clsx from 'clsx'
 import Link from 'next/link'
 import { Fragment, useRef, useState } from 'react'
@@ -49,7 +55,7 @@ export default function MobileNav() {
           onClose={() => setIsOpen(false)}
           initialFocus={initialFocusRef}
         >
-          <Transition.Child
+          <TransitionChild
             as={Fragment}
             enter="transition-opacity ease-out duration-200"
             enterFrom="opacity-0"
@@ -58,7 +64,7 @@ export default function MobileNav() {
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <Dialog.Overlay className="fixed inset-0 z-20 w-screen h-full bg-black bg-opacity-50 backdrop-filter backdrop-blur">
+            <div className="fixed inset-0 z-20 w-screen h-full bg-black/50 backdrop-filter backdrop-blur-sm">
               <AnchorButton
                 className="absolute z-50 top-2.5 left-7 p-3 group"
                 href="/"
@@ -81,10 +87,10 @@ export default function MobileNav() {
                   />
                 </div>
               </AnchorButton>
-            </Dialog.Overlay>
-          </Transition.Child>
+            </div>
+          </TransitionChild>
 
-          <Transition.Child
+          <TransitionChild
             as={Fragment}
             enter="transition ease-out duration-200"
             enterFrom="transform opacity-0 translate-x-full"
@@ -93,12 +99,12 @@ export default function MobileNav() {
             leaveFrom="transform opacity-100 translate-x-0"
             leaveTo="transform opacity-0 translate-x-full"
           >
-            <div className="shadow-xl pb-safe-bottom z-20 fixed inset-y-0 right-0 w-full max-w-[calc(100vw-8.5rem)] h-full origin-right bg-transparent backdrop-filter backdrop-blur backdrop-brightness-100 bg-dots">
-              <div className="flex flex-col h-full overflow-hidden outline-none">
+            <DialogPanel className="shadow-xl pb-safe-bottom z-20 fixed inset-y-0 right-0 w-full max-w-[calc(100vw-8.5rem)] h-full origin-right bg-transparent backdrop-filter backdrop-blur-sm backdrop-brightness-100 bg-dots">
+              <div className="flex flex-col h-full overflow-hidden outline-hidden">
                 <div className="flex items-center justify-between w-full px-6 py-5 xs:px-12">
-                  <Dialog.Title className="text-2xl font-semibold text-white">
+                  <DialogTitle className="text-2xl font-semibold text-white">
                     Menu
-                  </Dialog.Title>
+                  </DialogTitle>
 
                   <Button
                     aria-label="Close menu"
@@ -134,7 +140,7 @@ export default function MobileNav() {
                   <div className="flex flex-col items-center justify-center flex-1 px-6 space-y-6 xs:px-12">
                     <Link
                       href="/#work"
-                      className="text-4xl font-semibold text-white border-2 border-transparent border-dashed focus:outline-none focus-visible:border-brand-500"
+                      className="text-4xl font-semibold text-white border-2 border-transparent border-dashed focus:outline-hidden focus-visible:border-brand-500"
                       onClick={close}
                     >
                       <span className="font-mono opacity-25 text-brand-500">
@@ -145,7 +151,7 @@ export default function MobileNav() {
 
                     {/* <Link
                       href="/#words"
-                      className="text-4xl font-semibold text-white border-2 border-transparent border-dashed focus:outline-none focus-visible:border-brand-500"
+                      className="text-4xl font-semibold text-white border-2 border-transparent border-dashed focus:outline-hidden focus-visible:border-brand-500"
                       onClick={close}
                     >
                       <span className="font-mono opacity-25 text-brand-500">
@@ -156,7 +162,7 @@ export default function MobileNav() {
 
                     <Link
                       href="/#where"
-                      className="text-4xl font-semibold text-white border-2 border-transparent border-dashed focus:outline-none focus-visible:border-brand-500"
+                      className="text-4xl font-semibold text-white border-2 border-transparent border-dashed focus:outline-hidden focus-visible:border-brand-500"
                       onClick={close}
                     >
                       <span className="font-mono opacity-25 text-brand-500">
@@ -317,7 +323,7 @@ export default function MobileNav() {
                         className="w-full"
                         href={`mailto:${process.env.NEXT_PUBLIC_EMAIL}`}
                       >
-                        <span>Let's Talk</span>
+                        <span>Let&apos;s Talk</span>
 
                         <svg
                           className="w-4 h-4 transform rotate-90 text-brand-600"
@@ -337,8 +343,8 @@ export default function MobileNav() {
                   </div>
                 </div>
               </div>
-            </div>
-          </Transition.Child>
+            </DialogPanel>
+          </TransitionChild>
         </Dialog>
       </Transition>
     </div>

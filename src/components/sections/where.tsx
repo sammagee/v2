@@ -18,7 +18,7 @@ export default function Where({ positions }: IWhereProps) {
               <h2 className="text-5xl font-bold text-white">Where</h2>
 
               <p className="mt-2 text-lg font-semibold text-gray-500">
-                The places I've worked
+                The places I&apos;ve worked
               </p>
             </div>
 
@@ -49,10 +49,10 @@ export default function Where({ positions }: IWhereProps) {
           </div>
 
           <div className="py-10">
-            <div className="grid bg-transparent divide-y divide-white rounded-lg shadow-lg divide-opacity-5 divide-dashed lg:divide-y-0 lg:shadow-none lg:rounded-none lg:border-0 lg:gap-6 lg:bg-transparent lg:bg-none lg:grid-cols-2 bg-dots backdrop-filter backdrop-blur backdrop-brightness-100">
+            <div className="grid bg-transparent divide-y divide-white/5 rounded-lg shadow-lg divide-dashed lg:divide-y-0 lg:shadow-none lg:rounded-none lg:border-0 lg:gap-6 lg:bg-transparent lg:bg-none lg:grid-cols-2 bg-dots backdrop-filter backdrop-blur-sm backdrop-brightness-100">
               {positions.map((position, index) => (
                 <article key={index}>
-                  <div className="p-6 lg:bg-transparent lg:backdrop-filter lg:rounded-lg lg:backdrop-blur lg:backdrop-brightness-100 lg:bg-dots lg:shadow-lg lg:overflow-hidden">
+                  <div className="p-6 lg:bg-transparent lg:backdrop-filter lg:rounded-lg lg:backdrop-blur-sm lg:backdrop-brightness-100 lg:bg-dots lg:shadow-lg lg:overflow-hidden">
                     <div className="relative z-10 flex items-start space-x-3 sm:items-center">
                       <div className="flex items-center justify-center flex-shrink-0 w-12 h-12 rounded-full bg-brand-400/10">
                         <svg
@@ -67,7 +67,7 @@ export default function Where({ positions }: IWhereProps) {
 
                       <div>
                         <a
-                          className="text-gray-400 focus:outline-none border-2 border-transparent -ml-0.5 focus-visible:border-brand-500 border-dashed"
+                          className="text-gray-400 focus:outline-hidden border-2 border-transparent -ml-0.5 focus-visible:border-brand-500 border-dashed"
                           href={`//${position.companyLink}`}
                         >
                           {position.company}
@@ -95,7 +95,7 @@ export default function Where({ positions }: IWhereProps) {
                           </p>
 
                           {position.isCurrent && (
-                            <span className="px-3 py-1 mt-2 text-xs font-semibold rounded-full sm:mt-0 text-brand-400 bg-brand-400 bg-opacity-10">
+                            <span className="px-3 py-1 mt-2 text-xs font-semibold rounded-full sm:mt-0 text-brand-400 bg-brand-400/10">
                               Current
                             </span>
                           )}

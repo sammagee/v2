@@ -124,14 +124,5 @@ module.exports = {
       }),
     },
   },
-  variants: {
-    extend: {
-      filter: ['group-hover'],
-      opacity: ['focus-within', 'group-hover', 'group-focus'],
-      scale: ['active'],
-      translate: ['focus-within', 'group-hover', 'group-focus'],
-      visibility: ['focus-within', 'group-hover', 'group-focus'],
-    },
-  },
   plugins: [require('@tailwindcss/typography')],
 }

@@ -7,7 +7,7 @@
 }
 
 .tippy-box {
-  @apply relative bg-gray-800 text-gray-200 font-inter font-semibold rounded-md px-3 py-1 backdrop-filter backdrop-blur bg-opacity-75 text-sm;
+  @apply relative bg-gray-800/75 text-gray-200 font-inter font-semibold rounded-md px-3 py-1 backdrop-filter backdrop-blur-sm text-sm;
   transition-property: transform, visibility, opacity;
 }
 
@@ -132,7 +132,7 @@
 }
 
 .tippy-backdrop {
-  @apply absolute bg-gray-800 rounded-full backdrop-filter backdrop-blur bg-opacity-75;
+  @apply absolute bg-gray-800/75 rounded-full backdrop-filter backdrop-blur-sm;
   width: calc(110% + 32px);
   left: 50%;
   top: 50%;

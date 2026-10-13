@@ -1,8 +1,26 @@
-@import 'tippy';
+@import 'tailwindcss';
+@import './tippy.css';
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@config '../../tailwind.config.js';
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so these compatibility styles keep borders looking the same as in v3.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+
+  button:not(:disabled),
+  [role='button']:not(:disabled) {
+    cursor: pointer;
+  }
+}
 
 @layer base {
   html {
@@ -12,6 +30,6 @@
 
 @layer components {
   ::selection {
-    @apply bg-brand-500 bg-opacity-50;
+    @apply bg-brand-500/50;
   }
 }
