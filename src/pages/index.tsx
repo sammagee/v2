@@ -1,9 +1,9 @@
 import { GetStaticProps } from 'next'
 import Head from 'next/head'
 import Layout from '../components/layout'
-import Where from '../components/sections/where'
+import CompanyPins from '../components/company-pins'
 import Profile from '../components/sections/profile'
-import { getPositions, getPosts, getProjects } from '../lib/content'
+import { getPositions, getPosts } from '../lib/content'
 
 const TITLE = 'Sam Magee – Web Engineer'
 const DESCRIPTION =
@@ -12,10 +12,9 @@ const DESCRIPTION =
 interface IHomeProps {
   positions: Position[]
   posts: Post[]
-  projects: Project[]
 }
 
-export default function Home({ positions, posts, projects }: IHomeProps) {
+export default function Home({ positions }: IHomeProps) {
   return (
     <>
       <Head>
@@ -48,10 +47,9 @@ export default function Home({ positions, posts, projects }: IHomeProps) {
           <div className="w-full px-6 mx-auto xs:px-12 max-w-7xl">
             <div className="md:max-w-[29rem]">
               <Profile />
+              <CompanyPins positions={positions} />
             </div>
           </div>
-
-          <Where positions={positions} projects={projects} />
         </div>
       </Layout>
     </>
@@ -61,13 +59,11 @@ export default function Home({ positions, posts, projects }: IHomeProps) {
 export const getStaticProps: GetStaticProps = async () => {
   const positions = await getPositions()
   const posts = await getPosts()
-  const projects = await getProjects()
 
   return {
     props: {
       positions,
       posts,
-      projects,
     },
   }
 }

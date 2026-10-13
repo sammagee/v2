@@ -6,25 +6,24 @@ import Squiggle from '../squiggle'
 export default function Profile() {
   return (
     <section aria-labelledby="profile-heading">
-      <div className="relative w-24 h-24 overflow-hidden rounded-full shadow-lg sm:w-28 sm:h-28 bg-gray-900">
-        <NextImage
-          src="/images/me.png"
-          alt="Portrait of Sam Magee"
-          className="object-contain"
-          sizes="112px"
-          fill
-          priority
-        />
-      </div>
-
-      <p className="mt-8 font-mono text-lg font-semibold text-brand-500">
+      <p className="font-mono text-lg font-semibold text-brand-500">
         Hey, I&apos;m
       </p>
       <h1
         id="profile-heading"
-        className="mt-2 text-5xl font-bold text-white lg:text-6xl"
+        className="flex items-center gap-3 mt-2 text-5xl font-bold text-white lg:text-6xl"
       >
-        Sam Magee
+        <span>Sam Magee</span>
+        <span className="relative inline-block overflow-hidden rounded-full shrink-0 size-[1em] bg-gray-800">
+          <NextImage
+            src="/images/me.png"
+            alt=""
+            className="object-contain"
+            sizes="64px"
+            fill
+            priority
+          />
+        </span>
       </h1>
       <p className="mt-3 text-2xl font-medium lg:text-3xl">
         <span className="text-gray-500">I design and build software that </span>
