@@ -32,7 +32,7 @@ export default function Words({ posts }: IWordsProps) {
                       <Link
                         href={`/posts/${post.slug}`}
                         key={post.slug}
-                        className="text-white border-2 border-transparent border-dashed focus:outline-none focus-visible:border-brand-500"
+                        className="text-white border-2 border-transparent border-dashed focus:outline-hidden focus-visible:border-brand-500"
                       >
                         {post.title}
                       </Link>
@@ -55,7 +55,7 @@ export default function Words({ posts }: IWordsProps) {
               </div>
             ) : (
               <div className="flex items-center justify-center">
-                <span className="px-3 py-1 text-sm font-semibold rounded-full bg-brand-400 bg-opacity-10 text-brand-400">
+                <span className="px-3 py-1 text-sm font-semibold rounded-full bg-brand-400/10 text-brand-400">
                   Posts coming soon
                 </span>
               </div>

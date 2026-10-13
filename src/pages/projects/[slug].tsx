@@ -61,7 +61,7 @@ export default function Project({ project }: IProjectProps) {
         <article className="w-full px-12 mx-auto prose prose-lg sm:pl-32 lg:pl-0">
           <Link
             href="/#work"
-            className="inline-flex items-center space-x-2 !text-gray-400 !no-underline focus:outline-none border-2 border-transparent border-dashed focus-visible:border-brand-500 -ml-0.5"
+            className="inline-flex items-center space-x-2 !text-gray-400 !no-underline focus:outline-hidden border-2 border-transparent border-dashed focus-visible:border-brand-500 -ml-0.5"
           >
             <svg
               className="w-4 h-4 text-gray-500"
@@ -267,8 +267,8 @@ export default function Project({ project }: IProjectProps) {
             </div>
           </header>
 
-          <div className="px-6 py-4 mt-6 bg-transparent rounded-lg shadow-lg backdrop-brightness-100 backdrop-filter bg-dark-dots backdrop-blur">
-            <span className="px-3 py-1 text-sm font-semibold rounded-full bg-brand-400 bg-opacity-10 text-brand-400">
+          <div className="px-6 py-4 mt-6 bg-transparent rounded-lg shadow-lg backdrop-brightness-100 backdrop-filter bg-dark-dots backdrop-blur-sm">
+            <span className="px-3 py-1 text-sm font-semibold rounded-full bg-brand-400/10 text-brand-400">
               TL;DR
             </span>
 
