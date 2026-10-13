@@ -20,12 +20,6 @@ export default function ProjectList({ projects }: IProjectListProps) {
 
       <ul className="grid gap-6 mt-4">
         {projects.map((project) => {
-          const tags = project.tags
-            ? project.tags
-                .split(',')
-                .map((tag) => tag.trim())
-                .filter(Boolean)
-            : []
           const primaryUrl = project.link
             ? toUrl(project.link)
             : project.git
@@ -70,19 +64,6 @@ export default function ProjectList({ projects }: IProjectListProps) {
 
                   {project.description && (
                     <p className="mt-2 text-gray-400">{project.description}</p>
-                  )}
-
-                  {tags.length > 0 && (
-                    <ul className="flex flex-wrap gap-2 mt-4" aria-label="Tags">
-                      {tags.map((tag) => (
-                        <li
-                          key={tag}
-                          className="px-3 py-1 font-mono text-xs font-semibold rounded-full bg-brand-400/10 text-brand-400"
-                        >
-                          {tag}
-                        </li>
-                      ))}
-                    </ul>
                   )}
 
                   {(project.link || project.git) && (

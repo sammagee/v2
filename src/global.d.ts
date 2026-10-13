@@ -37,7 +37,6 @@ type Project = {
   link: string
   points?: string[]
   slug: string
-  tags: string
   title: string
 }
 
