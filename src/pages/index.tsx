@@ -46,7 +46,7 @@ export default function Home({ positions, posts, projects }: IHomeProps) {
       <Layout showLinks={false}>
         <div id="content" className="flex flex-col pt-16 pb-16 sm:pt-20">
           <div className="w-full px-6 mx-auto xs:px-12 max-w-7xl">
-            <div className="max-w-[29rem]">
+            <div className="md:max-w-[29rem]">
               <Profile />
             </div>
           </div>

@@ -6,7 +6,7 @@ import Squiggle from '../squiggle'
 export default function Profile() {
   return (
     <section aria-labelledby="profile-heading">
-      <div className="relative w-24 h-24 overflow-hidden rounded-full shadow-lg sm:w-28 sm:h-28 ring-2 ring-brand-500/40 bg-gray-900">
+      <div className="relative w-24 h-24 overflow-hidden rounded-full shadow-lg sm:w-28 sm:h-28 bg-gray-900">
         <NextImage
           src="/images/me.png"
           alt="Portrait of Sam Magee"
@@ -58,7 +58,9 @@ export default function Profile() {
         <SocialLinks />
       </div>
 
-      <Squiggle className="mt-10" />
+      <div className="mt-10 -mx-6 xs:-mx-12 md:mx-0">
+        <Squiggle className="max-md:max-w-none" />
+      </div>
     </section>
   )
 }

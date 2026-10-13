@@ -94,6 +94,9 @@ function buildCareer(positions: Position[], projects: Project[]) {
     slug: 'career',
     name: 'Where I’ve worked',
     birthYear,
+    // End the rail on the most recent entry so it opens there, not on an
+    // empty present year.
+    endYear: Math.max(...Object.keys(milestones).map(Number)),
     description: 'The places I’ve worked',
     milestones,
   })
