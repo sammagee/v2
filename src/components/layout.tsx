@@ -2,14 +2,19 @@ import Footer from './footer'
 import Header from './header'
 import Links from './links'
 
-export default function Home({ children }) {
+interface ILayoutProps {
+  children: React.ReactNode
+  showLinks?: boolean
+}
+
+export default function Home({ children, showLinks = true }: ILayoutProps) {
   return (
     <main className="flex flex-col min-h-screen">
       <Header />
 
-      <Links />
+      {showLinks && <Links />}
 
-      <div className="relative flex flex-col flex-1 overflow-x-hidden">
+      <div className="relative flex flex-col flex-1 overflow-x-clip">
         {children}
       </div>
 

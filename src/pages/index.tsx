@@ -2,14 +2,15 @@ import { GetStaticProps } from 'next'
 import Head from 'next/head'
 import Layout from '../components/layout'
 import Where from '../components/sections/where'
-import Who from '../components/sections/who'
-import Words from '../components/sections/words'
-import Work from '../components/sections/work'
+import Profile from '../components/sections/profile'
+import ProjectList from '../components/sections/project-list'
 import { getPositions, getPosts, getProjects } from '../lib/content'
 
 const TITLE = 'Sam Magee – Web Engineer'
 const DESCRIPTION =
   "Hey, I'm Sam Magee. My goal is to craft beautiful experiences that solve your problems."
+
+const HIDDEN_PROJECTS = ['v1', 'v2', 'hanna-and-sam']
 
 interface IHomeProps {
   positions: Position[]
@@ -45,19 +46,18 @@ export default function Home({ positions, posts, projects }: IHomeProps) {
         />
       </Head>
 
-      <Layout>
-        <Who />
-
+      <Layout showLinks={false}>
         <div
           id="content"
-          role="main"
-          aria-label="Main content"
-          className="mt-56"
+          className="w-full px-6 pt-32 mx-auto xs:px-12 sm:pt-40 max-w-7xl"
         >
-          <Work projects={projects} />
-          {/* <Words posts={posts} /> */}
-          <Where positions={positions} />
+          <div className="grid grid-cols-1 gap-12 md:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] md:items-start lg:gap-20">
+            <Profile />
+            <ProjectList projects={projects} />
+          </div>
         </div>
+
+        <Where positions={positions} />
       </Layout>
     </>
   )
@@ -66,7 +66,10 @@ export default function Home({ positions, posts, projects }: IHomeProps) {
 export const getStaticProps: GetStaticProps = async () => {
   const positions = await getPositions()
   const posts = await getPosts()
-  const projects = await getProjects()
+  // Portfolio projects (v1, v2) and the S + H site are not listed on the home page
+  const projects = (await getProjects()).filter(
+    (project) => !HIDDEN_PROJECTS.includes(project.slug)
+  )
 
   return {
     props: {
