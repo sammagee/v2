@@ -3,7 +3,6 @@ import Head from 'next/head'
 import Layout from '../components/layout'
 import Where from '../components/sections/where'
 import Profile from '../components/sections/profile'
-import ProjectList from '../components/sections/project-list'
 import { getPositions, getPosts, getProjects } from '../lib/content'
 
 const TITLE = 'Sam Magee – Web Engineer'
@@ -45,17 +44,15 @@ export default function Home({ positions, posts, projects }: IHomeProps) {
       </Head>
 
       <Layout showLinks={false}>
-        <div
-          id="content"
-          className="w-full px-6 pt-32 mx-auto xs:px-12 sm:pt-40 max-w-7xl"
-        >
-          <div className="grid grid-cols-1 gap-12 md:grid-cols-[minmax(0,5fr)_minmax(0,7fr)] md:items-start lg:gap-20">
-            <Profile />
-            <ProjectList projects={projects} />
+        <div id="content" className="flex flex-col pt-16 pb-16 sm:pt-20">
+          <div className="w-full px-6 mx-auto xs:px-12 max-w-7xl">
+            <div className="max-w-[29rem]">
+              <Profile />
+            </div>
           </div>
-        </div>
 
-        <Where positions={positions} />
+          <Where positions={positions} projects={projects} />
+        </div>
       </Layout>
     </>
   )

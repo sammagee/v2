@@ -5,7 +5,7 @@ import Squiggle from '../squiggle'
 
 export default function Profile() {
   return (
-    <section aria-labelledby="profile-heading" className="md:sticky md:top-28">
+    <section aria-labelledby="profile-heading">
       <div className="relative w-24 h-24 overflow-hidden rounded-full shadow-lg sm:w-28 sm:h-28 ring-2 ring-brand-500/40 bg-gray-900">
         <NextImage
           src="/images/me.png"

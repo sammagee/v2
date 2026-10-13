@@ -9,6 +9,7 @@ import {
 
 interface IWhereProps {
   positions: Position[]
+  projects: Project[]
 }
 
 const toUrl = (value: string) =>
@@ -43,18 +44,16 @@ function registerLogos(positions: Position[]) {
   )
 }
 
-function buildCareer(positions: Position[]) {
+function buildCareer(positions: Position[], projects: Project[]) {
   const sorted = [...positions].sort((a, b) => (a.date < b.date ? -1 : 1))
   const birthYear = yearOf(sorted[0].date)
   const milestones: LifelineMilestones = {}
+  const milestoneFor = (year: number) =>
+    (milestones[year] ??= { id: `year-${year}`, events: [], companies: [] })
 
   for (const position of sorted) {
     const year = yearOf(position.date)
-    const milestone = (milestones[year] ??= {
-      id: `year-${year}`,
-      events: [],
-      companies: [],
-    })
+    const milestone = milestoneFor(year)
 
     milestone.events.push([
       { type: 'text', value: `${position.title} at ` },
@@ -70,6 +69,27 @@ function buildCareer(positions: Position[]) {
     })
   }
 
+  // Projects sit on the same rail as the jobs. They read "Launched …" and
+  // carry their screenshot as a Lifeline hover image (the image icon marks
+  // them apart from roles, which carry a company logo instead).
+  for (const project of projects) {
+    const href = project.link || project.git
+    milestoneFor(yearOf(project.date)).events.push({
+      text: [
+        { type: 'text', value: 'Launched ' },
+        href
+          ? { type: 'link', value: project.title, href: toUrl(href) }
+          : { type: 'text', value: project.title },
+      ],
+      ...(project.image && {
+        image: {
+          src: `/images/projects/${project.image}`,
+          alt: `${project.title} screenshot`,
+        },
+      }),
+    })
+  }
+
   return defineLifeline({
     slug: 'career',
     name: 'Where I’ve worked',
@@ -79,29 +99,38 @@ function buildCareer(positions: Position[]) {
   })
 }
 
-export default function Where({ positions }: IWhereProps) {
+export default function Where({ positions, projects }: IWhereProps) {
   const career = useMemo(() => {
     registerLogos(positions)
-    return buildCareer(positions)
-  }, [positions])
+    return buildCareer(positions, projects)
+  }, [positions, projects])
 
   return (
     <section
       id="where"
-      aria-label="Where I’ve worked"
-      className="relative w-full pt-24 pb-32"
+      aria-label="Where I’ve worked, and what I’ve built"
+      className="relative w-full mt-4"
     >
-      <div className="w-full px-6 mx-auto xs:px-12 max-w-7xl">
-        <div className="h-[70vh] md:h-[460px]">
-          <Lifeline
-            mode="embed"
-            className="h-full"
-            markers={career.markers as LifelineMarker[]}
-            birthYear={career.birthYear}
-            title={career.name}
-          />
-        </div>
+      <div className="h-[380px] md:h-[420px]">
+        <Lifeline
+          mode="embed"
+          layout="horizontal"
+          className="h-full"
+          markers={career.markers as LifelineMarker[]}
+          birthYear={career.birthYear}
+          title={career.name}
+        />
       </div>
+
+      {/* Soft edge fades into the page background */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-y-0 left-0 z-30 w-8 pointer-events-none sm:w-16 lg:w-32 bg-gradient-to-r from-gray-900 to-transparent"
+      />
+      <div
+        aria-hidden="true"
+        className="absolute inset-y-0 right-0 z-30 w-8 pointer-events-none sm:w-16 lg:w-32 bg-gradient-to-l from-gray-900 to-transparent"
+      />
     </section>
   )
 }

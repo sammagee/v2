@@ -109,4 +109,9 @@ export interface LifelineProps {
   className?: string
   title?: string
   mode?: LifelineMode
+  /**
+   * `"auto"` switches to the vertical layout below `md`; `"horizontal"`
+   * keeps the scrubbed rail at every width (touch drags it sideways).
+   */
+  layout?: "auto" | "horizontal"
 }
