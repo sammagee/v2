@@ -32,3 +32,6 @@ yarn-error.log*
 
 # vercel
 .vercel
+
+# taste skill working files
+.taste-skill

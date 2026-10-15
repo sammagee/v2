@@ -15,10 +15,7 @@ export default class Document extends NextDocument {
 
   render() {
     return (
-      <Html
-        className="text-sm bg-gray-900 sm:text-base print:text-base"
-        lang="en-US"
-      >
+      <Html lang="en-US">
         <Head>
           <meta charSet="utf-8" />
 
@@ -28,10 +25,16 @@ export default class Document extends NextDocument {
             sizes="196x196"
             href="/images/favicon.png"
           />
+          <script
+            dangerouslySetInnerHTML={{
+              __html: "document.documentElement.classList.add('js')",
+            }}
+          />
         </Head>
 
-        <body className="antialiased bg-gray-900">
+        <body>
           <Main />
+          <script src="/overview.js" defer />
           <NextScript />
         </body>
       </Html>

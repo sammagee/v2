@@ -1,30 +1,25 @@
 import { GetStaticProps } from 'next'
 import Head from 'next/head'
+import HomeOverview from '../components/home-overview'
 import Layout from '../components/layout'
-import Where from '../components/sections/where'
-import Who from '../components/sections/who'
-import Words from '../components/sections/words'
-import Work from '../components/sections/work'
-import { getPositions, getPosts, getProjects } from '../lib/content'
+import { getPositions, getProjects, getSchools } from '../lib/content'
 
-const TITLE = 'Sam Magee – Web Engineer'
+const TITLE = 'Sam Magee'
 const DESCRIPTION =
-  "Hey, I'm Sam Magee. My goal is to craft beautiful experiences that solve your problems."
+  'Sam Magee is a design engineer and senior software engineer at Vanta. He designs and builds software that makes complex work feel simple.'
 
-interface IHomeProps {
-  positions: Position[]
-  posts: Post[]
+interface HomeProps {
+  positions: Array<Position & { slug: string }>
   projects: Project[]
+  schools: Array<School & { slug: string }>
 }
 
-export default function Home({ positions, posts, projects }: IHomeProps) {
+export default function Home({ positions, projects, schools }: HomeProps) {
   return (
     <>
       <Head>
         <title>{TITLE}</title>
-
         <meta name="description" content={DESCRIPTION} />
-
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://sammagee.me" />
         <meta property="og:site_name" content={TITLE} />
@@ -34,7 +29,6 @@ export default function Home({ positions, posts, projects }: IHomeProps) {
           property="og:image"
           content="https://sammagee.me/images/social/social-card.jpg"
         />
-
         <meta property="twitter:card" content="summary_large_image" />
         <meta property="twitter:url" content="https://sammagee.me" />
         <meta property="twitter:title" content={TITLE} />
@@ -44,20 +38,8 @@ export default function Home({ positions, posts, projects }: IHomeProps) {
           content="https://sammagee.me/images/social/social-card.jpg"
         />
       </Head>
-
       <Layout>
-        <Who />
-
-        <div
-          id="content"
-          role="main"
-          aria-label="Main content"
-          className="mt-56"
-        >
-          <Work projects={projects} />
-          {/* <Words posts={posts} /> */}
-          <Where positions={positions} />
-        </div>
+        <HomeOverview positions={positions} projects={projects} schools={schools} />
       </Layout>
     </>
   )
@@ -65,14 +47,14 @@ export default function Home({ positions, posts, projects }: IHomeProps) {
 
 export const getStaticProps: GetStaticProps = async () => {
   const positions = await getPositions()
-  const posts = await getPosts()
   const projects = await getProjects()
+  const schools = await getSchools()
 
   return {
     props: {
       positions,
-      posts,
       projects,
+      schools,
     },
   }
 }

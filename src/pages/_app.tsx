@@ -1,15 +1,9 @@
 import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/next'
-import clsx from 'clsx'
 import { AppProps } from 'next/app'
-import { Inter } from 'next/font/google'
 import Head from 'next/head'
 import '../styles/app.css'
-
-const inter = Inter({
-  subsets: ['latin'],
-  variable: '--font-inter',
-})
+import '../styles/overview.css'
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
@@ -28,7 +22,7 @@ export default function App({ Component, pageProps }: AppProps) {
           content="initial-scale=1, viewport-fit=cover, user-scalable=no"
         />
         <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="theme-color" content="#181818" />
+        <meta name="theme-color" content="#f7f9fa" />
 
         <link rel="manifest" href="/pwa/site.webmanifest" />
         <link rel="apple-touch-icon" href="/pwa/images/apple-icon-180.png" />
@@ -163,9 +157,7 @@ export default function App({ Component, pageProps }: AppProps) {
           media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)"
         />
       </Head>
-      <div className={clsx(inter.variable, 'contents font-inter')}>
-        <Component {...pageProps} />
-      </div>
+      <Component {...pageProps} />
     </>
   )
 }

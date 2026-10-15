@@ -1,19 +1,12 @@
-import Footer from './footer'
-import Header from './header'
-import Links from './links'
+import Footer from './site-footer'
+import Header from './site-header'
 
-export default function Home({ children }) {
+export default function Layout({ children }) {
   return (
-    <main className="flex flex-col min-h-screen">
+    <>
       <Header />
-
-      <Links />
-
-      <div className="relative flex flex-col flex-1 overflow-x-hidden">
-        {children}
-      </div>
-
+      {children}
       <Footer />
-    </main>
+    </>
   )
 }
