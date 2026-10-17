@@ -1,16 +1,7 @@
 module.exports = {
   async redirects() {
-    return [
-      {
-        source: '/words',
-        destination: '/#words',
-        permanent: true,
-      },
-      {
-        source: '/work',
-        destination: '/#work',
-        permanent: true,
-      },
-    ]
+    return ['/posts/:path*', '/projects/:path*', '/words', '/work'].map(
+      (source) => ({ source, destination: '/', permanent: true })
+    )
   },
 }
