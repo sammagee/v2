@@ -1,35 +1,54 @@
 @import 'tailwindcss';
-@import './tippy.css';
-
-@config '../../tailwind.config.js';
 
 /*
-  The default border color has changed to `currentcolor` in Tailwind CSS v4,
-  so these compatibility styles keep borders looking the same as in v3.
+  Tokens follow emilkowal.ski: a Radix "sand" gray scale, light only
+  (that site forces the light theme), Inter with cv01/ss03 and optical
+  sizing, 16px everywhere.
 */
-@layer base {
-  *,
-  ::after,
-  ::before,
-  ::backdrop,
-  ::file-selector-button {
-    border-color: var(--color-gray-200, currentcolor);
-  }
+@theme {
+  --color-gray-*: initial;
+  --color-gray-100: #fdfdfc;
+  --color-gray-200: #f9f9f8;
+  --color-gray-300: #f1f0ef;
+  --color-gray-400: #e9e9e7;
+  --color-gray-500: #e2e1de;
+  --color-gray-600: #dad9d6;
+  --color-gray-700: #cfceca;
+  --color-gray-800: #bcbbb5;
+  --color-gray-900: #8d8d86;
+  --color-gray-1000: #82827c;
+  --color-gray-1100: #63635e;
+  --color-gray-1200: #21201c;
+  --color-hover: #f5f4f4;
+}
 
-  button:not(:disabled),
-  [role='button']:not(:disabled) {
-    cursor: pointer;
-  }
+@theme inline {
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
 }
 
 @layer base {
   html {
-    -webkit-tap-highlight-color: transparent;
+    color-scheme: light;
   }
-}
 
-@layer components {
+  body {
+    font-feature-settings: 'cv01', 'ss03';
+    font-variation-settings: 'opsz' auto;
+    overflow-x: hidden;
+  }
+
+  p {
+    line-height: 1.65;
+  }
+
+  a {
+    text-decoration: underline;
+    text-underline-position: from-font;
+    text-decoration-thickness: 0.08em;
+    text-decoration-color: var(--color-gray-800);
+  }
+
   ::selection {
-    @apply bg-brand-500/50;
+    background: var(--color-gray-500);
   }
 }
