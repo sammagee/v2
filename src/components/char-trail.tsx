@@ -20,10 +20,12 @@ const PALETTES = {
 const RADIUS = 11 // px from the cursor path, about a character or two
 const TOUCH_RADIUS = 18 // fingers hide the exact spot
 const TAP_RADIUS = 26 // a small burst on tap
-const DURATION = 800 // ms back to the normal color
+const HOLD = 600 // ms at full color before the fade starts
+const DURATION = 800 // ms of fade back to the normal color
 const STEPS = 10 // fade steps (one highlight per color x base x step)
 // Ambient twinkle: now and then a random visible character lights up on its
-// own and fades like the trail. Timer-driven; rAF only runs while fading.
+// own, holds and fades like the trail. Timer-driven; rAF only runs while the
+// pointer moves.
 const TWINKLE_MIN_MS = 250
 const TWINKLE_MAX_MS = 600
 const TWINKLE_PAIR_CHANCE = 0.3 // otherwise a single character
@@ -161,8 +163,14 @@ export function CharTrail() {
     const tick = (now: number) => {
       touch(now)
       const next = new Set<Char>()
+      let wake = Infinity // ms until the soonest step change
       for (const char of active) {
-        const step = Math.floor(((now - char.touched) / DURATION) * STEPS)
+        const fading = now - char.touched - HOLD
+        const step = fading < 0 ? 0 : Math.floor((fading / DURATION) * STEPS)
+        wake = Math.min(
+          wake,
+          fading < 0 ? -fading : ((step + 1) * DURATION) / STEPS - fading
+        )
         const key =
           step < STEPS ? `trail-${char.base}-${char.color}-${step}` : null
         if (key !== char.key) {
@@ -178,12 +186,15 @@ export function CharTrail() {
         // Cursor/finger moving: track it every frame.
         frame = requestAnimationFrame(tick)
       } else if (active.size) {
-        // Only fades left: a fade has STEPS discrete steps, so wake once per
-        // step instead of every frame.
-        fadeTimer = window.setTimeout(() => {
-          fadeTimer = 0
-          tick(performance.now())
-        }, DURATION / STEPS)
+        // Only holds/fades left: wake exactly when the next character changes
+        // step (end of a hold, or the next of STEPS fade steps), never per frame.
+        fadeTimer = window.setTimeout(
+          () => {
+            fadeTimer = 0
+            tick(performance.now())
+          },
+          Math.max(16, Math.ceil(wake))
+        )
       }
     }
 
