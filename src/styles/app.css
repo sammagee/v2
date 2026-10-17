@@ -77,17 +77,115 @@
   --ring: #6f6d66;
 }
 
-/* Brief color crossfade when the theme is toggled (class added by JS for
-   ~250ms, and never under reduced motion). */
-:root.theme-transition,
-:root.theme-transition *,
-:root.theme-transition *::before,
-:root.theme-transition *::after {
+/*
+  Theme switch. Every themed color is a registered <color> custom property,
+  and on toggle only :root transitions them (class added by JS for ~250ms,
+  never under reduced motion). Each element just reads var(), so text,
+  backgrounds, underlines, rings and shadows all interpolate on the same
+  clock. (Transitioning `color` on every element instead made inheriting
+  children, e.g. the name and section titles, re-start their own
+  transition each frame as the parent's color moved, so they lagged.)
+*/
+@property --color-gray-100 {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #fdfdfc;
+}
+@property --color-gray-200 {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #f9f9f8;
+}
+@property --color-gray-300 {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #f1f0ef;
+}
+@property --color-gray-400 {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #e9e9e7;
+}
+@property --color-gray-500 {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #e2e1de;
+}
+@property --color-gray-600 {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #dad9d6;
+}
+@property --color-gray-700 {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #cfceca;
+}
+@property --color-gray-800 {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #bcbbb5;
+}
+@property --color-gray-900 {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #8d8d86;
+}
+@property --color-gray-1000 {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #82827c;
+}
+@property --color-gray-1100 {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #63635e;
+}
+@property --color-gray-1200 {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #21201c;
+}
+@property --color-hover {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #f5f4f4;
+}
+@property --avatar-from {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #e3eeff;
+}
+@property --avatar-to {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #c9dcff;
+}
+@property --logo-ring {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #fff;
+}
+@property --logo-shadow {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: rgb(33 32 28 / 0.2);
+}
+@property --glass-tint {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: rgb(253 253 252 / 0.12);
+}
+
+:root.theme-transition {
   transition-property:
-    color, background-color, border-color, box-shadow, background-image, fill,
-    stroke !important;
-  transition-duration: 200ms !important;
-  transition-timing-function: ease-out !important;
+    --color-gray-100, --color-gray-200, --color-gray-300, --color-gray-400,
+    --color-gray-500, --color-gray-600, --color-gray-700, --color-gray-800,
+    --color-gray-900, --color-gray-1000, --color-gray-1100, --color-gray-1200,
+    --color-hover, --avatar-from, --avatar-to, --logo-ring, --logo-shadow,
+    --glass-tint;
+  transition-duration: 200ms;
+  transition-timing-function: ease-out;
 }
 
 /* shadcn/ui semantic tokens, mapped onto the sand scale (dark above). */

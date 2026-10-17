@@ -76,7 +76,11 @@ export function CompanyLogoWithTooltip({
  * square artwork clipped once by the img's radius. So there is exactly one
  * anti-aliased edge between art and ring and one between ring and page,
  * never two coincident ones (which showed as a seam/halo on device). The
- * -m-[2px] keeps the layout box at 22px, as before.
+ * -m-[2px] keeps the layout box at 22px, as before. The img has no
+ * background of its own: a fill painted under the art gets anti-aliased
+ * by the same clip twice and bleeds a light fringe into the edge pixels
+ * (visible in WebKit on dark art like Uber). The art is opaque, white
+ * where it needs to be.
  */
 export function CompanyLogo({ company }: { company: ICompany }) {
   return (
@@ -87,7 +91,7 @@ export function CompanyLogo({ company }: { company: ICompany }) {
         alt=""
         width={22}
         height={22}
-        className="block size-[22px] rounded-full bg-white object-cover"
+        className="block size-[22px] rounded-full object-cover"
       />
     </span>
   )
