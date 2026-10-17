@@ -44,11 +44,6 @@ export const COMPANIES = {
     href: 'https://leantech.com',
     logo: '/images/logos/round/leantech.svg',
   },
-  krafted: {
-    name: 'Krafted',
-    href: 'https://krafted.dev',
-    logo: '/images/logos/round/krafted.svg',
-  },
 } satisfies Record<string, ICompany>
 
 export function CompanyLogo({ company }: { company: ICompany }) {

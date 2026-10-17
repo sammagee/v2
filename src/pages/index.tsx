@@ -19,7 +19,6 @@ const PREVIOUS = [
   'imt',
   'central',
   'leantech',
-  'krafted',
 ].map((key) => COMPANIES[key])
 
 export default function Home() {
