@@ -37,8 +37,8 @@ interface ISocialLinkProps {
   external?: boolean
 }
 
-// A text link with a liquid-glass tooltip that follows the cursor. Base UI
-// skips tooltips on touch; keyboard focus still shows it.
+// A text link with a liquid-glass tooltip that follows the cursor (or the
+// finger, on touch); keyboard focus still shows it.
 function SocialLink({
   href,
   hint,
