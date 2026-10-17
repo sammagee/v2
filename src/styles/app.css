@@ -43,6 +43,7 @@
 
   a {
     text-decoration: underline;
+    text-decoration-style: dotted;
     text-underline-position: from-font;
     text-decoration-thickness: 0.08em;
     text-decoration-color: var(--color-gray-800);

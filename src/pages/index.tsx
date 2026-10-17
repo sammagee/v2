@@ -84,7 +84,7 @@ export default function Home() {
               <span className="self-center">
                 <CompanyLogo company={COMPANIES.vanta} />
               </span>
-              <span className="underline decoration-gray-800 decoration-[0.08em] [text-underline-position:from-font]">
+              <span className="underline decoration-dotted decoration-gray-800 decoration-[0.08em] [text-underline-position:from-font]">
                 Vanta
               </span>
             </a>
