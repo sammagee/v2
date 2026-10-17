@@ -49,12 +49,25 @@ export default function Home() {
         className="h-[71px] min-[440px]:h-12 md:h-[53px]"
       />
       <div className="mx-auto max-w-[692px] overflow-x-hidden px-6 py-12 text-gray-1200 antialiased sm:py-32 md:overflow-x-visible md:py-16">
-        <header className="mb-32 flex flex-col items-start">
-          <Link href="/" className="inline-block font-medium no-underline">
-            Sam Magee
-          </Link>
-          <span className="font-medium leading-none text-gray-1100">
-            Senior Software Engineer
+        <header className="mb-32 flex items-center justify-between gap-4">
+          <div className="flex flex-col items-start">
+            <Link href="/" className="inline-block font-medium no-underline">
+              Sam Magee
+            </Link>
+            <span className="font-medium leading-none text-gray-1100">
+              Senior Software Engineer
+            </span>
+          </div>
+          {/* -my-0.5 keeps the row at the text block's 40px height so the name doesn't move. */}
+          <span className="-my-0.5 block size-11 shrink-0 overflow-hidden rounded-full bg-[linear-gradient(135deg,#ffd9c7_0%,#ffcfe0_35%,#e1d3ff_68%,#c4e4ff_100%)] shadow-[0_0_0_2px_#fff,0_1px_3px_rgba(33,32,28,0.2)]">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/images/favicon.png"
+              alt="Sam Magee"
+              width={44}
+              height={44}
+              className="block size-full translate-y-[3px] scale-[0.92] object-contain"
+            />
           </span>
         </header>
 
