@@ -91,89 +91,105 @@ export default function Home() {
 
       <CharTrail />
       <TooltipProvider>
-        <div
-          aria-hidden="true"
-          className="h-[71px] min-[440px]:h-12 md:h-[53px]"
-        />
-        <div className="mx-auto max-w-[692px] overflow-x-hidden px-6 py-12 text-gray-1200 antialiased sm:py-32 md:overflow-x-visible md:py-16">
-          <header className="mb-21 flex items-center gap-3">
-            <ThemeToggleAvatar />
-            <div className="flex flex-col items-start">
-              <Link href="/" className="inline-block font-medium no-underline">
-                Sam Magee
-              </Link>
-              <span className="font-medium leading-none text-gray-1100">
-                Senior Software Engineer
-              </span>
-            </div>
-          </header>
-
-          <main>
-            <h2 className="mb-3.5 block font-medium sm:mb-4">Who</h2>
-            <p className="text-gray-1100">
-              I&apos;m a Senior Software Engineer at{' '}
-              <a
-                href={COMPANIES.vanta.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group inline-flex items-baseline gap-[0.3em] no-underline"
-              >
-                <CompanyLogoWithTooltip
-                  company={COMPANIES.vanta}
-                  className="self-center"
-                />
-                <span className="link-dotted">Vanta</span>
-              </a>
-              , building compliance and trust software for the future. I design
-              and build software that makes complex work feel simple.
-            </p>
-            <p className="mt-4 text-gray-1100">
-              Previously, I&apos;ve worked at{' '}
-              <CompanyStack companies={PREVIOUS} />.
-            </p>
-
-            <section className="mt-16 sm:mt-32" aria-labelledby="more">
-              <h2 id="more" className="mb-4 block font-medium">
-                More
-              </h2>
-              <p className="text-gray-1100">
-                Find me on{' '}
-                <SocialLink href="https://x.com/sammagee" hint="@sammagee">
-                  X
-                </SocialLink>
-                ,{' '}
-                <SocialLink
-                  href="https://linkedin.com/in/sammagee"
-                  hint="in/sammagee"
+        {/* From md up the block is vertically centered in the viewport
+            (safe-centered: taller content falls back to top-aligned flow with
+            the normal padding, never clipped); the top spacer that mirrors
+            Emil's announcement bar only applies to the top-aligned mobile
+            layout. */}
+        <div className="md:flex md:min-h-dvh md:flex-col md:justify-center-safe">
+          <div
+            aria-hidden="true"
+            className="h-[71px] min-[440px]:h-12 md:hidden"
+          />
+          <div className="mx-auto w-full max-w-[692px] overflow-x-hidden px-6 py-12 text-gray-1200 antialiased sm:py-32 md:overflow-x-visible md:py-16">
+            <header className="mb-21 md:mb-14 flex items-center gap-3">
+              <ThemeToggleAvatar />
+              <div className="flex flex-col items-start">
+                <Link
+                  href="/"
+                  className="inline-block font-medium no-underline"
                 >
-                  LinkedIn
-                </SocialLink>
-                , and{' '}
-                <SocialLink href="https://github.com/sammagee" hint="@sammagee">
-                  GitHub
-                </SocialLink>
-                {email ? ', see' : ', or see'} my{' '}
-                <SocialLink href="/resume.pdf" hint="resume.pdf">
-                  resume
-                </SocialLink>
-                {email ? (
-                  <>
-                    , or{' '}
-                    <SocialLink
-                      href={`mailto:${email}`}
-                      hint={email}
-                      external={false}
-                    >
-                      email me
-                    </SocialLink>
-                    .
-                  </>
-                ) : (
-                  '.'
-                )}
+                  Sam Magee
+                </Link>
+                <span className="font-medium leading-none text-gray-1100">
+                  Senior Software Engineer
+                </span>
+              </div>
+            </header>
+
+            <main>
+              <h2 className="mb-3.5 block font-medium sm:mb-4">Who</h2>
+              <p className="text-gray-1100">
+                I&apos;m a Senior Software Engineer at{' '}
+                <a
+                  href={COMPANIES.vanta.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group inline-flex items-baseline gap-[0.3em] no-underline"
+                >
+                  <CompanyLogoWithTooltip
+                    company={COMPANIES.vanta}
+                    className="self-center"
+                  />
+                  <span className="link-dotted">Vanta</span>
+                </a>
+                , building compliance and trust software for the future. I
+                design and build software that makes complex work feel simple.
               </p>
-            </section>
-          </main>
+              <p className="mt-4 text-gray-1100">
+                Previously, I&apos;ve worked at{' '}
+                <CompanyStack companies={PREVIOUS} />.
+              </p>
+
+              <section
+                className="mt-16 sm:mt-32 md:mt-16"
+                aria-labelledby="more"
+              >
+                <h2 id="more" className="mb-4 block font-medium">
+                  More
+                </h2>
+                <p className="text-gray-1100">
+                  Find me on{' '}
+                  <SocialLink href="https://x.com/sammagee" hint="@sammagee">
+                    X
+                  </SocialLink>
+                  ,{' '}
+                  <SocialLink
+                    href="https://linkedin.com/in/sammagee"
+                    hint="in/sammagee"
+                  >
+                    LinkedIn
+                  </SocialLink>
+                  , and{' '}
+                  <SocialLink
+                    href="https://github.com/sammagee"
+                    hint="@sammagee"
+                  >
+                    GitHub
+                  </SocialLink>
+                  {email ? ', see' : ', or see'} my{' '}
+                  <SocialLink href="/resume.pdf" hint="resume.pdf">
+                    resume
+                  </SocialLink>
+                  {email ? (
+                    <>
+                      , or{' '}
+                      <SocialLink
+                        href={`mailto:${email}`}
+                        hint={email}
+                        external={false}
+                      >
+                        email me
+                      </SocialLink>
+                      .
+                    </>
+                  ) : (
+                    '.'
+                  )}
+                </p>
+              </section>
+            </main>
+          </div>
         </div>
       </TooltipProvider>
     </>
