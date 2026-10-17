@@ -14,7 +14,7 @@ export default function Footer() {
               &copy;{' '}
               <Link
                 href="/"
-                className="border-2 border-transparent border-dashed focus:outline-none focus-visible:border-brand-500"
+                className="border-2 border-transparent border-dashed focus:outline-hidden focus-visible:border-brand-500"
               >
                 Sam Magee
               </Link>
@@ -45,7 +45,7 @@ export default function Footer() {
                 placement="left"
               >
                 <AnchorButton href={`mailto:${process.env.NEXT_PUBLIC_EMAIL}`}>
-                  <span>Let's Talk</span>
+                  <span>Let&apos;s Talk</span>
 
                   <svg
                     className="w-4 h-4 transform rotate-90 text-brand-600"

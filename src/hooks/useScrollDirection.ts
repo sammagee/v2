@@ -7,6 +7,7 @@ interface IDirection {
 
 export default function useScrollDirection(): [number, IDirection] {
   const scrollPos = useRef<number>(0)
+  const [position, setPosition] = useState<number>(0)
   const [direction, setDirection] = useState<IDirection>({
     isDown: false,
     isUp: false
@@ -19,11 +20,12 @@ export default function useScrollDirection(): [number, IDirection] {
         isUp: window.pageYOffset < scrollPos.current
       })
       scrollPos.current = window.pageYOffset
+      setPosition(window.pageYOffset)
     }
 
     document.addEventListener('scroll', handleScroll)
     return () => document.removeEventListener('scroll', handleScroll)
   }, [])
 
-  return [scrollPos.current, direction]
+  return [position, direction]
 }

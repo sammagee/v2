@@ -10,7 +10,7 @@ export default function Who() {
 
         <div className="relative z-10">
           <h3 className="font-mono text-lg font-semibold text-brand-500">
-            Hey, I'm
+            Hey, I&apos;m
           </h3>
           <h1 className="mt-2 font-bold text-white text-7xl">Sam Magee</h1>
           <p className="mt-3 text-3xl font-medium text-gray-400">
@@ -22,7 +22,7 @@ export default function Who() {
           </p>
 
           <p className="w-full max-w-xl mt-6 prose prose-xl text-gray-200">
-            I'm a Senior Software Engineer at Vanta, building the future of trust and compliance software.
+            I&apos;m a Senior Software Engineer at Vanta, building the future of trust and compliance software.
           </p>
 
           <Tooltip
@@ -50,7 +50,7 @@ export default function Who() {
               className="mt-12"
               href={`mailto:${process.env.NEXT_PUBLIC_EMAIL}`}
             >
-              <span>Let's Talk</span>
+              <span>Let&apos;s Talk</span>
 
               <svg
                 className="w-4 h-4 transform rotate-90 text-brand-600"

@@ -22,10 +22,10 @@ export default function Header() {
         'fixed z-20 top-0 flex items-center justify-between w-full pl-7 pr-12 h-24 bg-transparent bg-dots transform transition ease-in-out duration-500',
         direction.isUp &&
           scrollPos > HEADER_HEIGHT &&
-          'shadow-xl translate-y-0 backdrop-filter backdrop-blur backdrop-brightness-100',
+          'shadow-xl translate-y-0 backdrop-filter backdrop-blur-sm backdrop-brightness-100',
         direction.isDown &&
           scrollPos > HEADER_HEIGHT &&
-          'shadow-xl -translate-y-full backdrop-filter backdrop-blur backdrop-brightness-100'
+          'shadow-xl -translate-y-full backdrop-filter backdrop-blur-sm backdrop-brightness-100'
       )}
       role="banner"
     >
@@ -54,21 +54,21 @@ export default function Header() {
       <nav className="items-center hidden space-x-6 sm:flex">
         <Link
           href="/#work"
-          className="font-semibold text-white border-2 border-transparent border-dashed focus:outline-none focus-visible:border-brand-500"
+          className="font-semibold text-white border-2 border-transparent border-dashed focus:outline-hidden focus-visible:border-brand-500"
         >
           <span className="font-mono opacity-25 text-brand-500">01.</span> Work
         </Link>
 
         {/* <Link
           href="/#words"
-          className="font-semibold text-white border-2 border-transparent border-dashed focus:outline-none focus-visible:border-brand-500"
+          className="font-semibold text-white border-2 border-transparent border-dashed focus:outline-hidden focus-visible:border-brand-500"
         >
           <span className="font-mono opacity-25 text-brand-500">02.</span> Words
         </Link> */}
 
         <Link
           href="/#where"
-          className="font-semibold text-white border-2 border-transparent border-dashed focus:outline-none focus-visible:border-brand-500"
+          className="font-semibold text-white border-2 border-transparent border-dashed focus:outline-hidden focus-visible:border-brand-500"
         >
           <span className="font-mono opacity-25 text-brand-500">02.</span> Where
         </Link>

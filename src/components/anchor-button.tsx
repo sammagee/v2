@@ -38,4 +38,6 @@ const AnchorButton = forwardRef(
   }
 )
 
+AnchorButton.displayName = 'AnchorButton'
+
 export default AnchorButton
