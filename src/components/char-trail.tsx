@@ -2,7 +2,8 @@ import { useEffect } from 'react'
 
 import { useTheme } from '@/lib/theme'
 
-// A comet-like trail: characters near the cursor light up and fade back.
+// A comet-like trail: characters near the cursor light up and fade back,
+// plus an ambient twinkle of a random character or two every 250-600ms.
 //
 // Uses the CSS Custom Highlight API, so the DOM is never touched: no span
 // splitting, no layout shift or kerning changes, and selection, copy/paste,
@@ -21,6 +22,11 @@ const TOUCH_RADIUS = 18 // fingers hide the exact spot
 const TAP_RADIUS = 26 // a small burst on tap
 const DURATION = 800 // ms back to the normal color
 const STEPS = 10 // fade steps (one highlight per color x base x step)
+// Ambient twinkle: now and then a random visible character lights up on its
+// own and fades like the trail. Timer-driven; rAF only runs while fading.
+const TWINKLE_MIN_MS = 250
+const TWINKLE_MAX_MS = 600
+const TWINKLE_PAIR_CHANCE = 0.3 // otherwise a single character
 
 interface Char {
   range: Range
@@ -122,7 +128,8 @@ export function CharTrail() {
     let active = new Set<Char>()
 
     const touch = (now: number) => {
-      if (!pointer) return
+      // Only a moving pointer lights characters; a resting one lets them fade.
+      if (!pointer || pointer === last) return
       const from = last ?? pointer
       const dx = pointer.x - from.x
       const dy = pointer.y - from.y
@@ -166,11 +173,26 @@ export function CharTrail() {
         if (key) next.add(char)
       }
       active = next
-      frame = active.size || pointer !== last ? requestAnimationFrame(tick) : 0
+      frame = 0
+      if (pointer !== last) {
+        // Cursor/finger moving: track it every frame.
+        frame = requestAnimationFrame(tick)
+      } else if (active.size) {
+        // Only fades left: a fade has STEPS discrete steps, so wake once per
+        // step instead of every frame.
+        fadeTimer = window.setTimeout(() => {
+          fadeTimer = 0
+          tick(performance.now())
+        }, DURATION / STEPS)
+      }
     }
 
+    let fadeTimer = 0
     const start = () => {
-      if (!frame) frame = requestAnimationFrame(tick)
+      if (frame) return
+      window.clearTimeout(fadeTimer)
+      fadeTimer = 0
+      frame = requestAnimationFrame(tick)
     }
     const onMove = (event: PointerEvent) => {
       // Touch is handled by the touch listeners, which keep firing while the
@@ -197,6 +219,48 @@ export function CharTrail() {
       start()
     }
 
+    // Ambient twinkle. Skips while the tab is hidden or no text is on
+    // screen; never touches a character the cursor/finger already lit.
+    let twinkleTimer = 0
+    let contentVisible = true
+    const twinkle = () => {
+      const top = window.scrollY
+      const bottom = top + window.innerHeight
+      const idle = chars.filter(
+        (char) => !active.has(char) && char.y > top && char.y < bottom
+      )
+      const count = Math.random() < TWINKLE_PAIR_CHANCE ? 2 : 1
+      const now = performance.now()
+      for (let i = 0; i < count && idle.length; i++) {
+        const [char] = idle.splice(Math.floor(Math.random() * idle.length), 1)
+        char.color = Math.floor(Math.random() * PALETTE.length)
+        char.touched = now
+        active.add(char)
+      }
+      if (active.size) start()
+    }
+    const scheduleTwinkle = () => {
+      window.clearTimeout(twinkleTimer)
+      twinkleTimer = 0
+      if (document.hidden || !contentVisible || reduced.matches) return
+      twinkleTimer = window.setTimeout(
+        () => {
+          twinkle()
+          scheduleTwinkle()
+        },
+        TWINKLE_MIN_MS + Math.random() * (TWINKLE_MAX_MS - TWINKLE_MIN_MS)
+      )
+    }
+    const onVisibility = () => scheduleTwinkle()
+    const viewport = new IntersectionObserver((entries) => {
+      contentVisible = entries.some((entry) => entry.isIntersecting)
+      scheduleTwinkle()
+    })
+    document
+      .querySelectorAll(SELECTOR)
+      .forEach((element) => viewport.observe(element))
+    document.addEventListener('visibilitychange', onVisibility)
+
     let resizeTimer = 0
     const remeasure = () => {
       window.clearTimeout(resizeTimer)
@@ -221,6 +285,10 @@ export function CharTrail() {
     window.addEventListener('touchcancel', onLeave, passive)
     return () => {
       cancelAnimationFrame(frame)
+      window.clearTimeout(fadeTimer)
+      window.clearTimeout(twinkleTimer)
+      viewport.disconnect()
+      document.removeEventListener('visibilitychange', onVisibility)
       window.clearTimeout(settle)
       window.clearTimeout(resizeTimer)
       observer.disconnect()
