@@ -83,7 +83,7 @@ export function useLiquidGlass(
     style: {
       backdropFilter: `url(#${id}) blur(0.4px) saturate(1.8)`,
       WebkitBackdropFilter: `url(#${id}) blur(0.4px) saturate(1.8)`,
-      backgroundColor: 'rgb(253 253 252 / 0.12)',
+      backgroundColor: 'var(--glass-tint)',
     },
     filter: (
       <svg aria-hidden="true" className="pointer-events-none absolute size-0">

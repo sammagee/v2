@@ -13,7 +13,7 @@ export default function NotFound() {
         className="h-[71px] min-[440px]:h-12 md:h-[53px]"
       />
       <div className="mx-auto max-w-[692px] px-6 py-12 text-gray-1200 antialiased sm:py-32 md:py-16">
-        <header className="mb-32 flex flex-col items-start">
+        <header className="mb-21 flex flex-col items-start">
           <Link href="/" className="inline-block font-medium no-underline">
             Sam Magee
           </Link>

@@ -28,7 +28,6 @@ export default function App({ Component, pageProps }: AppProps) {
           content="width=device-width, initial-scale=1, viewport-fit=cover"
         />
         <meta name="apple-mobile-web-app-capable" content="yes" />
-        <meta name="theme-color" content="#fdfdfc" />
 
         <link rel="manifest" href="/pwa/site.webmanifest" />
         <link rel="apple-touch-icon" href="/pwa/images/apple-icon-180.png" />
@@ -163,9 +162,14 @@ export default function App({ Component, pageProps }: AppProps) {
           media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)"
         />
       </Head>
-      <div className={`${inter.variable} contents font-sans`}>
-        <Component {...pageProps} />
-      </div>
+      {/* On :root (not a wrapper div) so everything, including portaled
+          tooltips under <body>, resolves --font-inter. */}
+      <style jsx global>{`
+        :root {
+          --font-inter: ${inter.style.fontFamily};
+        }
+      `}</style>
+      <Component {...pageProps} />
     </>
   )
 }

@@ -1,5 +1,7 @@
 import { useEffect } from 'react'
 
+import { useTheme } from '@/lib/theme'
+
 // A comet-like trail: characters near the cursor light up and fade back.
 //
 // Uses the CSS Custom Highlight API, so the DOM is never touched: no span
@@ -9,14 +11,11 @@ import { useEffect } from 'react'
 // untouched). Reduced motion and browsers without the API get nothing.
 
 const SELECTOR = 'header a, header span, main h2, main p'
-const PALETTE = [
-  '#4f7cff',
-  '#8b5cf6',
-  '#e8559b',
-  '#f2784b',
-  '#13a983',
-  '#2aa7d6',
-]
+const PALETTES = {
+  light: ['#4f7cff', '#8b5cf6', '#e8559b', '#f2784b', '#13a983', '#2aa7d6'],
+  // Lighter, brighter tints of the same hues so they read on near-black.
+  dark: ['#8aa8ff', '#b79cff', '#ff8cc0', '#ffa47a', '#4fdcb0', '#6fd0f5'],
+}
 const RADIUS = 11 // px from the cursor path, about a character or two
 const TOUCH_RADIUS = 18 // fingers hide the exact spot
 const TAP_RADIUS = 26 // a small burst on tap
@@ -38,7 +37,11 @@ type HighlightRegistry = Map<string, unknown> & {
 }
 
 export function CharTrail() {
+  const { theme } = useTheme()
+
+  // Re-runs on theme change: the base text colors and palette both change.
   useEffect(() => {
+    const PALETTE = PALETTES[theme]
     const css = window.CSS as typeof CSS & { highlights?: HighlightRegistry }
     const HighlightCtor = (
       window as unknown as { Highlight?: new () => Set<Range> }
@@ -202,7 +205,12 @@ export function CharTrail() {
     const observer = new ResizeObserver(remeasure)
     observer.observe(document.body)
     document.fonts?.ready.then(measure)
-    measure()
+    // Mid crossfade, computed text colors are in-between values; wait it out.
+    const settle = document.documentElement.classList.contains(
+      'theme-transition'
+    )
+      ? window.setTimeout(measure, 260)
+      : (measure(), 0)
 
     const passive = { passive: true }
     window.addEventListener('pointermove', onMove, passive)
@@ -213,6 +221,7 @@ export function CharTrail() {
     window.addEventListener('touchcancel', onLeave, passive)
     return () => {
       cancelAnimationFrame(frame)
+      window.clearTimeout(settle)
       window.clearTimeout(resizeTimer)
       observer.disconnect()
       window.removeEventListener('pointermove', onMove)
@@ -224,7 +233,7 @@ export function CharTrail() {
       highlights.forEach((_, name) => css.highlights!.delete(name))
       style.remove()
     }
-  }, [])
+  }, [theme])
 
   return null
 }
