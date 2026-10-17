@@ -11,9 +11,7 @@
   "dependencies": {
     "@vercel/analytics": "^2.0.1",
     "@vercel/speed-insights": "^2.0.0",
-    "date-fns": "^4.4.0",
     "eslint-config-next": "16",
-    "gray-matter": "^4.0.3",
     "next": "^16.4.0",
     "react": "^19.3.0",
     "react-dom": "^19.3.0"

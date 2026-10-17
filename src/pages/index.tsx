@@ -1,8 +1,10 @@
-import { format, parseISO } from 'date-fns'
-import { GetStaticProps } from 'next'
 import Head from 'next/head'
 import Link from 'next/link'
-import { getPositions } from '../lib/content'
+import {
+  COMPANIES,
+  CompanyLogo,
+  CompanyStack,
+} from '../components/company-logo'
 
 const TITLE = 'Sam Magee'
 const DESCRIPTION =
@@ -10,20 +12,17 @@ const DESCRIPTION =
 const URL = 'https://sammagee.me'
 const IMAGE = `${URL}/images/social/social-card.jpg`
 
-interface IHomeProps {
-  positions: Position[]
-}
+const PREVIOUS = [
+  'uber',
+  'marqeta',
+  'principal',
+  'imt',
+  'central',
+  'leantech',
+  'krafted',
+].map((key) => COMPANIES[key])
 
-const toUrl = (value: string) =>
-  value.startsWith('http') ? value : `https://${value}`
-
-const formatDate = (value: string) =>
-  /^present$/i.test(value) ? 'Present' : format(parseISO(value), 'MMM yyyy')
-
-const listItem =
-  '-mx-3 flex flex-col rounded-md px-3 no-underline hover:bg-hover sm:py-3'
-
-export default function Home({ positions }: IHomeProps) {
+export default function Home() {
   const email = process.env.NEXT_PUBLIC_EMAIL
 
   return (
@@ -46,6 +45,10 @@ export default function Home({ positions }: IHomeProps) {
         <meta name="twitter:image" content={IMAGE} />
       </Head>
 
+      <div
+        aria-hidden="true"
+        className="h-[71px] min-[440px]:h-12 md:h-[53px]"
+      />
       <div className="mx-auto max-w-[692px] overflow-x-hidden px-6 py-12 text-gray-1200 antialiased sm:py-32 md:overflow-x-visible md:py-16">
         <header className="mb-32 flex flex-col items-start">
           <Link href="/" className="inline-block font-medium no-underline">
@@ -59,48 +62,27 @@ export default function Home({ positions }: IHomeProps) {
         <main>
           <h2 className="mb-5 block font-medium sm:mb-6">Today</h2>
           <p className="text-gray-1100">
-            I&apos;m a Senior Software Engineer at Vanta, building the future of
-            trust and compliance software.
+            I&apos;m a Senior Software Engineer at{' '}
+            <a
+              href={COMPANIES.vanta.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group inline-flex items-baseline gap-[0.3em] no-underline"
+            >
+              <span className="self-center">
+                <CompanyLogo company={COMPANIES.vanta} />
+              </span>
+              <span className="underline decoration-gray-800 decoration-[0.08em] [text-underline-position:from-font]">
+                Vanta
+              </span>
+            </a>
+            , building the future of trust and compliance software. I design and
+            build software that makes complex work feel simple.
           </p>
           <p className="mt-4 text-gray-1100">
-            I design and build software that makes complex work feel simple.
+            Previously, I&apos;ve worked at{' '}
+            <CompanyStack companies={PREVIOUS} />.
           </p>
-
-          <section className="-mb-3 mt-16 sm:mt-32" aria-labelledby="work">
-            <h2 id="work" className="mb-5 block font-medium sm:mb-4">
-              Work
-            </h2>
-            <ul className="flex flex-col gap-7 sm:gap-4">
-              {positions.map((position) => {
-                const content = (
-                  <>
-                    <span>{position.company}</span>
-                    <span className="text-gray-1100">
-                      {position.title} &middot; {formatDate(position.date)}{' '}
-                      &ndash; {formatDate(position.endDate || 'Present')}
-                    </span>
-                  </>
-                )
-
-                return (
-                  <li key={position.slug} className="flex flex-col">
-                    {position.companyLink ? (
-                      <a
-                        href={toUrl(position.companyLink)}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className={listItem}
-                      >
-                        {content}
-                      </a>
-                    ) : (
-                      <div className={listItem}>{content}</div>
-                    )}
-                  </li>
-                )
-              })}
-            </ul>
-          </section>
 
           <section className="mt-16 sm:mt-32" aria-labelledby="more">
             <h2 id="more" className="mb-6 block font-medium sm:mb-6">
@@ -149,7 +131,3 @@ export default function Home({ positions }: IHomeProps) {
     </>
   )
 }
-
-export const getStaticProps: GetStaticProps<IHomeProps> = async () => ({
-  props: { positions: getPositions() },
-})
