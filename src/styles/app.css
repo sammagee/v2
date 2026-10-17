@@ -1,35 +1,332 @@
 @import 'tailwindcss';
-@import './tippy.css';
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
 
-@config '../../tailwind.config.js';
+@custom-variant dark (&:where(.dark, .dark *));
 
 /*
-  The default border color has changed to `currentcolor` in Tailwind CSS v4,
-  so these compatibility styles keep borders looking the same as in v3.
+  Tokens follow emilkowal.ski: a Radix "sand" gray scale (dark values are
+  the sand dark scale that ships, unused, in that site's CSS), Inter with cv01/ss03 and optical
+  sizing, 16px everywhere.
 */
-@layer base {
-  *,
-  ::after,
-  ::before,
-  ::backdrop,
-  ::file-selector-button {
-    border-color: var(--color-gray-200, currentcolor);
-  }
+@theme {
+  --color-gray-*: initial;
+  --color-gray-100: #fdfdfc;
+  --color-gray-200: #f9f9f8;
+  --color-gray-300: #f1f0ef;
+  --color-gray-400: #e9e9e7;
+  --color-gray-500: #e2e1de;
+  --color-gray-600: #dad9d6;
+  --color-gray-700: #cfceca;
+  --color-gray-800: #bcbbb5;
+  --color-gray-900: #8d8d86;
+  --color-gray-1000: #82827c;
+  --color-gray-1100: #63635e;
+  --color-gray-1200: #21201c;
+  --color-hover: #f5f4f4;
+}
 
-  button:not(:disabled),
-  [role='button']:not(:disabled) {
-    cursor: pointer;
-  }
+/* Theme-dependent values that aren't on the gray scale. */
+:root {
+  --avatar-from: #e3eeff;
+  --avatar-to: #c9dcff;
+  --logo-ring: #fff;
+  --logo-shadow: rgb(33 32 28 / 0.22);
+  --glass-tint: rgb(253 253 252 / 0.12);
+}
+
+/* Dark: Radix sand dark. Set on html by the head script / avatar toggle. */
+:root.dark {
+  --color-gray-100: #111110;
+  --color-gray-200: #191918;
+  --color-gray-300: #222221;
+  --color-gray-400: #2a2a28;
+  --color-gray-500: #31312e;
+  --color-gray-600: #3b3a37;
+  --color-gray-700: #494844;
+  --color-gray-800: #62605b;
+  --color-gray-900: #6f6d66;
+  --color-gray-1000: #7c7b74;
+  --color-gray-1100: #b5b3ad;
+  --color-gray-1200: #eeeeec;
+  --color-hover: #191918;
+
+  /* The light pastel, a touch muted, so the memoji still pops on #111110. */
+  --avatar-from: #c9dcff;
+  --avatar-to: #a9c4f5;
+  --logo-ring: #2a2a28; /* gray-400: a hair lighter than the page so black marks (Uber) keep an edge */
+  --logo-shadow: rgb(0 0 0 / 0.6);
+  --glass-tint: rgb(25 25 24 / 0.35);
+
+  --background: #111110;
+  --foreground: #eeeeec;
+  --card: #111110;
+  --card-foreground: #eeeeec;
+  --popover: #111110;
+  --popover-foreground: #eeeeec;
+  --primary: #eeeeec;
+  --primary-foreground: #111110;
+  --secondary: #222221;
+  --secondary-foreground: #eeeeec;
+  --muted: #222221;
+  --muted-foreground: #b5b3ad;
+  --accent: #222221;
+  --accent-foreground: #eeeeec;
+  --border: #2a2a28;
+  --input: #31312e;
+  --ring: #6f6d66;
+}
+
+/*
+  Theme switch. Every themed color is a registered <color> custom property,
+  and on toggle only :root transitions them (class added by JS for ~250ms,
+  never under reduced motion). Each element just reads var(), so text,
+  backgrounds, underlines, rings and shadows all interpolate on the same
+  clock. (Transitioning `color` on every element instead made inheriting
+  children, e.g. the name and section titles, re-start their own
+  transition each frame as the parent's color moved, so they lagged.)
+*/
+@property --color-gray-100 {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #fdfdfc;
+}
+@property --color-gray-200 {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #f9f9f8;
+}
+@property --color-gray-300 {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #f1f0ef;
+}
+@property --color-gray-400 {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #e9e9e7;
+}
+@property --color-gray-500 {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #e2e1de;
+}
+@property --color-gray-600 {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #dad9d6;
+}
+@property --color-gray-700 {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #cfceca;
+}
+@property --color-gray-800 {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #bcbbb5;
+}
+@property --color-gray-900 {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #8d8d86;
+}
+@property --color-gray-1000 {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #82827c;
+}
+@property --color-gray-1100 {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #63635e;
+}
+@property --color-gray-1200 {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #21201c;
+}
+@property --color-hover {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #f5f4f4;
+}
+@property --avatar-from {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #e3eeff;
+}
+@property --avatar-to {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #c9dcff;
+}
+@property --logo-ring {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: #fff;
+}
+@property --logo-shadow {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: rgb(33 32 28 / 0.22);
+}
+@property --glass-tint {
+  syntax: '<color>';
+  inherits: true;
+  initial-value: rgb(253 253 252 / 0.12);
+}
+
+:root.theme-transition {
+  transition-property:
+    --color-gray-100, --color-gray-200, --color-gray-300, --color-gray-400,
+    --color-gray-500, --color-gray-600, --color-gray-700, --color-gray-800,
+    --color-gray-900, --color-gray-1000, --color-gray-1100, --color-gray-1200,
+    --color-hover, --avatar-from, --avatar-to, --logo-ring, --logo-shadow,
+    --glass-tint;
+  transition-duration: 200ms;
+  transition-timing-function: ease-out;
+}
+
+/* shadcn/ui semantic tokens, mapped onto the sand scale (dark above). */
+:root {
+  --background: #fdfdfc;
+  --foreground: #21201c;
+  --card: #fdfdfc;
+  --card-foreground: #21201c;
+  --popover: #fdfdfc;
+  --popover-foreground: #21201c;
+  --primary: #21201c;
+  --primary-foreground: #fdfdfc;
+  --secondary: #f1f0ef;
+  --secondary-foreground: #21201c;
+  --muted: #f1f0ef;
+  --muted-foreground: #63635e;
+  --accent: #f1f0ef;
+  --accent-foreground: #21201c;
+  --destructive: #e5484d;
+  --border: #e9e9e7;
+  --input: #e2e1de;
+  --ring: #8d8d86;
+  --radius: 0.625rem;
+}
+
+@theme inline {
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
 }
 
 @layer base {
+  html,
+  body {
+    /* No rubber-band bounce or pull-to-refresh; the canvas behind any
+       overscroll matches the page. */
+    overscroll-behavior: none;
+    background-color: var(--color-gray-100);
+  }
+
   html {
-    -webkit-tap-highlight-color: transparent;
+    color-scheme: light;
+  }
+
+  html.dark {
+    color-scheme: dark;
+  }
+
+  body {
+    font-feature-settings: 'cv01', 'ss03';
+    font-variation-settings: 'opsz' auto;
+    overflow-x: hidden;
+  }
+
+  p {
+    line-height: 1.65;
+  }
+
+  /*
+    Dotted underline drawn as a background so it can be inset ~3.5px from both
+    ends (text-decoration can't). Matches the old dotted text-decoration:
+    1px dots on a 2px period in gray-800, 1px thick, sitting where Inter's
+    underline did. It's a background, so the color trail (which only
+    recolors text) leaves it alone; clone repeats it per line fragment.
+  */
+  a,
+  .link-dotted {
+    text-decoration: none;
+    background-image: repeating-linear-gradient(
+      to right,
+      var(--color-gray-800) 0 1px,
+      transparent 1px 2px
+    );
+    background-repeat: no-repeat;
+    /* ~3.5px in from each end; short links like 'X' keep at least 60%. */
+    background-size: max(calc(100% - 7px), 60%) 1px;
+    background-position: 50% calc(100% - 0.25px);
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+  }
+
+  a.no-underline,
+  a:has(img) {
+    background-image: none;
+  }
+
+  ::selection {
+    background: var(--color-gray-500);
+  }
+
+  * {
+    @apply border-border outline-ring/50;
   }
 }
 
-@layer components {
-  ::selection {
-    @apply bg-brand-500/50;
-  }
+/*
+  Liquid glass surface. This is the frosted fallback; in Chromium
+  useLiquidGlass() layers an SVG displacement filter on top (inline
+  backdrop-filter). The specular rim is inset shadows, so it shows in
+  every browser.
+*/
+.liquid-glass {
+  background: rgb(253 253 252 / 0.55);
+  backdrop-filter: blur(8px) saturate(1.8);
+  box-shadow:
+    inset 0 0 0 1px rgb(255 255 255 / 0.55),
+    inset 1.5px 1.5px 1px -0.5px rgb(255 255 255 / 0.95),
+    inset -1px -1px 1px -0.5px rgb(255 255 255 / 0.6),
+    inset 0 0 12px rgb(255 255 255 / 0.35),
+    0 6px 18px -6px rgb(33 32 28 / 0.22),
+    0 1px 2px rgb(33 32 28 / 0.08);
+}
+
+/* Dark glass: a smoky tint with a fainter rim and a deeper drop shadow. */
+.dark .liquid-glass {
+  background: rgb(25 25 24 / 0.55);
+  box-shadow:
+    inset 0 0 0 1px rgb(255 255 255 / 0.1),
+    inset 1.5px 1.5px 1px -0.5px rgb(255 255 255 / 0.28),
+    inset -1px -1px 1px -0.5px rgb(255 255 255 / 0.12),
+    inset 0 0 12px rgb(255 255 255 / 0.05),
+    0 6px 18px -6px rgb(0 0 0 / 0.7),
+    0 1px 2px rgb(0 0 0 / 0.4);
 }
