@@ -4,8 +4,9 @@ import { useEffect } from 'react'
 //
 // Uses the CSS Custom Highlight API, so the DOM is never touched: no span
 // splitting, no layout shift or kerning changes, and selection, copy/paste,
-// links, SSR text and screen readers behave exactly as before. Browsers
-// without the API, touch/coarse pointers and reduced motion get nothing.
+// links, SSR text and screen readers behave exactly as before. Works with a
+// mouse and with touch (passive listeners only, so scrolling and taps are
+// untouched). Reduced motion and browsers without the API get nothing.
 
 const SELECTOR = 'header a, header span, main h2, main p'
 const PALETTE = [
@@ -17,6 +18,8 @@ const PALETTE = [
   '#2aa7d6',
 ]
 const RADIUS = 11 // px from the cursor path, about a character or two
+const TOUCH_RADIUS = 18 // fingers hide the exact spot
+const TAP_RADIUS = 26 // a small burst on tap
 const DURATION = 800 // ms back to the normal color
 const STEPS = 10 // fade steps (one highlight per color x base x step)
 
@@ -41,9 +44,8 @@ export function CharTrail() {
       window as unknown as { Highlight?: new () => Set<Range> }
     ).Highlight
     if (!css.highlights || !HighlightCtor) return
-    const fine = window.matchMedia('(hover: hover) and (pointer: fine)')
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)')
-    if (!fine.matches || reduced.matches) return
+    if (reduced.matches) return
 
     // One highlight per (base text color, palette color, fade step).
     const bases: string[] = []
@@ -108,7 +110,9 @@ export function CharTrail() {
       })
     }
 
-    let pointer: { x: number; y: number } | null = null
+    // Positions are page coordinates (char rects are cached with the scroll
+    // offset added), so a page that scrolls mid-drag still lines up.
+    let pointer: { x: number; y: number; r: number } | null = null
     let last: { x: number; y: number } | null = null
     let sequence = 0
     let frame = 0
@@ -134,7 +138,7 @@ export function CharTrail() {
           : 0
         const ex = char.x - (from.x + t * dx)
         const ey = char.y - (from.y + t * dy)
-        if (ex * ex + ey * ey > RADIUS * RADIUS) continue
+        if (ex * ex + ey * ey > pointer.r * pointer.r) continue
         if (!active.has(char)) {
           char.color = sequence++ % PALETTE.length
           active.add(char)
@@ -162,14 +166,32 @@ export function CharTrail() {
       frame = active.size || pointer !== last ? requestAnimationFrame(tick) : 0
     }
 
-    const onMove = (event: PointerEvent) => {
-      if (event.pointerType !== 'mouse' && event.pointerType !== 'pen') return
-      pointer = { x: event.pageX, y: event.pageY }
+    const start = () => {
       if (!frame) frame = requestAnimationFrame(tick)
+    }
+    const onMove = (event: PointerEvent) => {
+      // Touch is handled by the touch listeners, which keep firing while the
+      // page scrolls (pointer events get cancelled when a pan starts).
+      if (event.pointerType === 'touch') return
+      pointer = { x: event.pageX, y: event.pageY, r: RADIUS }
+      start()
     }
     const onLeave = () => {
       pointer = null
       last = null
+    }
+    const onTouchStart = (event: TouchEvent) => {
+      const touch = event.touches[0]
+      if (!touch) return
+      pointer = { x: touch.pageX, y: touch.pageY, r: TAP_RADIUS }
+      last = null
+      start()
+    }
+    const onTouchMove = (event: TouchEvent) => {
+      const touch = event.touches[0]
+      if (!touch) return
+      pointer = { x: touch.pageX, y: touch.pageY, r: TOUCH_RADIUS }
+      start()
     }
 
     let resizeTimer = 0
@@ -182,14 +204,23 @@ export function CharTrail() {
     document.fonts?.ready.then(measure)
     measure()
 
-    window.addEventListener('pointermove', onMove, { passive: true })
+    const passive = { passive: true }
+    window.addEventListener('pointermove', onMove, passive)
     document.addEventListener('pointerleave', onLeave)
+    window.addEventListener('touchstart', onTouchStart, passive)
+    window.addEventListener('touchmove', onTouchMove, passive)
+    window.addEventListener('touchend', onLeave, passive)
+    window.addEventListener('touchcancel', onLeave, passive)
     return () => {
       cancelAnimationFrame(frame)
       window.clearTimeout(resizeTimer)
       observer.disconnect()
       window.removeEventListener('pointermove', onMove)
       document.removeEventListener('pointerleave', onLeave)
+      window.removeEventListener('touchstart', onTouchStart)
+      window.removeEventListener('touchmove', onTouchMove)
+      window.removeEventListener('touchend', onLeave)
+      window.removeEventListener('touchcancel', onLeave)
       highlights.forEach((_, name) => css.highlights!.delete(name))
       style.remove()
     }

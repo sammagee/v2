@@ -1,5 +1,11 @@
 import type { CSSProperties } from 'react'
 
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from '@/components/ui/tooltip'
+
 export interface ICompany {
   name: string
   href: string
@@ -46,6 +52,24 @@ export const COMPANIES = {
   },
 } satisfies Record<string, ICompany>
 
+/** A logo with the same cursor-following glass tooltip as the links. */
+export function CompanyLogoWithTooltip({
+  company,
+  className,
+}: {
+  company: ICompany
+  className?: string
+}) {
+  return (
+    <Tooltip trackCursorAxis="both">
+      <TooltipTrigger render={<span className={className} />}>
+        <CompanyLogo company={company} />
+      </TooltipTrigger>
+      <TooltipContent>{company.name}</TooltipContent>
+    </Tooltip>
+  )
+}
+
 export function CompanyLogo({ company }: { company: ICompany }) {
   return (
     // eslint-disable-next-line @next/next/no-img-element
@@ -64,20 +88,25 @@ export function CompanyStack({ companies }: { companies: ICompany[] }) {
   return (
     <span className="inline-flex -translate-y-px whitespace-nowrap align-middle">
       {companies.map((company, index) => (
-        <a
-          key={company.name}
-          href={company.href}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label={company.name}
-          title={company.name}
-          style={{ '--z': companies.length - index } as CSSProperties}
-          className={`relative z-(--z) rounded-full transition-transform duration-200 ease-out hover:z-20 hover:-translate-y-0.5 hover:scale-110 focus-visible:z-20 focus-visible:-translate-y-0.5 focus-visible:scale-110 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-1200 motion-reduce:transition-none motion-reduce:hover:translate-y-0 motion-reduce:hover:scale-100 motion-reduce:focus-visible:translate-y-0 motion-reduce:focus-visible:scale-100 ${
-            index > 0 ? '-ml-[0.25em]' : ''
-          }`}
-        >
-          <CompanyLogo company={company} />
-        </a>
+        <Tooltip key={company.name} trackCursorAxis="both">
+          <TooltipTrigger
+            render={
+              <a
+                href={company.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={company.name}
+                style={{ '--z': companies.length - index } as CSSProperties}
+                className={`relative z-(--z) rounded-full transition-transform duration-200 ease-out hover:z-20 hover:-translate-y-0.5 hover:scale-110 focus-visible:z-20 focus-visible:-translate-y-0.5 focus-visible:scale-110 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-1200 motion-reduce:transition-none motion-reduce:hover:translate-y-0 motion-reduce:hover:scale-100 motion-reduce:focus-visible:translate-y-0 motion-reduce:focus-visible:scale-100 ${
+                  index > 0 ? '-ml-[0.25em]' : ''
+                }`}
+              />
+            }
+          >
+            <CompanyLogo company={company} />
+          </TooltipTrigger>
+          <TooltipContent>{company.name}</TooltipContent>
+        </Tooltip>
       ))}
     </span>
   )

@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { CharTrail } from '../components/char-trail'
 import {
   COMPANIES,
-  CompanyLogo,
+  CompanyLogoWithTooltip,
   CompanyStack,
 } from '../components/company-logo'
 import {
@@ -129,14 +129,13 @@ export default function Home() {
                 rel="noopener noreferrer"
                 className="group inline-flex items-baseline gap-[0.3em] no-underline"
               >
-                <span className="self-center">
-                  <CompanyLogo company={COMPANIES.vanta} />
-                </span>
-                <span className="link-dotted">
-                  Vanta
-                </span>
+                <CompanyLogoWithTooltip
+                  company={COMPANIES.vanta}
+                  className="self-center"
+                />
+                <span className="link-dotted">Vanta</span>
               </a>
-              , building the future of trust and compliance software. I design
+              , building compliance and trust software for the future. I design
               and build software that makes complex work feel simple.
             </p>
             <p className="mt-4 text-gray-1100">
