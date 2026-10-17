@@ -12,7 +12,7 @@ export const COMPANIES = {
   vanta: {
     name: 'Vanta',
     href: 'https://vanta.com',
-    logo: '/images/logos/round/vanta.svg',
+    logo: '/images/logos/round/vanta.png',
   },
   uber: {
     name: 'Uber',
@@ -54,7 +54,7 @@ export function CompanyLogo({ company }: { company: ICompany }) {
       alt=""
       width={22}
       height={22}
-      className="block size-[1.375em] rounded-full bg-white shadow-[0_0_0_2px_#fff,0_1px_3px_rgba(33,32,28,0.2)]"
+      className="block size-[1.375em] rounded-full bg-white ring-2 ring-gray-100"
     />
   )
 }

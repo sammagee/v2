@@ -59,7 +59,7 @@ export default function Home() {
             </span>
           </div>
           {/* -my-0.5 keeps the row at the text block's 40px height so the name doesn't move. */}
-          <span className="-my-0.5 block size-11 shrink-0 overflow-hidden rounded-full bg-[linear-gradient(135deg,#ffd9c7_0%,#ffcfe0_35%,#e1d3ff_68%,#c4e4ff_100%)] shadow-[0_0_0_2px_#fff,0_1px_3px_rgba(33,32,28,0.2)]">
+          <span className="-my-0.5 block size-11 shrink-0 overflow-hidden rounded-full bg-[linear-gradient(160deg,#e3eeff_0%,#c9dcff_100%)] ring-2 ring-gray-100">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="/images/favicon.png"
