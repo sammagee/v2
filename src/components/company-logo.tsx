@@ -82,7 +82,7 @@ export function CompanyLogoWithTooltip({
  */
 export function CompanyLogo({ company }: { company: ICompany }) {
   return (
-    <span className="-m-[2px] block size-[26px] rounded-full bg-(--logo-ring) p-[2px] drop-shadow-[0_1px_1px_var(--logo-shadow)] transition-[filter] duration-200 ease-out group-hover:drop-shadow-[0_1.5px_2px_var(--logo-shadow)] group-focus-visible:drop-shadow-[0_1.5px_2px_var(--logo-shadow)] motion-reduce:transition-none">
+    <span className="-m-[2px] block size-[26px] rounded-full bg-(--logo-ring) p-[2px] drop-shadow-[0_0.5px_1px_var(--logo-shadow)] transition-[filter] duration-200 ease-out group-hover:drop-shadow-[0_1px_1.5px_var(--logo-shadow)] group-focus-visible:drop-shadow-[0_1px_1.5px_var(--logo-shadow)] motion-reduce:transition-none">
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src={company.logo}

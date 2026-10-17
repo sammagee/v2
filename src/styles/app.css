@@ -31,7 +31,7 @@
   --avatar-from: #e3eeff;
   --avatar-to: #c9dcff;
   --logo-ring: #fff;
-  --logo-shadow: rgb(33 32 28 / 0.22);
+  --logo-shadow: rgb(33 32 28 / 0.18);
   --glass-tint: rgb(253 253 252 / 0.12);
 }
 
@@ -55,7 +55,7 @@
   --avatar-from: #c9dcff;
   --avatar-to: #a9c4f5;
   --logo-ring: #2a2a28; /* gray-400: a hair lighter than the page so black marks (Uber) keep an edge */
-  --logo-shadow: rgb(0 0 0 / 0.6);
+  --logo-shadow: rgb(0 0 0 / 0.5);
   --glass-tint: rgb(25 25 24 / 0.35);
 
   --background: #111110;
@@ -169,7 +169,7 @@
 @property --logo-shadow {
   syntax: '<color>';
   inherits: true;
-  initial-value: rgb(33 32 28 / 0.22);
+  initial-value: rgb(33 32 28 / 0.18);
 }
 @property --glass-tint {
   syntax: '<color>';
