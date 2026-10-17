@@ -1,4 +1,6 @@
 @import 'tailwindcss';
+@import 'tw-animate-css';
+@import 'shadcn/tailwind.css';
 
 /*
   Tokens follow emilkowal.ski: a Radix "sand" gray scale, light only
@@ -22,8 +24,53 @@
   --color-hover: #f5f4f4;
 }
 
+/* shadcn/ui semantic tokens, mapped onto the sand scale (light only). */
+:root {
+  --background: #fdfdfc;
+  --foreground: #21201c;
+  --card: #fdfdfc;
+  --card-foreground: #21201c;
+  --popover: #fdfdfc;
+  --popover-foreground: #21201c;
+  --primary: #21201c;
+  --primary-foreground: #fdfdfc;
+  --secondary: #f1f0ef;
+  --secondary-foreground: #21201c;
+  --muted: #f1f0ef;
+  --muted-foreground: #63635e;
+  --accent: #f1f0ef;
+  --accent-foreground: #21201c;
+  --destructive: #e5484d;
+  --border: #e9e9e7;
+  --input: #e2e1de;
+  --ring: #8d8d86;
+  --radius: 0.625rem;
+}
+
 @theme inline {
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
 }
 
 @layer base {
@@ -52,4 +99,26 @@
   ::selection {
     background: var(--color-gray-500);
   }
+
+  * {
+    @apply border-border outline-ring/50;
+  }
+}
+
+/*
+  Liquid glass surface. This is the frosted fallback; in Chromium
+  useLiquidGlass() layers an SVG displacement filter on top (inline
+  backdrop-filter). The specular rim is inset shadows, so it shows in
+  every browser.
+*/
+.liquid-glass {
+  background: rgb(253 253 252 / 0.55);
+  backdrop-filter: blur(8px) saturate(1.8);
+  box-shadow:
+    inset 0 0 0 1px rgb(255 255 255 / 0.55),
+    inset 1.5px 1.5px 1px -0.5px rgb(255 255 255 / 0.95),
+    inset -1px -1px 1px -0.5px rgb(255 255 255 / 0.6),
+    inset 0 0 12px rgb(255 255 255 / 0.35),
+    0 6px 18px -6px rgb(33 32 28 / 0.22),
+    0 1px 2px rgb(33 32 28 / 0.08);
 }
