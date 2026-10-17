@@ -70,16 +70,26 @@ export function CompanyLogoWithTooltip({
   )
 }
 
+/**
+ * A 22px round logo inside a 2px ring. The ring is the wrapper's own
+ * background (padding), not a box-shadow spread, and the art is full-bleed
+ * square artwork clipped once by the img's radius. So there is exactly one
+ * anti-aliased edge between art and ring and one between ring and page,
+ * never two coincident ones (which showed as a seam/halo on device). The
+ * -m-[2px] keeps the layout box at 22px, as before.
+ */
 export function CompanyLogo({ company }: { company: ICompany }) {
   return (
-    // eslint-disable-next-line @next/next/no-img-element
-    <img
-      src={company.logo}
-      alt=""
-      width={22}
-      height={22}
-      className="block size-[1.375em] rounded-full bg-white shadow-[0_0_0_2px_var(--logo-ring),0_1px_3px_var(--logo-shadow)]"
-    />
+    <span className="-m-[2px] block size-[26px] rounded-full bg-(--logo-ring) p-[2px] shadow-[0_1px_3px_var(--logo-shadow)]">
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={company.logo}
+        alt=""
+        width={22}
+        height={22}
+        className="block size-[22px] rounded-full bg-white object-cover"
+      />
+    </span>
   )
 }
 

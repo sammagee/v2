@@ -51,8 +51,9 @@
   --color-gray-1200: #eeeeec;
   --color-hover: #191918;
 
-  --avatar-from: #2b3b5c;
-  --avatar-to: #1d2945;
+  /* The light pastel, a touch muted, so the memoji still pops on #111110. */
+  --avatar-from: #c9dcff;
+  --avatar-to: #a9c4f5;
   --logo-ring: #2a2a28; /* gray-400: a hair lighter than the page so black marks (Uber) keep an edge */
   --logo-shadow: rgb(0 0 0 / 0.7);
   --glass-tint: rgb(25 25 24 / 0.35);
