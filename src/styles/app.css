@@ -88,12 +88,31 @@
     line-height: 1.65;
   }
 
-  a {
-    text-decoration: underline;
-    text-decoration-style: dotted;
-    text-underline-position: from-font;
-    text-decoration-thickness: 0.08em;
-    text-decoration-color: var(--color-gray-800);
+  /*
+    Dotted underline drawn as a background so it can be inset 2px from both
+    ends (text-decoration can't). Matches the old dotted text-decoration:
+    1px dots on a 2px period in gray-800, 1px thick, sitting where Inter's
+    underline did. It's a background, so the color trail (which only
+    recolors text) leaves it alone; clone repeats it per line fragment.
+  */
+  a,
+  .link-dotted {
+    text-decoration: none;
+    background-image: repeating-linear-gradient(
+      to right,
+      var(--color-gray-800) 0 1px,
+      transparent 1px 2px
+    );
+    background-repeat: no-repeat;
+    background-size: calc(100% - 4px) 1px;
+    background-position: 2px calc(100% - 0.25px);
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+  }
+
+  a.no-underline,
+  a:has(img) {
+    background-image: none;
   }
 
   ::selection {
