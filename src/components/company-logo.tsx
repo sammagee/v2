@@ -71,23 +71,28 @@ export function CompanyLogoWithTooltip({
 }
 
 /**
- * A 22px round logo, no ring. The art is opaque full-bleed square artwork
- * clipped once by the img's own radius (no background fill under it, which
- * would get anti-aliased twice and fringe the edge). The shadow is a
- * drop-shadow filter, computed from the clipped pixels, so it never adds a
- * second edge coinciding with the clip the way a box-shadow cut-out does.
- * It alone separates overlapping logos, and grows a hair on hover/focus.
+ * A 22px round logo inside a 2px ring. The ring is the wrapper's own
+ * background (padding), not a box-shadow spread, and the art is opaque
+ * full-bleed square artwork clipped once by the img's radius, with no fill
+ * under it (a fill would get anti-aliased twice and fringe the edge). So
+ * there's one anti-aliased edge between art and ring and one between ring
+ * and page, never two coincident ones. The ring is the page background
+ * (gray-100, so it follows the theme switch in sync): a cut-out that
+ * separates overlapping logos, with no shadow. -m-[2px] keeps the layout
+ * box at 22px.
  */
 export function CompanyLogo({ company }: { company: ICompany }) {
   return (
-    // eslint-disable-next-line @next/next/no-img-element
-    <img
-      src={company.logo}
-      alt=""
-      width={22}
-      height={22}
-      className="block size-[22px] rounded-full object-cover drop-shadow-[0_1px_1px_var(--logo-shadow)] transition-[filter] duration-200 ease-out group-hover:drop-shadow-[0_1.5px_2px_var(--logo-shadow)] group-focus-visible:drop-shadow-[0_1.5px_2px_var(--logo-shadow)] motion-reduce:transition-none"
-    />
+    <span className="-m-[2px] block size-[26px] rounded-full bg-gray-100 p-[2px]">
+      {/* eslint-disable-next-line @next/next/no-img-element */}
+      <img
+        src={company.logo}
+        alt=""
+        width={22}
+        height={22}
+        className="block size-[22px] rounded-full object-cover"
+      />
+    </span>
   )
 }
 
@@ -105,7 +110,7 @@ export function CompanyStack({ companies }: { companies: ICompany[] }) {
                 rel="noopener noreferrer"
                 aria-label={company.name}
                 style={{ '--z': companies.length - index } as CSSProperties}
-                className={`group relative z-(--z) rounded-full transition-transform duration-200 ease-out hover:z-20 hover:-translate-y-0.5 hover:scale-110 focus-visible:z-20 focus-visible:-translate-y-0.5 focus-visible:scale-110 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-1200 motion-reduce:transition-none motion-reduce:hover:translate-y-0 motion-reduce:hover:scale-100 motion-reduce:focus-visible:translate-y-0 motion-reduce:focus-visible:scale-100 ${
+                className={`relative z-(--z) rounded-full transition-transform duration-200 ease-out hover:z-20 hover:-translate-y-0.5 hover:scale-110 focus-visible:z-20 focus-visible:-translate-y-0.5 focus-visible:scale-110 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-1200 motion-reduce:transition-none motion-reduce:hover:translate-y-0 motion-reduce:hover:scale-100 motion-reduce:focus-visible:translate-y-0 motion-reduce:focus-visible:scale-100 ${
                   index > 0 ? '-ml-[0.25em]' : ''
                 }`}
               />

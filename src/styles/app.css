@@ -30,7 +30,6 @@
 :root {
   --avatar-from: #e3eeff;
   --avatar-to: #c9dcff;
-  --logo-shadow: rgb(33 32 28 / 0.22);
   --glass-tint: rgb(253 253 252 / 0.12);
 }
 
@@ -53,7 +52,6 @@
   /* The light pastel, a touch muted, so the memoji still pops on #111110. */
   --avatar-from: #c9dcff;
   --avatar-to: #a9c4f5;
-  --logo-shadow: rgb(0 0 0 / 0.6);
   --glass-tint: rgb(25 25 24 / 0.35);
 
   --background: #111110;
@@ -159,11 +157,6 @@
   inherits: true;
   initial-value: #c9dcff;
 }
-@property --logo-shadow {
-  syntax: '<color>';
-  inherits: true;
-  initial-value: rgb(33 32 28 / 0.22);
-}
 @property --glass-tint {
   syntax: '<color>';
   inherits: true;
@@ -175,7 +168,7 @@
     --color-gray-100, --color-gray-200, --color-gray-300, --color-gray-400,
     --color-gray-500, --color-gray-600, --color-gray-700, --color-gray-800,
     --color-gray-900, --color-gray-1000, --color-gray-1100, --color-gray-1200,
-    --color-hover, --avatar-from, --avatar-to, --logo-shadow, --glass-tint;
+    --color-hover, --avatar-from, --avatar-to, --glass-tint;
   transition-duration: 200ms;
   transition-timing-function: ease-out;
 }
