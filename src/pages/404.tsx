@@ -10,7 +10,7 @@ export default function NotFound() {
 
       <div aria-hidden="true" className="h-0 sm:h-12 md:h-[53px]" />
       <div className="mx-auto max-w-[692px] px-6 py-12 text-gray-1200 antialiased sm:py-32 md:py-16">
-        <header className="mb-32 flex flex-col items-start">
+        <header className="mb-12 flex flex-col items-start sm:mb-32">
           <Link href="/" className="inline-block font-medium no-underline">
             Sam Magee
           </Link>
@@ -20,7 +20,7 @@ export default function NotFound() {
         </header>
 
         <main>
-          <h1 className="mb-5 block font-medium sm:mb-6">Not found</h1>
+          <h1 className="mb-3.5 block font-medium sm:mb-4">Not found</h1>
           <p className="text-gray-1100">
             This page doesn&apos;t exist. <Link href="/">Go home</Link>.
           </p>

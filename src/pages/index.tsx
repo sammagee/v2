@@ -89,16 +89,18 @@ export default function Home() {
       <TooltipProvider>
         <div aria-hidden="true" className="h-0 sm:h-12 md:h-[53px]" />
         <div className="mx-auto max-w-[692px] overflow-x-hidden px-6 py-12 text-gray-1200 antialiased sm:py-32 md:overflow-x-visible md:py-16">
-          <header className="mb-32 flex items-center gap-3">
-            {/* -my-0.5 keeps the row at the text block's 40px height so the name stays put vertically. */}
-            <span className="-my-0.5 block size-11 shrink-0 overflow-hidden rounded-full bg-[linear-gradient(160deg,#e3eeff_0%,#c9dcff_100%)] ring-2 ring-gray-100">
+          <header className="mb-12 flex items-center gap-3 sm:mb-32">
+            {/* -my-0.5 keeps the row at the text block's 40px height so the name stays put vertically.
+              The memoji (alpha bbox 130x166 of 196px, centered) is sized so the head fills ~76%
+              of the circle with 4.5px above and 6px below, i.e. optically centered. */}
+            <span className="relative -my-0.5 block size-11 shrink-0 overflow-hidden rounded-full bg-[linear-gradient(160deg,#e3eeff_0%,#c9dcff_100%)] ring-2 ring-gray-100">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/images/favicon.png"
                 alt=""
                 width={44}
                 height={44}
-                className="block size-full translate-y-[3px] scale-[0.92] object-contain"
+                className="absolute top-[1.5px] left-[2.25px] block size-[39.5px] max-w-none"
               />
             </span>
             <div className="flex flex-col items-start">
@@ -112,7 +114,7 @@ export default function Home() {
           </header>
 
           <main>
-            <h2 className="mb-5 block font-medium sm:mb-6">Now</h2>
+            <h2 className="mb-3.5 block font-medium sm:mb-4">Now</h2>
             <p className="text-gray-1100">
               I&apos;m a Senior Software Engineer at{' '}
               <a
@@ -137,7 +139,7 @@ export default function Home() {
             </p>
 
             <section className="mt-16 sm:mt-32" aria-labelledby="more">
-              <h2 id="more" className="mb-6 block font-medium sm:mb-6">
+              <h2 id="more" className="mb-4 block font-medium">
                 More
               </h2>
               <p className="text-gray-1100">
