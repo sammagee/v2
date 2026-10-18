@@ -32,7 +32,7 @@ export function CompanyLogoWithTooltip({
       <TooltipTrigger render={<span className={className} />}>
         <CompanyLogo company={company} />
       </TooltipTrigger>
-      <TooltipContent>{company.name}</TooltipContent>
+      <TooltipContent touchSide="bottom">{company.name}</TooltipContent>
     </Tooltip>
   )
 }
@@ -59,7 +59,7 @@ export function CompanyStack({ companies }: { companies: ICompany[] }) {
             <CompanyLogo company={company} />
             <span className="sr-only">{company.name}</span>
           </TooltipTrigger>
-          <TooltipContent>{company.name}</TooltipContent>
+          <TooltipContent touchSide="bottom">{company.name}</TooltipContent>
           <span className="sr-only">
             {separatorAfter(index, companies.length)}
           </span>
