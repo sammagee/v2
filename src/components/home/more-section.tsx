@@ -2,7 +2,7 @@ import { SocialLink } from './social-link'
 
 export function MoreSection() {
   return (
-    <section className="mt-16 sm:mt-32 md:mt-16" aria-labelledby="more">
+    <section className="mt-21 md:mt-14" aria-labelledby="more">
       <h2 id="more" className="mb-4 block font-medium">
         More
       </h2>
