@@ -1,8 +1,5 @@
 import type { Tooltip as TooltipPrimitive } from '@base-ui/react/tooltip'
 
-import type { Point } from './types'
-
-export const TOUCH_SIDE_OFFSET_PX = 28
 export const POSITION_DEFAULTS = {
   side: 'top',
   sideOffset: 6,
@@ -27,17 +24,6 @@ export function definedOnly<T extends object>(values: T) {
   ) as Partial<T>
 }
 
-export function anchorAt(point: Point | null) {
-  return point ? pointAnchor(point) : undefined
-}
-
 function rootFontScale() {
   return parseFloat(getComputedStyle(document.documentElement).fontSize) / 16
-}
-
-function pointAnchor({ x, y }: Point) {
-  return {
-    getBoundingClientRect: () =>
-      DOMRect.fromRect({ x, y, width: 0, height: 0 }),
-  }
 }

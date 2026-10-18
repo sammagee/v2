@@ -27,8 +27,8 @@ src/
     tooltip/                 multi-file component
       index.tsx              entry; the only file other folders may import
       glass-popup.tsx        sub-component
-      hooks/use-touch-tooltip.ts
-      lib/touch-controller.ts
+      hooks/use-liquid-glass.ts
+      lib/position.ts
   hooks/use-theme.ts         hooks shared by 2+ owners
   lib/theme.ts               code shared by 2+ owners, or used by a page
   pages/ styles/             Next.js, unchanged
