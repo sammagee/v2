@@ -1,6 +1,7 @@
 import { mkdirSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
 
+import { BRAND_ICONS } from '../../src/lib/brand-icons.ts'
 import { iconCandidates, pageTitle } from './html.ts'
 
 const TIMEOUT_MS = 8000
@@ -31,7 +32,7 @@ export async function fetchPreview(root: string, url: string) {
   const page = await get(url)
   if (!page) return warn(url)
   const html = await page.text()
-  const icon = await saveIcon(root, host, iconSources(html, page.url, host))
+  const icon = await siteIcon(root, host, iconSources(html, page.url, host))
   return { title: pageTitle(html) ?? host, host, icon } satisfies Preview
 }
 
@@ -41,6 +42,10 @@ function iconSources(html: string, base: string, host: string) {
     new URL('/favicon.ico', base).href,
     `https://www.google.com/s2/favicons?domain=${host}&sz=128`,
   ]
+}
+
+async function siteIcon(root: string, host: string, sources: string[]) {
+  return BRAND_ICONS[host] ? null : saveIcon(root, host, sources)
 }
 
 async function saveIcon(root: string, host: string, sources: string[]) {

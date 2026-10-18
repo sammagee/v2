@@ -1,4 +1,6 @@
-import { Fragment, type CSSProperties } from 'react'
+import type { CSSProperties } from 'react'
+
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/tooltip'
 
 import type { ICompany } from './lib/companies'
 
@@ -22,23 +24,29 @@ export function CompanyStack({ companies }: { companies: ICompany[] }) {
   return (
     <span className="inline-flex -translate-y-px align-middle whitespace-nowrap">
       {companies.map((company, index) => (
-        <Fragment key={company.name}>
-          <a
-            href={company.href}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label={company.name}
-            style={{ '--z': companies.length - index } as CSSProperties}
-            className={`group relative z-(--z) rounded-full transition-transform duration-200 ease-out hover:z-20 hover:-translate-y-0.5 hover:scale-110 focus-visible:z-20 focus-visible:-translate-y-0.5 focus-visible:scale-110 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-1200 motion-reduce:transition-none motion-reduce:hover:translate-y-0 motion-reduce:hover:scale-100 motion-reduce:focus-visible:translate-y-0 motion-reduce:focus-visible:scale-100 ${
-              index > 0 ? '-ml-[0.25em]' : ''
-            }`}
+        <Tooltip key={company.name} trackCursorAxis="both">
+          <TooltipTrigger
+            render={
+              <a
+                href={company.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={company.name}
+                style={{ '--z': companies.length - index } as CSSProperties}
+                className={`group relative z-(--z) rounded-full transition-transform duration-200 ease-out hover:z-20 hover:-translate-y-0.5 hover:scale-110 focus-visible:z-20 focus-visible:-translate-y-0.5 focus-visible:scale-110 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-1200 motion-reduce:transition-none motion-reduce:hover:translate-y-0 motion-reduce:hover:scale-100 motion-reduce:focus-visible:translate-y-0 motion-reduce:focus-visible:scale-100 ${
+                  index > 0 ? '-ml-[0.25em]' : ''
+                }`}
+              />
+            }
           >
             <CompanyLogo company={company} />
-          </a>
+            <span className="sr-only">{company.name}</span>
+          </TooltipTrigger>
+          <TooltipContent>{company.name}</TooltipContent>
           <span className="sr-only">
             {separatorAfter(index, companies.length)}
           </span>
-        </Fragment>
+        </Tooltip>
       ))}
     </span>
   )

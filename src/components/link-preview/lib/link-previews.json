@@ -2,12 +2,12 @@
   "https://github.com/sammagee": {
     "title": "@sammagee",
     "host": "github.com",
-    "icon": "/link-icons/github.com.svg"
+    "icon": null
   },
   "https://linkedin.com/in/sammagee": {
     "title": "in/sammagee",
     "host": "linkedin.com",
-    "icon": "/link-icons/linkedin.com.ico"
+    "icon": null
   },
   "https://mdxjs.com": {
     "title": "Markdown for the component era | MDX",
@@ -17,6 +17,6 @@
   "https://x.com/sammagee": {
     "title": "@sammagee",
     "host": "x.com",
-    "icon": "/link-icons/x.com.png"
+    "icon": null
   }
 }
