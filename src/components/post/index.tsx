@@ -6,10 +6,15 @@ import type { BundledPost } from '@/lib/post-bundle'
 import { JOB_TITLE, NAME, postTitleTransition } from '@/lib/site'
 
 import { BackLink } from './back-link'
+import { PostLinksContext, type PostSummary } from './lib/post-links'
 import { MdxContent } from './mdx-content'
 import { PostHead } from './post-head'
 
-export function Post({ meta, code }: BundledPost) {
+export function Post({
+  meta,
+  code,
+  postLinks,
+}: BundledPost & { postLinks: Record<string, PostSummary> }) {
   return (
     <>
       <PostHead meta={meta} />
@@ -22,7 +27,9 @@ export function Post({ meta, code }: BundledPost) {
         </header>
         <main>
           <article className="post-body text-gray-1100">
-            <MdxContent code={code} />
+            <PostLinksContext.Provider value={postLinks}>
+              <MdxContent code={code} />
+            </PostLinksContext.Provider>
           </article>
         </main>
         <footer className="mt-21 md:mt-14">

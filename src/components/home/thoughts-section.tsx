@@ -1,15 +1,10 @@
-import Link from 'next/link'
 import { ViewTransition } from 'react'
 
+import { PostLink } from '@/components/link-preview'
 import type { PostMeta } from '@/lib/posts'
 import { postPath, postTitleTransition } from '@/lib/site'
 
 import { useRelativeTime } from './hooks/use-relative-time'
-
-const FULL_DATE = new Intl.DateTimeFormat('en-US', {
-  dateStyle: 'long',
-  timeZone: 'UTC',
-})
 
 export function ThoughtsSection({
   posts,
@@ -38,19 +33,17 @@ function PostRow({ post, builtAt }: { post: PostMeta; builtAt: number }) {
   return (
     <ViewTransition name={postTitleTransition(post.slug)}>
       <li>
-        <Link
+        <PostLink
           href={postPath(post.slug)}
+          title={post.title}
+          subtitle={post.subtitle}
           className="rounded-sm text-gray-1100 no-underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gray-1200"
         >
           <span className="font-medium">{post.title}</span>{' '}
-          <time
-            dateTime={post.date}
-            title={FULL_DATE.format(new Date(post.date))}
-            className="text-gray-1000 tabular-nums"
-          >
+          <time dateTime={post.date} className="text-gray-1000 tabular-nums">
             {age}
           </time>
-        </Link>
+        </PostLink>
       </li>
     </ViewTransition>
   )

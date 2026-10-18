@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "pnpm sitemap && next build",
+    "build": "pnpm sitemap && pnpm link-previews && next build",
     "start": "next start",
     "lint": "oxlint --deny-warnings && pnpm lint:no-disables && pnpm lint:structure",
     "lint:no-disables": "! git grep -nE '(eslint|oxlint|react-doctor)-disable' -- '*.js' '*.cjs' '*.mjs' '*.ts' '*.tsx' '*.css'",
@@ -16,7 +16,8 @@
     "doctor": "react-doctor --yes --no-score --no-supply-chain --blocking warning",
     "lint:structure": "node scripts/check-structure/index.ts",
     "social-images": "node scripts/social-images/index.ts",
-    "sitemap": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/sitemap/index.ts"
+    "sitemap": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/sitemap/index.ts",
+    "link-previews": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/link-previews/index.ts"
   },
   "dependencies": {
     "@base-ui/react": "^1.9.0",

@@ -1,0 +1,22 @@
+{
+  "https://github.com/sammagee": {
+    "title": "sammagee (Sam Magee) · GitHub",
+    "host": "github.com",
+    "icon": "/link-icons/github.com.svg"
+  },
+  "https://linkedin.com/in/sammagee": {
+    "title": "Sam Magee - Vanta | LinkedIn",
+    "host": "linkedin.com",
+    "icon": "/link-icons/linkedin.com.ico"
+  },
+  "https://mdxjs.com": {
+    "title": "Markdown for the component era | MDX",
+    "host": "mdxjs.com",
+    "icon": "/link-icons/mdxjs.com.ico"
+  },
+  "https://x.com/sammagee": {
+    "title": "Sam (@sammagee) / X",
+    "host": "x.com",
+    "icon": "/link-icons/x.com.png"
+  }
+}
