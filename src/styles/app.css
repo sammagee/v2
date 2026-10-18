@@ -259,7 +259,7 @@
     position: absolute;
     left: min(3.5px, 20%);
     right: min(3.5px, 20%);
-    bottom: -0.25px;
+    bottom: calc(-0.25px - 0.125em);
     height: 2px;
     pointer-events: none;
     background-color: var(--color-gray-800);
