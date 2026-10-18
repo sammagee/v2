@@ -1,11 +1,22 @@
 import type { CSSProperties } from 'react'
 
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from '@/components/ui/tooltip'
-import type { ICompany } from '@/lib/companies'
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/tooltip'
+
+import type { ICompany } from './lib/companies'
+
+export function CompanyLogo({ company }: { company: ICompany }) {
+  return (
+    <span className="-m-[2px] block size-[calc(1.375rem+4px)] rounded-full bg-(--logo-ring) p-[2px] drop-shadow-[0_1px_1px_var(--logo-shadow)] transition-[filter] duration-200 ease-out group-hover:drop-shadow-[0_1.5px_2px_var(--logo-shadow)] group-focus-visible:drop-shadow-[0_1.5px_2px_var(--logo-shadow)] motion-reduce:transition-none">
+      <img
+        src={company.logo}
+        alt=""
+        width={22}
+        height={22}
+        className="block size-[1.375rem] rounded-full object-cover"
+      />
+    </span>
+  )
+}
 
 export function CompanyLogoWithTooltip({
   company,
@@ -21,20 +32,6 @@ export function CompanyLogoWithTooltip({
       </TooltipTrigger>
       <TooltipContent>{company.name}</TooltipContent>
     </Tooltip>
-  )
-}
-
-export function CompanyLogo({ company }: { company: ICompany }) {
-  return (
-    <span className="-m-[2px] block size-[calc(1.375rem+4px)] rounded-full bg-(--logo-ring) p-[2px] drop-shadow-[0_1px_1px_var(--logo-shadow)] transition-[filter] duration-200 ease-out group-hover:drop-shadow-[0_1.5px_2px_var(--logo-shadow)] group-focus-visible:drop-shadow-[0_1.5px_2px_var(--logo-shadow)] motion-reduce:transition-none">
-      <img
-        src={company.logo}
-        alt=""
-        width={22}
-        height={22}
-        className="block size-[1.375rem] rounded-full object-cover"
-      />
-    </span>
   )
 }
 

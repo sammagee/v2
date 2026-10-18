@@ -16,19 +16,19 @@ const DEVICES = [
 
 const ORIENTATIONS = ['portrait', 'landscape'] as const
 
-const imageSize = (
-  width: number,
-  height: number,
-  ratio: number,
-  orientation: (typeof ORIENTATIONS)[number]
-) => {
-  const size = [width * ratio, height * ratio]
-  return (orientation === 'portrait' ? size : size.reverse()).join('-')
-}
-
 export const APPLE_SPLASH_SCREENS = DEVICES.flatMap(([width, height, ratio]) =>
   ORIENTATIONS.map((orientation) => ({
     href: `/pwa/images/apple-splash-${imageSize(width, height, ratio, orientation)}.jpg`,
     media: `(device-width: ${width}px) and (device-height: ${height}px) and (-webkit-device-pixel-ratio: ${ratio}) and (orientation: ${orientation})`,
   }))
 )
+
+function imageSize(
+  width: number,
+  height: number,
+  ratio: number,
+  orientation: (typeof ORIENTATIONS)[number]
+) {
+  const size = [width * ratio, height * ratio]
+  return (orientation === 'portrait' ? size : size.reverse()).join('-')
+}

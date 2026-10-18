@@ -17,6 +17,23 @@ const inter = Inter({
 const KEYWORDS =
   'sam magee, sam, magee, design engineer, devsigner, designer, developer, web designer, web developer, full stack, full stack developer, full-stack, fullstack'
 
+export default function App({ Component, pageProps }: AppProps) {
+  return (
+    <>
+      <Analytics />
+      <SpeedInsights />
+      <AppHead />
+      {/* On :root, not a wrapper, so portaled tooltips also get Inter. */}
+      <style jsx global>{`
+        :root {
+          --font-inter: ${inter.style.fontFamily};
+        }
+      `}</style>
+      <Component {...pageProps} />
+    </>
+  )
+}
+
 function AppHead() {
   return (
     <Head>
@@ -39,22 +56,5 @@ function AppHead() {
         />
       ))}
     </Head>
-  )
-}
-
-export default function App({ Component, pageProps }: AppProps) {
-  return (
-    <>
-      <Analytics />
-      <SpeedInsights />
-      <AppHead />
-      {/* On :root, not a wrapper, so portaled tooltips also get Inter. */}
-      <style jsx global>{`
-        :root {
-          --font-inter: ${inter.style.fontFamily};
-        }
-      `}</style>
-      <Component {...pageProps} />
-    </>
   )
 }

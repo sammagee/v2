@@ -1,6 +1,6 @@
-import { CompanyLogoWithTooltip, CompanyStack } from '@/components/company-logo'
-import { InlineAvatar } from '@/components/inline-avatar'
-import { COMPANIES } from '@/lib/companies'
+import { CompanyLogoWithTooltip, CompanyStack } from './company-logo'
+import { InlineAvatar } from './inline-avatar'
+import { COMPANIES } from './lib/companies'
 
 const PREVIOUS = [
   COMPANIES.uber,
@@ -10,23 +10,6 @@ const PREVIOUS = [
   COMPANIES.central,
   COMPANIES.leantech,
 ]
-
-function VantaLink() {
-  return (
-    <a
-      href={COMPANIES.vanta.href}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="group inline-flex items-baseline gap-[0.3em] no-underline"
-    >
-      <CompanyLogoWithTooltip
-        company={COMPANIES.vanta}
-        className="self-center"
-      />
-      <span className="link-dotted">Vanta</span>
-    </a>
-  )
-}
 
 export function WhoSection() {
   return (
@@ -46,5 +29,22 @@ export function WhoSection() {
         Previously, I worked at <CompanyStack companies={PREVIOUS} />.
       </p>
     </>
+  )
+}
+
+function VantaLink() {
+  return (
+    <a
+      href={COMPANIES.vanta.href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="group inline-flex items-baseline gap-[0.3em] no-underline"
+    >
+      <CompanyLogoWithTooltip
+        company={COMPANIES.vanta}
+        className="self-center"
+      />
+      <span className="link-dotted">Vanta</span>
+    </a>
   )
 }

@@ -1,9 +1,3 @@
-export interface ICompany {
-  name: string
-  href: string
-  logo: string
-}
-
 export const COMPANIES = {
   vanta: {
     name: 'Vanta',
@@ -41,3 +35,9 @@ export const COMPANIES = {
     logo: '/images/logos/round/leantech.svg',
   },
 } satisfies Record<string, ICompany>
+
+export interface ICompany {
+  name: string
+  href: string
+  logo: string
+}

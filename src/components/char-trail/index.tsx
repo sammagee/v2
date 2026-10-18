@@ -1,7 +1,8 @@
 import { useEffect } from 'react'
 
-import { startCharTrail } from '@/lib/char-trail'
-import { useTheme } from '@/lib/theme'
+import { useTheme } from '@/hooks/use-theme'
+
+import { startCharTrail } from './lib/start-char-trail'
 
 export function CharTrail() {
   const { theme } = useTheme()

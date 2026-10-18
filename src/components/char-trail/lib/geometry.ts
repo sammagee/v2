@@ -1,8 +1,6 @@
 import { FADE_MS, FADE_STEPS, HOLD_MS } from './constants'
 import type { Char, Point, Pointer } from './types'
 
-const clamp01 = (value: number) => Math.max(0, Math.min(1, value))
-
 export function isNearPath(char: Point, from: Point, to: Pointer) {
   const dx = to.x - from.x
   const dy = to.y - from.y
@@ -14,6 +12,8 @@ export function isNearPath(char: Point, from: Point, to: Pointer) {
   const ey = char.y - (from.y + along * dy)
   return ex * ex + ey * ey <= to.radius * to.radius
 }
+
+const clamp01 = (value: number) => Math.max(0, Math.min(1, value))
 
 export function fadeState(char: Char, now: number) {
   const fading = now - char.touched - HOLD_MS

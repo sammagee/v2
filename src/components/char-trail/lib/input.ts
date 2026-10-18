@@ -1,9 +1,9 @@
 import { TOUCH_RADIUS_PX } from './constants'
 import type { Trail } from './trail'
 
-type Binding = [EventTarget, string, EventListener, AddEventListenerOptions?]
-
 const passive = { passive: true }
+
+type Binding = [EventTarget, string, EventListener, AddEventListenerOptions?]
 
 export function listenToPointer(trail: Trail) {
   const onPointerMove = (event: PointerEvent) => {
