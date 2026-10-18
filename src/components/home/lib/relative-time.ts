@@ -9,7 +9,7 @@ const UNITS = [
 export function relativeTime(date: string, now: number) {
   const days = daysBetween(date, new Date(now))
   const unit = UNITS.find(({ days: size }) => days >= size)
-  return unit ? `${Math.floor(days / unit.days)}${unit.suffix}` : 'today'
+  return unit ? `${Math.floor(days / unit.days)}${unit.suffix}` : 'Today'
 }
 
 function daysBetween(date: string, now: Date) {

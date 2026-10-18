@@ -3,6 +3,7 @@ import { SiteLayout } from '@/components/site-layout'
 import type { BundledPost } from '@/lib/post-bundle'
 import { JOB_TITLE, NAME } from '@/lib/site'
 
+import { BackLink } from './back-link'
 import { MdxContent } from './mdx-content'
 import { PostHead } from './post-head'
 
@@ -11,7 +12,8 @@ export function Post({ meta, code }: BundledPost) {
     <>
       <PostHead meta={meta} />
       <SiteLayout>
-        <header className="mb-21 md:mb-14">
+        <header className="relative mb-21 md:mb-14">
+          <BackLink />
           <Masthead title={meta.title} subtitle={meta.subtitle} />
         </header>
         <main>

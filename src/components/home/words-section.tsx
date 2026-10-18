@@ -43,12 +43,7 @@ function PostRow({ post, builtAt }: { post: PostMeta; builtAt: number }) {
         <span className="min-w-0 transition-colors duration-150 group-hover:text-gray-1200 group-focus-visible:text-gray-1200">
           {post.title}
         </span>
-        <span
-          aria-hidden="true"
-          className="link-dotted min-w-6 flex-1 leading-[normal]"
-        >
-          &nbsp;
-        </span>
+        <span aria-hidden="true" className="dotted-leader min-w-6 flex-1" />
         <time
           dateTime={post.date}
           title={FULL_DATE.format(new Date(post.date))}

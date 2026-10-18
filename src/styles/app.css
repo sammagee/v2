@@ -266,6 +266,7 @@
 
   a::after,
   .link-dotted::after,
+  .dotted-leader,
   .post-body hr {
     height: 2px;
     background-color: var(--color-gray-800);
