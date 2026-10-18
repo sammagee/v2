@@ -272,31 +272,77 @@
   }
 
   /*
-    Dotted underline drawn as a background so it can be inset ~3.5px from both
-    ends (text-decoration can't). Matches the old dotted text-decoration:
-    1px dots on a 2px period in gray-800, 1px thick, sitting where Inter's
-    underline did. It's a background, so the color trail (which only
-    recolors text) leaves it alone; clone repeats it per line fragment.
+    Dotted underline drawn as an ::after strip (text-decoration can't be
+    inset, faded or given round dots). The strip is the dot color
+    (--color-gray-800, a registered @property, so it tracks theme
+    transitions in sync) shown through two intersected masks:
+    1. Round dots: an SVG circle tile (1.3px across on a 2.5px period, about
+       the old 1px-on-2px square's weight),
+       rasterized at device resolution so it stays a crisp circle at 2x/3x,
+       repeated with `round` so the run holds a whole number of evenly
+       spaced dots and none is clipped at either end.
+    2. A fade from transparent to opaque over the first and last ~14px
+       (capped at 40% so short links like 'X' still show dots).
+    The mask is on the pseudo-element only, so the link text and the
+    char-trail highlights are never faded. Links don't wrap (nowrap; they're
+    one or two short words), so a single strip per link is exact. It sits
+    ~3.5px in from each end, centered 0.75px above the box bottom where
+    Inter's underline sat.
   */
   a,
   .link-dotted {
+    position: relative;
     text-decoration: none;
-    background-image: repeating-linear-gradient(
-      to right,
-      var(--color-gray-800) 0 1px,
-      transparent 1px 2px
-    );
-    background-repeat: no-repeat;
-    /* ~3.5px in from each end; short links like 'X' keep at least 60%. */
-    background-size: max(calc(100% - 7px), 60%) 1px;
-    background-position: 50% calc(100% - 0.25px);
-    -webkit-box-decoration-break: clone;
-    box-decoration-break: clone;
+    white-space: nowrap;
   }
 
-  a.no-underline,
-  a:has(img) {
-    background-image: none;
+  a::after,
+  .link-dotted::after {
+    content: '';
+    position: absolute;
+    left: min(3.5px, 20%);
+    right: min(3.5px, 20%);
+    bottom: -0.25px;
+    height: 2px;
+    pointer-events: none;
+    background-color: var(--color-gray-800);
+    -webkit-mask-image:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 2.5 2'%3E%3Ccircle cx='1.25' cy='1' r='0.65'/%3E%3C/svg%3E"),
+      linear-gradient(
+        to right,
+        transparent,
+        #000 min(14px, 40%),
+        #000 calc(100% - min(14px, 40%)),
+        transparent
+      );
+    mask-image:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 2.5 2'%3E%3Ccircle cx='1.25' cy='1' r='0.65'/%3E%3C/svg%3E"),
+      linear-gradient(
+        to right,
+        transparent,
+        #000 min(14px, 40%),
+        #000 calc(100% - min(14px, 40%)),
+        transparent
+      );
+    -webkit-mask-size:
+      2.5px 2px,
+      100% 100%;
+    mask-size:
+      2.5px 2px,
+      100% 100%;
+    -webkit-mask-repeat:
+      round no-repeat,
+      no-repeat;
+    mask-repeat:
+      round no-repeat,
+      no-repeat;
+    -webkit-mask-composite: source-in;
+    mask-composite: intersect;
+  }
+
+  a.no-underline::after,
+  a:has(img)::after {
+    content: none;
   }
 
   ::selection {
