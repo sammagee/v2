@@ -18,5 +18,5 @@ export function serializeJsonLd(data: unknown) {
 }
 
 export function postPath(slug: string) {
-  return `/words/${slug}`
+  return `/thoughts/${slug}`
 }

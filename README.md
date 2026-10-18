@@ -12,7 +12,7 @@ pnpm install; pnpm dev
 
 ### ✍️ Writing a post
 
-1. Create `src/posts/<slug>/post.mdx` (the folder name is the URL: `/words/<slug>`).
+1. Create `src/posts/<slug>/post.mdx` (the folder name is the URL: `/thoughts/<slug>`).
 2. Add frontmatter, then write Markdown/MDX below it:
 
    ```mdx
@@ -29,6 +29,6 @@ pnpm install; pnpm dev
    ```
 
 3. Put any one-off components next to it (e.g. `src/posts/<slug>/counter.tsx`, default export) and import them with a relative path.
-4. Run `pnpm dev` and open `/words/<slug>`. Drafts show locally and on preview deploys; remove `draft: true` to publish.
+4. Run `pnpm dev` and open `/thoughts/<slug>`. Drafts show locally and on preview deploys; remove `draft: true` to publish.
 
 See `src/posts/kitchen-sink/post.mdx` for every supported element.

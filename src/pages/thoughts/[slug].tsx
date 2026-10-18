@@ -4,7 +4,7 @@ import { Post } from '@/components/post'
 import { bundlePost } from '@/lib/post-bundle'
 import { listPosts } from '@/lib/posts'
 
-export default function WordsPage({
+export default function ThoughtsPage({
   meta,
   code,
 }: InferGetStaticPropsType<typeof getStaticProps>) {

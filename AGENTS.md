@@ -46,7 +46,7 @@ src/
 
 ## Writing posts
 
-- A post is a folder `src/posts/<slug>/` holding `post.mdx`; the slug is the folder name (kebab-case) and the URL is `/words/<slug>`.
+- A post is a folder `src/posts/<slug>/` holding `post.mdx`; the slug is the folder name (kebab-case) and the URL is `/thoughts/<slug>`.
 - Frontmatter: `title` and `date` (`YYYY-MM-DD`) are required. `subtitle`, `description` (defaults to the subtitle, then the title), `updated` (`YYYY-MM-DD`) and `draft: true` are optional. Bad frontmatter fails the build with the file name.
 - Drafts show in `next dev` and Vercel preview deploys, and are left out of production (`VERCEL_ENV=production`): no home row, no page, no sitemap entry.
 - Write plain Markdown with GFM (tables, task lists, strikethrough, footnotes). Use `##` and `###` for sections (the title is the page's `h1`); fenced code is highlighted at build time with Shiki. Images go in `public/` and are referenced by absolute path.

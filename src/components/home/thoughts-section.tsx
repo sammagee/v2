@@ -10,7 +10,7 @@ const FULL_DATE = new Intl.DateTimeFormat('en-US', {
   timeZone: 'UTC',
 })
 
-export function WordsSection({
+export function ThoughtsSection({
   posts,
   builtAt,
 }: {
@@ -19,9 +19,9 @@ export function WordsSection({
 }) {
   if (!posts.length) return null
   return (
-    <section className="mt-21 md:mt-14" aria-labelledby="words">
-      <h2 id="words" className="mb-4 block font-medium">
-        Words
+    <section className="mt-21 md:mt-14" aria-labelledby="thoughts">
+      <h2 id="thoughts" className="mb-4 block font-medium">
+        Thoughts
       </h2>
       <ul className="flex flex-col gap-2">
         {posts.map((post) => (

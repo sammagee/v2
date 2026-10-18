@@ -4,8 +4,8 @@ import type { PostMeta } from '@/lib/posts'
 
 import { HomeHead } from './home-head'
 import { MoreSection } from './more-section'
+import { ThoughtsSection } from './thoughts-section'
 import { WhoSection } from './who-section'
-import { WordsSection } from './words-section'
 
 export function Home({
   posts,
@@ -21,7 +21,7 @@ export function Home({
         <SiteHeader />
         <main>
           <WhoSection />
-          <WordsSection posts={posts} builtAt={builtAt} />
+          <ThoughtsSection posts={posts} builtAt={builtAt} />
           <MoreSection />
         </main>
       </SiteLayout>
