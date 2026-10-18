@@ -102,13 +102,17 @@ export default function Home() {
             className="h-[4.4375rem] min-[440px]:h-12 md:hidden"
           />
           <div className="mx-auto w-full max-w-[43.25rem] overflow-x-hidden px-6 py-12 text-gray-1200 antialiased sm:py-32 md:overflow-x-visible md:py-16">
-            {/* lg+: hang the avatar in the left margin so the name/title line up
-                with the body text: -ml = avatar layout width (2.75rem; its 2px
-                ring sits outside and is cancelled in layout) + gap-3 (0.75rem).
-                From 1024px there's ~8rem of side margin, so the ring and
-                shadow stay well clear of the viewport edge. */}
-            <header className="mb-21 flex items-center gap-3 md:mb-14 lg:-ml-14">
-              <ThemeToggleAvatar />
+            {/* Name first in the DOM (screen readers), avatar second.
+                Below lg: the name/title sit flush left with the body text and
+                the avatar is pushed to the column's right edge.
+                lg+: row-reverse puts the avatar on the left and justify-end
+                packs both to the left; -ml = avatar layout width (2.75rem;
+                its 2px ring sits outside and is cancelled in layout) + gap-3
+                (0.75rem) hangs the avatar in the margin so the name/title
+                still line up with the body text. From 1024px there's ~8rem
+                of side margin, so the ring and shadow stay clear of the
+                viewport edge. */}
+            <header className="mb-21 flex items-center justify-between gap-3 md:mb-14 lg:-ml-14 lg:flex-row-reverse lg:justify-end">
               <div className="flex flex-col items-start">
                 <Link
                   href="/"
@@ -120,6 +124,7 @@ export default function Home() {
                   Senior Software Engineer
                 </span>
               </div>
+              <ThemeToggleAvatar />
             </header>
 
             <main>
