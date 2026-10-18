@@ -140,8 +140,7 @@ export default function Home() {
                 design and build software that makes complex work feel simple.
               </p>
               <p className="mt-4 text-gray-1100">
-                Previously, I worked at{' '}
-                <CompanyStack companies={PREVIOUS} />.
+                Previously, I worked at <CompanyStack companies={PREVIOUS} />.
               </p>
 
               <section
