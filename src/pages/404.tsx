@@ -16,7 +16,7 @@ export default function NotFound() {
           aria-hidden="true"
           className="h-[4.4375rem] min-[440px]:h-12 md:hidden"
         />
-        <div className="mx-auto w-full max-w-[43.25rem] px-6 py-12 text-gray-1200 antialiased sm:py-32 md:py-16">
+        <div className="mx-auto w-full max-w-[44.75rem] px-8 py-12 text-gray-1200 antialiased sm:py-32 md:px-9 md:py-16">
           <SiteHeader />
 
           <main>

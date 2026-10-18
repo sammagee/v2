@@ -20,3 +20,7 @@ export function serializeJsonLd(data: unknown) {
 export function postPath(slug: string) {
   return `/thoughts/${slug}`
 }
+
+export function postTitleTransition(slug: string) {
+  return `post-title-${slug}`
+}

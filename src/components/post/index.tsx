@@ -1,7 +1,9 @@
+import { ViewTransition } from 'react'
+
 import { Masthead } from '@/components/masthead'
 import { SiteLayout } from '@/components/site-layout'
 import type { BundledPost } from '@/lib/post-bundle'
-import { JOB_TITLE, NAME } from '@/lib/site'
+import { JOB_TITLE, NAME, postTitleTransition } from '@/lib/site'
 
 import { BackLink } from './back-link'
 import { MdxContent } from './mdx-content'
@@ -14,7 +16,9 @@ export function Post({ meta, code }: BundledPost) {
       <SiteLayout>
         <header className="relative mb-21 md:mb-14">
           <BackLink />
-          <Masthead title={meta.title} subtitle={meta.subtitle} />
+          <ViewTransition name={postTitleTransition(meta.slug)}>
+            <Masthead title={meta.title} subtitle={meta.subtitle} />
+          </ViewTransition>
         </header>
         <main>
           <article className="post-body text-gray-1100">

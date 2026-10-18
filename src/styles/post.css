@@ -138,4 +138,17 @@
     font-size: 0.875em;
     color: var(--color-gray-1000);
   }
+
+  .post-body .external-link::after {
+    right: calc(min(3.5px, 20%) + 0.75em);
+  }
+
+  .post-body .external-link svg {
+    display: inline-block;
+    width: 0.7em;
+    height: 0.7em;
+    margin-left: 0.05em;
+    vertical-align: 0.13em;
+    color: var(--color-gray-1000);
+  }
 }

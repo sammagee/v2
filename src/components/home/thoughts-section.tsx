@@ -1,7 +1,8 @@
 import Link from 'next/link'
+import { ViewTransition } from 'react'
 
 import type { PostMeta } from '@/lib/posts'
-import { postPath } from '@/lib/site'
+import { postPath, postTitleTransition } from '@/lib/site'
 
 import { useRelativeTime } from './hooks/use-relative-time'
 
@@ -35,20 +36,22 @@ export function ThoughtsSection({
 function PostRow({ post, builtAt }: { post: PostMeta; builtAt: number }) {
   const age = useRelativeTime(post.date, builtAt)
   return (
-    <li>
-      <Link
-        href={postPath(post.slug)}
-        className="rounded-sm text-gray-1100 no-underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gray-1200"
-      >
-        {post.title}{' '}
-        <time
-          dateTime={post.date}
-          title={FULL_DATE.format(new Date(post.date))}
-          className="text-gray-1000 tabular-nums"
+    <ViewTransition name={postTitleTransition(post.slug)}>
+      <li>
+        <Link
+          href={postPath(post.slug)}
+          className="rounded-sm text-gray-1100 no-underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gray-1200"
         >
-          {age}
-        </time>
-      </Link>
-    </li>
+          {post.title}{' '}
+          <time
+            dateTime={post.date}
+            title={FULL_DATE.format(new Date(post.date))}
+            className="text-gray-1000 tabular-nums"
+          >
+            {age}
+          </time>
+        </Link>
+      </li>
+    </ViewTransition>
   )
 }
