@@ -1,4 +1,4 @@
-import { CompanyLogoWithTooltip, CompanyStack } from './company-logo'
+import { CompanyLogo, CompanyStack } from './company-logo'
 import { InlineAvatar } from './inline-avatar'
 import { COMPANIES } from './lib/companies'
 
@@ -40,11 +40,12 @@ function VantaLink() {
       rel="noopener noreferrer"
       className="group inline-flex items-baseline gap-[0.3em] no-underline"
     >
-      <CompanyLogoWithTooltip
-        company={COMPANIES.vanta}
-        className="self-center"
-      />
-      <span className="link-dotted">Vanta</span>
+      <span className="self-center">
+        <CompanyLogo company={COMPANIES.vanta} />
+      </span>
+      <span>
+        <span className="link-dotted">Vanta</span>
+      </span>
     </a>
   )
 }

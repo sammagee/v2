@@ -20,23 +20,6 @@ export function CompanyLogo({ company }: { company: ICompany }) {
   )
 }
 
-export function CompanyLogoWithTooltip({
-  company,
-  className,
-}: {
-  company: ICompany
-  className?: string
-}) {
-  return (
-    <Tooltip trackCursorAxis="both">
-      <TooltipTrigger render={<span className={className} />}>
-        <CompanyLogo company={company} />
-      </TooltipTrigger>
-      <TooltipContent>{company.name}</TooltipContent>
-    </Tooltip>
-  )
-}
-
 export function CompanyStack({ companies }: { companies: ICompany[] }) {
   return (
     <span className="inline-flex -translate-y-px align-middle whitespace-nowrap">
