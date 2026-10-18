@@ -40,7 +40,7 @@ export function CompanyLogo({ company }: { company: ICompany }) {
 
 export function CompanyStack({ companies }: { companies: ICompany[] }) {
   return (
-    <span className="inline-flex -translate-y-px whitespace-nowrap align-middle">
+    <span className="inline-flex -translate-y-px align-middle whitespace-nowrap">
       {companies.map((company, index) => (
         <Tooltip key={company.name} trackCursorAxis="both">
           <TooltipTrigger

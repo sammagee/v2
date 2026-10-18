@@ -1,3 +1,5 @@
+import '../styles/app.css'
+
 import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import type { AppProps } from 'next/app'
@@ -5,8 +7,6 @@ import { Inter } from 'next/font/google'
 import Head from 'next/head'
 
 import { APPLE_SPLASH_SCREENS } from '@/lib/apple-splash-screens'
-
-import '../styles/app.css'
 
 const inter = Inter({
   subsets: ['latin'],
