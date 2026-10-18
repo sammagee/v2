@@ -1,0 +1,58 @@
+{
+  "$schema": "./node_modules/oxlint/configuration_schema.json",
+  "plugins": ["react", "nextjs", "typescript", "jsx-a11y", "import", "oxc"],
+  "env": {
+    "browser": true,
+    "node": true,
+    "es2024": true
+  },
+  "categories": {
+    "correctness": "error",
+    "suspicious": "error"
+  },
+  "settings": {
+    "react": {
+      "version": "19"
+    }
+  },
+  "ignorePatterns": [
+    ".next/**",
+    "node_modules/**",
+    "public/**",
+    ".agents/**",
+    "next-env.d.ts",
+    "src/next-env.d.ts"
+  ],
+  "rules": {
+    "max-lines": [
+      "error",
+      {
+        "max": 500
+      }
+    ],
+    "react/rules-of-hooks": "error",
+    "react/exhaustive-deps": "error",
+    "react/react-in-jsx-scope": "off",
+    "import/no-unassigned-import": "off",
+    "nextjs/no-img-element": "off"
+  },
+  "overrides": [
+    {
+      "files": ["src/**/*.ts", "src/**/*.tsx"],
+      "rules": {
+        "complexity": [
+          "error",
+          {
+            "max": 3
+          }
+        ],
+        "max-lines-per-function": [
+          "error",
+          {
+            "max": 50
+          }
+        ]
+      }
+    }
+  ]
+}
