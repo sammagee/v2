@@ -12,7 +12,9 @@ Sam Magee's personal site ([sammagee/sammagee.me](https://github.com/sammagee/sa
   - `complexity`: at most 3 per function
   - `max-lines-per-function`: 50
 
-  Fix a violation by splitting files, components and helpers, or by using lookup tables and early returns. Don't add disable comments.
+  Fix a violation by splitting files, components and helpers, or by using lookup tables and early returns.
+
+- Inline lint-disable comments (`eslint-disable*`, `oxlint-disable*`) are banned, with no exceptions. `pnpm lint` fails if one appears in a source file. Fix the code instead. If a rule is genuinely wrong for this project, turn it off or configure it in `.oxlintrc.json`.
 
 ## Skills
 

@@ -17,6 +17,8 @@ Keep a comment only if it is one of these:
 
 - **Non-obvious browser or platform workarounds.** Code that looks redundant or wrong but prevents a real bug, and would break if someone "cleaned it up". Keep it to one line: what it works around.
 - **License headers** and attribution that a license requires.
-- **Required tool directives**, such as `'use client'`, `// @ts-expect-error`, or a lint-disable for one specific rule. Every disable needs a short reason on the same line.
+- **Required tool directives**, such as `'use client'`.
+
+Lint-disable comments (`eslint-disable*`, `oxlint-disable*`) are banned, with no exceptions, and `pnpm lint` fails on them. Fix the code instead. If a rule is genuinely wrong for this project, configure it in `.oxlintrc.json`.
 
 Everything else goes: section labels, restating what the code does, commented-out code, history notes and TODOs.
