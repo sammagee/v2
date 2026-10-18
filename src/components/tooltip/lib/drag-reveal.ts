@@ -37,7 +37,7 @@ const listen = ([type, listener]: Binding) =>
 const unlisten = ([type, listener]: Binding) =>
   window.removeEventListener(type, listener)
 
-const triggerOf = (target: EventTarget | null) =>
+export const triggerOf = (target: EventTarget | null) =>
   target instanceof Element ? target.closest(TRIGGER_SELECTOR) : null
 
 function onTouchStart(event: TouchEvent) {
