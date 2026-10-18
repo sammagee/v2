@@ -4,6 +4,8 @@ import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/tooltip'
 
 import type { ICompany } from './lib/companies'
 
+const LIST_SEPARATORS = ['', ', and ']
+
 export function CompanyLogo({ company }: { company: ICompany }) {
   return (
     <span className="-m-[2px] block size-[calc(1.375rem+4px)] rounded-full bg-(--logo-ring) p-[2px] drop-shadow-[0_1px_1px_var(--logo-shadow)] transition-[filter] duration-200 ease-out group-hover:drop-shadow-[0_1.5px_2px_var(--logo-shadow)] group-focus-visible:drop-shadow-[0_1.5px_2px_var(--logo-shadow)] motion-reduce:transition-none">
@@ -55,10 +57,18 @@ export function CompanyStack({ companies }: { companies: ICompany[] }) {
             }
           >
             <CompanyLogo company={company} />
+            <span className="sr-only">{company.name}</span>
           </TooltipTrigger>
           <TooltipContent>{company.name}</TooltipContent>
+          <span className="sr-only">
+            {separatorAfter(index, companies.length)}
+          </span>
         </Tooltip>
       ))}
     </span>
   )
+}
+
+function separatorAfter(index: number, count: number) {
+  return LIST_SEPARATORS[count - index - 1] ?? ', '
 }
