@@ -1,3 +1,5 @@
+import { ArrowUpRight } from 'lucide-react'
+
 import type { LinkPreview } from './lib/previews'
 
 export function ExternalCard({ preview }: { preview: LinkPreview }) {
@@ -5,9 +7,13 @@ export function ExternalCard({ preview }: { preview: LinkPreview }) {
     <span className="flex min-w-0 items-start gap-2 text-left">
       {preview.icon && <Favicon src={preview.icon} />}
       <span className="flex min-w-0 flex-col">
-        <span className="truncate">{preview.title}</span>
-        <span className="truncate text-xs leading-4 font-normal text-gray-1000">
-          {preview.host}
+        <span className="truncate leading-[1.0625rem]">{preview.title}</span>
+        <span className="flex items-start gap-0.5 text-xs leading-[0.875rem] font-normal text-gray-1000">
+          <span className="truncate">{preview.host}</span>
+          <ArrowUpRight
+            aria-hidden="true"
+            className="mt-px size-2.5 shrink-0"
+          />
         </span>
       </span>
     </span>
@@ -16,10 +22,7 @@ export function ExternalCard({ preview }: { preview: LinkPreview }) {
 
 function Favicon({ src }: { src: string }) {
   return (
-    <span
-      data-favicon=""
-      className="mt-0.5 block size-4 shrink-0 overflow-hidden rounded-full bg-white"
-    >
+    <span className="mt-px block size-4 shrink-0 overflow-hidden rounded-full bg-white">
       <img
         src={src}
         alt=""

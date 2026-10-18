@@ -8,7 +8,8 @@ import { linkPreview } from './lib/previews'
 import { PostCard } from './post-card'
 
 const NEW_TAB = { target: '_blank', rel: 'noopener noreferrer' }
-const CARD = 'max-w-80 px-3.5 py-1.5'
+const CARD =
+  'max-w-80 rounded-[0.875rem] px-3 py-1.5 supports-[corner-shape:squircle]:rounded-[1.25rem] supports-[corner-shape:squircle]:[corner-shape:squircle]'
 
 type AnchorProps = ComponentProps<'a'> & { href: string }
 

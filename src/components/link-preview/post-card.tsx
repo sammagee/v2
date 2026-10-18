@@ -7,9 +7,9 @@ export function PostCard({
 }) {
   return (
     <span className="flex min-w-0 flex-col text-left">
-      <span className="truncate">{title}</span>
+      <span className="truncate leading-[1.0625rem]">{title}</span>
       {subtitle && (
-        <span className="truncate leading-tight text-gray-1100">
+        <span className="truncate leading-[1.0625rem] text-gray-1100">
           {subtitle}
         </span>
       )}

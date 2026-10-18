@@ -1,11 +1,11 @@
 {
   "https://github.com/sammagee": {
-    "title": "sammagee (Sam Magee) · GitHub",
+    "title": "@sammagee",
     "host": "github.com",
     "icon": "/link-icons/github.com.svg"
   },
   "https://linkedin.com/in/sammagee": {
-    "title": "Sam Magee - Vanta | LinkedIn",
+    "title": "in/sammagee",
     "host": "linkedin.com",
     "icon": "/link-icons/linkedin.com.ico"
   },
@@ -15,7 +15,7 @@
     "icon": "/link-icons/mdxjs.com.ico"
   },
   "https://x.com/sammagee": {
-    "title": "Sam (@sammagee) / X",
+    "title": "@sammagee",
     "host": "x.com",
     "icon": "/link-icons/x.com.png"
   }
