@@ -1,21 +1,10 @@
 import { Tooltip as TooltipPrimitive } from '@base-ui/react/tooltip'
 import { useContext, useState } from 'react'
 
-import { cn } from '@/lib/utils'
-
 import { GlassPopup } from './glass-popup'
-import { useTouchTooltip } from './hooks/use-touch-tooltip'
-import {
-  anchorAt,
-  cursorSideOffset,
-  definedOnly,
-  POSITION_DEFAULTS,
-  TOUCH_SIDE_OFFSET_PX,
-  type PositionProps,
-} from './lib/position'
-import { TouchTooltipContext } from './lib/touch-context'
-import { TouchController, touchOwnsTooltips } from './lib/touch-controller'
-import type { Point } from './lib/types'
+import { useDragReveal } from './hooks/use-drag-reveal'
+import { placementFor, type PositionProps } from './lib/position'
+import { RevealContext } from './lib/reveal-context'
 
 export function Tooltip({
   trackCursorAxis,
@@ -23,30 +12,29 @@ export function Tooltip({
   ...props
 }: TooltipPrimitive.Root.Props) {
   const [open, setOpen] = useState(false)
-  const [point, setPoint] = useState<Point | null>(null)
-  const [controller] = useState(() => new TouchController(setOpen, setPoint))
-  const { triggerRef, handlers } = useTouchTooltip(controller)
+  const [cursor, setCursor] = useState(false)
+  const [trigger, setTrigger] = useState<Element | null>(null)
+  const point = useDragReveal(trigger)
 
   const handleOpenChange: TooltipPrimitive.Root.Props['onOpenChange'] = (
     next,
     details
   ) => {
-    if (touchOwnsTooltips()) return
-    setPoint(null)
     setOpen(next)
+    setCursor(details.reason === 'trigger-hover' && Boolean(trackCursorAxis))
     onOpenChange?.(next, details)
   }
 
   return (
-    <TouchTooltipContext.Provider value={{ point, handlers, triggerRef }}>
+    <RevealContext.Provider value={{ point, cursor, setTrigger }}>
       <TooltipPrimitive.Root
         data-slot="tooltip"
-        open={open}
+        open={open || point !== null}
         onOpenChange={handleOpenChange}
         trackCursorAxis={point ? 'none' : trackCursorAxis}
         {...props}
       />
-    </TouchTooltipContext.Provider>
+    </RevealContext.Provider>
   )
 }
 
@@ -63,18 +51,12 @@ export function TooltipProvider({
   )
 }
 
-export function TooltipTrigger({
-  className,
-  ...props
-}: TooltipPrimitive.Trigger.Props) {
-  const { handlers, triggerRef } = useContext(TouchTooltipContext)
+export function TooltipTrigger(props: TooltipPrimitive.Trigger.Props) {
+  const { setTrigger } = useContext(RevealContext)
   return (
     <TooltipPrimitive.Trigger
-      ref={triggerRef ?? undefined}
+      ref={setTrigger}
       data-slot="tooltip-trigger"
-      // Stops iOS's long-press link preview from covering the tooltip.
-      className={cn('[-webkit-touch-callout:none]', className as string)}
-      {...handlers}
       {...props}
     />
   )
@@ -87,23 +69,16 @@ export function TooltipContent({
   alignOffset,
   ...props
 }: TooltipPrimitive.Popup.Props & PositionProps) {
-  const { point } = useContext(TouchTooltipContext)
-  const anchor = anchorAt(point)
-  const position = {
-    ...POSITION_DEFAULTS,
-    ...definedOnly({ side, sideOffset, align, alignOffset }),
-  }
+  const { point, cursor } = useContext(RevealContext)
+  const placement = placementFor(
+    { side, sideOffset, align, alignOffset },
+    { point, cursor }
+  )
 
   return (
     <TooltipPrimitive.Portal>
       <TooltipPrimitive.Positioner
-        side={position.side}
-        align={point ? 'center' : position.align}
-        alignOffset={position.alignOffset}
-        sideOffset={
-          point ? TOUCH_SIDE_OFFSET_PX : cursorSideOffset(position.sideOffset)
-        }
-        anchor={anchor}
+        {...placement}
         className="isolate z-50 transition-[top,left] duration-100 ease-out motion-reduce:transition-none"
       >
         <GlassPopup {...props} />
