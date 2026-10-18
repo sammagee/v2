@@ -123,7 +123,7 @@ export default function Home() {
                   <InlineAvatar className="self-center" />
                   <span>Sam</span>
                 </span>
-                ! I&apos;m a Senior Software Engineer at{' '}
+                ! I&apos;m a senior software engineer at{' '}
                 <a
                   href={COMPANIES.vanta.href}
                   target="_blank"
@@ -140,7 +140,7 @@ export default function Home() {
                 design and build software that makes complex work feel simple.
               </p>
               <p className="mt-4 text-gray-1100">
-                Previously, I&apos;ve worked at{' '}
+                Previously, I worked at{' '}
                 <CompanyStack companies={PREVIOUS} />.
               </p>
 
