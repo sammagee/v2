@@ -41,6 +41,12 @@ src/
 - `src/lib` and `src/hooks` hold only code used by two or more owners, or by a page. Code used by one component moves into that component's folder.
 - Each file goes in this order: imports, constants, types, then functions. The main export comes first among the functions: the default export, else the export named after the file (or folder, for `index.tsx`), else any export.
 
+## SEO
+
+- The canonical origin is `https://sammagee.me`. `next.config.js` 308-redirects the alias hosts there, and the home page sets the canonical, Open Graph and Twitter tags, plus Person JSON-LD (`src/components/home/lib`).
+- `public/robots.txt` and `public/sitemap.xml` are static; update the sitemap `lastmod` when content changes.
+- `pnpm social-images` regenerates `public/images/social/card.png` and `avatar.png` with Playwright (run `pnpm exec playwright install chromium` once).
+
 ## React Compiler
 
 - The React Compiler is on (`reactCompiler: true`), and its oxlint rules (`react/purity`, `react/refs`, `react/immutability`, and the rest) run as errors.

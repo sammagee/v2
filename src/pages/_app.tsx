@@ -14,9 +14,6 @@ const inter = Inter({
   axes: ['opsz'],
 })
 
-const KEYWORDS =
-  'sam magee, sam, magee, design engineer, devsigner, designer, developer, web designer, web developer, full stack, full stack developer, full-stack, fullstack'
-
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
@@ -39,7 +36,6 @@ function AppHead() {
     <Head>
       <meta name="author" content="Sam Magee" />
       <meta name="copyright" content="Sam Magee" />
-      <meta name="keywords" content={KEYWORDS} />
       <meta
         name="viewport"
         content="width=device-width, initial-scale=1, viewport-fit=cover"

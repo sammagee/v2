@@ -8,6 +8,7 @@ export default function NotFound() {
     <>
       <Head>
         <title>Not Found – Sam Magee</title>
+        <meta name="robots" content="noindex" />
       </Head>
 
       <div className="md:flex md:min-h-dvh md:flex-col md:justify-center-safe">
