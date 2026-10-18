@@ -31,4 +31,4 @@ pnpm install; pnpm dev
 3. Put any one-off components next to it (e.g. `src/posts/<slug>/counter.tsx`, default export) and import them with a relative path.
 4. Run `pnpm dev` and open `/thoughts/<slug>`. Drafts show locally and on preview deploys; remove `draft: true` to publish.
 
-See `src/posts/kitchen-sink/post.mdx` for every supported element. After adding an external link, run `pnpm link-previews` and commit the updated `link-previews.json` and `public/link-icons/` so its tooltip has a title and favicon.
+Headings, lists, tables, code blocks (with syntax highlighting), images, footnotes and the rest of Markdown/GFM are styled out of the box. After adding an external link, run `pnpm link-previews` and commit the updated `link-previews.json` and `public/link-icons/` so its tooltip has a title and favicon.
