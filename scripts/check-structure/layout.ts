@@ -1,7 +1,7 @@
 import type { Issue } from './types.ts'
 
 const COMPONENTS = 'src/components/'
-const COMPONENT_HOMES = ['src/components/', 'src/pages/']
+const COMPONENT_HOMES = ['src/components/', 'src/pages/', 'src/posts/']
 const ENTRY = 'index.tsx'
 const KEBAB_FILE = /^[a-z0-9]+(-[a-z0-9]+)*\.(ts|tsx)$/
 const HOOK_FILE = /^use(-[a-z0-9]+)+\.ts$/

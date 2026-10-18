@@ -28,7 +28,11 @@ function useSize(el: HTMLElement | null) {
   useEffect(() => {
     if (!el) return
     const observer = new ResizeObserver(() =>
-      setSize({ width: el.offsetWidth, height: el.offsetHeight })
+      setSize({
+        width: el.offsetWidth,
+        height: el.offsetHeight,
+        radius: parseFloat(getComputedStyle(el).borderTopLeftRadius),
+      })
     )
     observer.observe(el)
     return () => observer.disconnect()

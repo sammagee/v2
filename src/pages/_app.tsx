@@ -6,6 +6,7 @@ import type { AppProps } from 'next/app'
 import { Inter } from 'next/font/google'
 import Head from 'next/head'
 
+import { useAnimatedHistory } from '@/hooks/use-animated-history'
 import { APPLE_SPLASH_SCREENS } from '@/lib/apple-splash-screens'
 
 const inter = Inter({
@@ -15,6 +16,7 @@ const inter = Inter({
 })
 
 export default function App({ Component, pageProps }: AppProps) {
+  useAnimatedHistory()
   return (
     <>
       <Analytics />

@@ -1,4 +1,14 @@
-import { AVATAR_URL, NAME, PROFILES, SITE_URL, TITLE } from './metadata'
+import {
+  AVATAR_URL,
+  JOB_TITLE,
+  NAME,
+  PERSON_ID,
+  serializeJsonLd,
+  SITE_URL,
+  WEBSITE_ID,
+} from '@/lib/site'
+
+import { PROFILES, TITLE } from './metadata'
 
 export const STRUCTURED_DATA = {
   '@context': 'https://schema.org',
@@ -9,14 +19,14 @@ export const STRUCTURED_DATA = {
       url: SITE_URL,
       name: TITLE,
       inLanguage: 'en-US',
-      isPartOf: { '@id': `${SITE_URL}#website` },
+      isPartOf: { '@id': WEBSITE_ID },
       mainEntity: {
         '@type': 'Person',
-        '@id': `${SITE_URL}#person`,
+        '@id': PERSON_ID,
         name: NAME,
         url: SITE_URL,
         image: AVATAR_URL,
-        jobTitle: 'Senior Software Engineer',
+        jobTitle: JOB_TITLE,
         worksFor: {
           '@type': 'Organization',
           name: 'Vanta',
@@ -39,16 +49,13 @@ export const STRUCTURED_DATA = {
     },
     {
       '@type': 'WebSite',
-      '@id': `${SITE_URL}#website`,
+      '@id': WEBSITE_ID,
       url: SITE_URL,
       name: NAME,
       inLanguage: 'en-US',
-      publisher: { '@id': `${SITE_URL}#person` },
+      publisher: { '@id': PERSON_ID },
     },
   ],
 }
 
-export const STRUCTURED_DATA_JSON = JSON.stringify(STRUCTURED_DATA).replace(
-  /</g,
-  '\\u003c'
-)
+export const STRUCTURED_DATA_JSON = serializeJsonLd(STRUCTURED_DATA)

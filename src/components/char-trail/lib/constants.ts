@@ -1,5 +1,11 @@
-export const TRAIL_SELECTOR = 'header a, header span, main h2, main p'
-export const SKIPPED_TEXT_SELECTOR = '.sr-only, [data-slot=tooltip-content]'
+export const TRAIL_SELECTOR = [
+  'header :is(h1, a, span)',
+  'footer :is(a, span)',
+  'main :is(h2, p, li)',
+  '.post-body :is(h3, h4, th, td, blockquote, figcaption, dt, dd)',
+].join(', ')
+export const SKIPPED_TEXT_SELECTOR =
+  '.sr-only, [data-slot=tooltip-content], pre, button, output'
 
 export const PALETTES = {
   light: ['#4f7cff', '#8b5cf6', '#e8559b', '#f2784b', '#13a983', '#2aa7d6'],

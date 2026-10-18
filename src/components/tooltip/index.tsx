@@ -3,6 +3,7 @@ import { useContext, useState } from 'react'
 
 import { GlassPopup } from './glass-popup'
 import { useDragReveal } from './hooks/use-drag-reveal'
+import { useNestedHover } from './hooks/use-nested-hover'
 import {
   anchorAt,
   cursorSideOffset,
@@ -21,6 +22,7 @@ export function Tooltip({
   const [open, setOpen] = useState(false)
   const [trigger, setTrigger] = useState<Element | null>(null)
   const point = useDragReveal(trigger)
+  const nested = useNestedHover(trigger)
 
   const handleOpenChange: TooltipPrimitive.Root.Props['onOpenChange'] = (
     next,
@@ -34,7 +36,7 @@ export function Tooltip({
     <RevealContext.Provider value={{ point, setTrigger }}>
       <TooltipPrimitive.Root
         data-slot="tooltip"
-        open={open || point !== null}
+        open={isOpen(open, nested, point)}
         onOpenChange={handleOpenChange}
         trackCursorAxis={point ? 'none' : trackCursorAxis}
         {...props}
@@ -96,4 +98,8 @@ export function TooltipContent({
       </TooltipPrimitive.Positioner>
     </TooltipPrimitive.Portal>
   )
+}
+
+function isOpen(open: boolean, nested: boolean, point: unknown) {
+  return (open && !nested) || point !== null
 }

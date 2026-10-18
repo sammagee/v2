@@ -1,6 +1,7 @@
 import { existsSync } from 'node:fs'
 import { dirname, join, normalize } from 'node:path'
 
+import { postFolder } from './posts.ts'
 import type { Issue, SourceFile } from './types.ts'
 
 const ALIAS = '@/'
@@ -26,6 +27,7 @@ export function checkImports(root: string, files: SourceFile[]): Issue[] {
   const edges = files.flatMap((file) => edgesOf(root, file))
   return [
     ...edges.flatMap(encapsulationIssues),
+    ...edges.flatMap(postImportIssues),
     ...files.flatMap((file) => ownershipIssues(file, edges)),
   ]
 }
@@ -81,6 +83,19 @@ function privateImportIssue(edge: Edge, folder: string): Issue {
     line: edge.line,
     message: `import @/components/${folder} through its index.tsx; ${edge.target} is private to it`,
   }
+}
+
+function postImportIssues(edge: Edge): Issue[] {
+  const folder = postFolder(edge.target)
+  return folder && postFolder(edge.from.path) !== folder
+    ? [
+        {
+          file: edge.from.path,
+          line: edge.line,
+          message: `${edge.target} belongs to ${folder}; only that post may import it`,
+        },
+      ]
+    : []
 }
 
 function ownerOf(path: string) {

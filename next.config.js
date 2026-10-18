@@ -6,7 +6,12 @@ const ALIAS_HOSTS = [
   'sammagee.dev',
   'www.sammagee.dev',
 ]
-const REMOVED_PAGES = ['/posts/:path*', '/projects/:path*', '/words', '/work']
+const REMOVED_PAGES = [
+  '/posts/:path*',
+  '/projects/:path*',
+  '/thoughts',
+  '/work',
+]
 
 module.exports = {
   reactCompiler: true,

@@ -1,16 +1,10 @@
-import Link from 'next/link'
+import { Masthead } from '@/components/masthead'
+import { JOB_TITLE, NAME } from '@/lib/site'
 
 export function SiteHeader() {
   return (
-    <header className="mb-21 flex flex-col items-start md:mb-14">
-      <h1 className="font-medium">
-        <Link href="/" className="inline-block no-underline">
-          Sam Magee
-        </Link>
-      </h1>
-      <span className="leading-none font-medium text-gray-1100">
-        Senior Software Engineer
-      </span>
+    <header className="mb-21 md:mb-14">
+      <Masthead title={NAME} subtitle={JOB_TITLE} href="/" />
     </header>
   )
 }
