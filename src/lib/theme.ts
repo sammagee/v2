@@ -1,7 +1,3 @@
-import { useCallback, useSyncExternalStore } from 'react'
-
-export type Theme = 'light' | 'dark'
-
 const THEMES: readonly string[] = ['light', 'dark'] satisfies Theme[]
 const TRANSITION_MS = 250
 const DARK_QUERY = '(prefers-color-scheme: dark)'
@@ -18,11 +14,28 @@ export const themeInitScript = `(function(){try{var s=localStorage.getItem('${TH
 const listeners = new Set<() => void>()
 let systemQuery: MediaQueryList | null = null
 
+export type Theme = 'light' | 'dark'
+
+export const currentTheme = (): Theme =>
+  document.documentElement.classList.contains('dark') ? 'dark' : 'light'
+
+export function subscribeToTheme(listener: () => void) {
+  if (!listeners.size) {
+    systemQuery = matchMedia(DARK_QUERY)
+    systemQuery.addEventListener('change', onSystemChange)
+  }
+  listeners.add(listener)
+  return () => unsubscribe(listener)
+}
+
+export function toggleTheme() {
+  const next = opposite(currentTheme())
+  persist(next)
+  applyTheme(next)
+}
+
 const isTheme = (value: string | null): value is Theme =>
   THEMES.includes(value as string)
-
-const current = (): Theme =>
-  document.documentElement.classList.contains('dark') ? 'dark' : 'light'
 
 const opposite = (theme: Theme): Theme => (theme === 'dark' ? 'light' : 'dark')
 
@@ -52,7 +65,7 @@ function animateThemeChange() {
 }
 
 function applyTheme(theme: Theme) {
-  if (theme === current()) return
+  if (theme === currentTheme()) return
   animateThemeChange()
   const root = document.documentElement
   root.classList.toggle('dark', theme === 'dark')
@@ -71,23 +84,4 @@ function unsubscribe(listener: () => void) {
   listeners.delete(listener)
   if (!listeners.size)
     systemQuery?.removeEventListener('change', onSystemChange)
-}
-
-function subscribe(listener: () => void) {
-  if (!listeners.size) {
-    systemQuery = matchMedia(DARK_QUERY)
-    systemQuery.addEventListener('change', onSystemChange)
-  }
-  listeners.add(listener)
-  return () => unsubscribe(listener)
-}
-
-export function useTheme() {
-  const theme = useSyncExternalStore<Theme>(subscribe, current, () => 'light')
-  const toggle = useCallback(() => {
-    const next = opposite(current())
-    persist(next)
-    applyTheme(next)
-  }, [])
-  return { theme, toggle }
 }

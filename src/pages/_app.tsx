@@ -1,3 +1,5 @@
+import '../styles/app.css'
+
 import { Analytics } from '@vercel/analytics/react'
 import { SpeedInsights } from '@vercel/speed-insights/next'
 import type { AppProps } from 'next/app'
@@ -5,8 +7,6 @@ import { Inter } from 'next/font/google'
 import Head from 'next/head'
 
 import { APPLE_SPLASH_SCREENS } from '@/lib/apple-splash-screens'
-
-import '../styles/app.css'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -16,6 +16,23 @@ const inter = Inter({
 
 const KEYWORDS =
   'sam magee, sam, magee, design engineer, devsigner, designer, developer, web designer, web developer, full stack, full stack developer, full-stack, fullstack'
+
+export default function App({ Component, pageProps }: AppProps) {
+  return (
+    <>
+      <Analytics />
+      <SpeedInsights />
+      <AppHead />
+      {/* On :root, not a wrapper, so portaled tooltips also get Inter. */}
+      <style jsx global>{`
+        :root {
+          --font-inter: ${inter.style.fontFamily};
+        }
+      `}</style>
+      <Component {...pageProps} />
+    </>
+  )
+}
 
 function AppHead() {
   return (
@@ -39,22 +56,5 @@ function AppHead() {
         />
       ))}
     </Head>
-  )
-}
-
-export default function App({ Component, pageProps }: AppProps) {
-  return (
-    <>
-      <Analytics />
-      <SpeedInsights />
-      <AppHead />
-      {/* On :root, not a wrapper, so portaled tooltips also get Inter. */}
-      <style jsx global>{`
-        :root {
-          --font-inter: ${inter.style.fontFamily};
-        }
-      `}</style>
-      <Component {...pageProps} />
-    </>
   )
 }

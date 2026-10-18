@@ -2,6 +2,12 @@ import { SKIPPED_TEXT_SELECTOR, TRAIL_SELECTOR } from './constants'
 import type { TrailHighlights } from './highlights'
 import type { Char } from './types'
 
+export function measureChars(highlights: TrailHighlights): Char[] {
+  return Array.from(document.querySelectorAll(TRAIL_SELECTOR)).flatMap((root) =>
+    Array.from(textNodes(root)).flatMap((node) => charsOf(node, highlights))
+  )
+}
+
 const isOwnText = (parent: Element | null, root: Element) =>
   parent !== null &&
   !parent.closest(SKIPPED_TEXT_SELECTOR) &&
@@ -44,12 +50,6 @@ function charsOf(node: Text, highlights: TrailHighlights) {
   return Array.from({ length: node.data.length }, (_, index) =>
     charAt(node, index, base)
   ).filter((char) => char !== null)
-}
-
-export function measureChars(highlights: TrailHighlights): Char[] {
-  return Array.from(document.querySelectorAll(TRAIL_SELECTOR)).flatMap((root) =>
-    Array.from(textNodes(root)).flatMap((node) => charsOf(node, highlights))
-  )
 }
 
 export const rootFontSize = () =>

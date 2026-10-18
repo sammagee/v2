@@ -6,11 +6,6 @@ import {
 } from './constants'
 import type { Trail } from './trail'
 
-const twinkleDelay = () =>
-  TWINKLE_MIN_MS + Math.random() * (TWINKLE_MAX_MS - TWINKLE_MIN_MS)
-
-const twinkleCount = () => (Math.random() < TWINKLE_PAIR_CHANCE ? 2 : 1)
-
 export class Twinkle {
   private timer = 0
   private contentVisible = true
@@ -54,3 +49,8 @@ export class Twinkle {
     this.schedule()
   }
 }
+
+const twinkleDelay = () =>
+  TWINKLE_MIN_MS + Math.random() * (TWINKLE_MAX_MS - TWINKLE_MIN_MS)
+
+const twinkleCount = () => (Math.random() < TWINKLE_PAIR_CHANCE ? 2 : 1)

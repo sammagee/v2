@@ -34,11 +34,48 @@
     "react/exhaustive-deps": "error",
     "react/react-in-jsx-scope": "off",
     "import/no-unassigned-import": "off",
-    "nextjs/no-img-element": "off"
+    "nextjs/no-img-element": "off",
+    "react/purity": "error",
+    "react/refs": "error",
+    "react/immutability": "error",
+    "react/set-state-in-render": "error",
+    "react/set-state-in-effect": "error",
+    "react/static-components": "error",
+    "react/globals": "error",
+    "react/preserve-manual-memoization": "error",
+    "react/incompatible-library": "error",
+    "react/error-boundaries": "error",
+    "react/hooks": "error",
+    "react/invariant": "error",
+    "react/syntax": "error",
+    "react/todo": "error",
+    "react/unsupported-syntax": "error",
+    "react/use-memo": "error",
+    "react/void-use-memo": "error",
+    "react/capitalized-calls": "error",
+    "react/exhaustive-effect-dependencies": "error",
+    "react/memo-dependencies": "error",
+    "react/no-deriving-state-in-effects": "error",
+    "react/rule-suppression": "error",
+    "import/first": "error",
+    "import/newline-after-import": "error",
+    "import/no-duplicates": "error",
+    "import/no-cycle": "error",
+    "import/no-self-import": "error",
+    "typescript/consistent-type-imports": "error",
+    "typescript/consistent-type-definitions": ["error", "interface"],
+    "no-use-before-define": [
+      "error",
+      {
+        "functions": false,
+        "classes": false,
+        "variables": false
+      }
+    ]
   },
   "overrides": [
     {
-      "files": ["src/**/*.ts", "src/**/*.tsx"],
+      "files": ["src/**/*.ts", "src/**/*.tsx", "scripts/**/*.ts"],
       "rules": {
         "complexity": [
           "error",

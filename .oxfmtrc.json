@@ -4,6 +4,29 @@
   "semi": false,
   "singleQuote": true,
   "trailingComma": "es5",
+  "sortImports": {
+    "groups": [
+      ["side_effect_style", "side_effect", "style"],
+      ["type-builtin", "builtin"],
+      ["type-external", "external"],
+      ["type-internal", "internal"],
+      [
+        "type-parent",
+        "type-sibling",
+        "type-index",
+        "parent",
+        "sibling",
+        "index"
+      ],
+      "unknown"
+    ],
+    "internalPattern": ["@/"],
+    "newlinesBetween": true
+  },
+  "sortTailwindcss": {
+    "stylesheet": "./src/styles/app.css",
+    "functions": ["cn", "clsx", "cva"]
+  },
   "ignorePatterns": [
     ".agents/**",
     "skills-lock.json",

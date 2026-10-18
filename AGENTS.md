@@ -4,9 +4,9 @@ Sam Magee's personal site ([sammagee/sammagee.me](https://github.com/sammagee/sa
 
 ## Checks
 
-- `pnpm check` runs `pnpm format:check` (oxfmt) and `pnpm lint` (oxlint, which fails on warnings).
+- `pnpm check` runs `pnpm format:check` (oxfmt, which also sorts imports and Tailwind classes), `pnpm lint` (oxlint, which fails on warnings, plus the disable-comment ban and `pnpm lint:structure`) and `pnpm run doctor` (react-doctor, which fails on any warning or error; offline, no score upload or telemetry). Use `pnpm run doctor`, because pnpm's built-in `pnpm doctor` shadows the script.
 - `pnpm format` and `pnpm lint:fix` fix issues in place.
-- A pre-commit hook (simple-git-hooks, installed by `pnpm install`) runs the same checks and blocks the commit if either fails.
+- A pre-commit hook (simple-git-hooks, installed by `pnpm install`) runs `pnpm check` and blocks the commit if any check fails.
 - Limits, enforced as errors in `.oxlintrc.json`:
   - `max-lines`: 500 lines per file
   - `complexity`: at most 3 per function
@@ -14,7 +14,37 @@ Sam Magee's personal site ([sammagee/sammagee.me](https://github.com/sammagee/sa
 
   Fix a violation by splitting files, components and helpers, or by using lookup tables and early returns.
 
-- Inline lint-disable comments (`eslint-disable*`, `oxlint-disable*`) are banned, with no exceptions. `pnpm lint` fails if one appears in a source file. Fix the code instead. If a rule is genuinely wrong for this project, turn it off or configure it in `.oxlintrc.json`.
+- Inline lint-disable comments (`eslint-disable*`, `oxlint-disable*`, `react-doctor-disable*`) are banned, with no exceptions. `pnpm lint` fails if one appears in a source file. Fix the code instead. If a rule is genuinely wrong for this project, turn it off or configure it in `.oxlintrc.json` or `doctor.config.json`.
+
+## Structure
+
+`pnpm lint:structure` (`scripts/check-structure`, Node 22.18+) enforces these rules, and oxlint covers import hygiene, type definitions and use-before-define.
+
+```
+src/
+  components/
+    site-header.tsx          single-file component
+    tooltip/                 multi-file component
+      index.tsx              entry; the only file other folders may import
+      glass-popup.tsx        sub-component
+      hooks/use-touch-tooltip.ts
+      lib/touch-controller.ts
+  hooks/use-theme.ts         hooks shared by 2+ owners
+  lib/theme.ts               code shared by 2+ owners, or used by a page
+  pages/ styles/             Next.js, unchanged
+```
+
+- Components (`.tsx`) live only in `src/components` (and Next's `src/pages`). There's no `ui/` folder: shadcn installs into `src/components` (`aliases.ui` in `components.json`). Restructure a multi-file shadcn component into a folder.
+- A one-file component is `src/components/<name>.tsx`. Two or more files make a folder with an `index.tsx` entry. Sub-component `.tsx` files sit beside it, hooks go in `hooks/use-*.ts`, and constants and helpers go in `lib/*.ts`. Nothing else, and no deeper nesting.
+- Hooks (`use*`) are declared only in `hooks/` folders.
+- Only a component's own files import its internals. Everyone else imports its `index.tsx`.
+- `src/lib` and `src/hooks` hold only code used by two or more owners, or by a page. Code used by one component moves into that component's folder.
+- Each file goes in this order: imports, constants, types, then functions. The main export comes first among the functions: the default export, else the export named after the file (or folder, for `index.tsx`), else any export.
+
+## React Compiler
+
+- The React Compiler is on (`reactCompiler: true`), and its oxlint rules (`react/purity`, `react/refs`, `react/immutability`, and the rest) run as errors.
+- Don't hand-memoize. Skip `useMemo`, `useCallback` and `memo` unless identity matters for correctness, and prefer module-level functions for handlers that close over nothing.
 
 ## Skills
 

@@ -1,12 +1,6 @@
 import type { ReactNode } from 'react'
 
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipTrigger,
-} from '@/components/ui/tooltip'
-
-const opensInNewTab = (href: string) => !href.startsWith('mailto:')
+import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/tooltip'
 
 const NEW_TAB = { target: '_blank', rel: 'noopener noreferrer' }
 
@@ -31,3 +25,5 @@ export function SocialLink({
     </Tooltip>
   )
 }
+
+const opensInNewTab = (href: string) => !href.startsWith('mailto:')

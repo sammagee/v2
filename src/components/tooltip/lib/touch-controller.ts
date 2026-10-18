@@ -1,14 +1,14 @@
 import type { TouchEvent } from 'react'
 
-export interface Point {
-  x: number
-  y: number
-}
+import type { Point } from './types'
 
 const LINGER_MS = 600
 const TOLERANCE_PX = 6
 const MOUSE_COMPAT_MS = 800
+const SCROLL_OPTIONS = { passive: true, capture: true }
 const TRIGGER_SELECTOR = '[data-slot="tooltip-trigger"]'
+const entries = new Map<Element, TouchEntry>()
+const session: TouchSession = { active: null, gesture: false, lastTouchAt: 0 }
 
 type SetOpen = (open: boolean) => void
 type SetPoint = (point: Point | null) => void
@@ -18,16 +18,10 @@ interface TouchEntry {
   controller: TouchController
 }
 
-const entries = new Map<Element, TouchEntry>()
-
-const session: {
+interface TouchSession {
   active: TouchEntry | null
   gesture: boolean
   lastTouchAt: number
-} = { active: null, gesture: false, lastTouchAt: 0 }
-
-function releaseIfActive(controller: TouchController) {
-  if (session.active?.controller === controller) session.active = null
 }
 
 export class TouchController {
@@ -48,11 +42,12 @@ export class TouchController {
     this.cancel()
     this.frame = requestAnimationFrame(() => this.setPoint(point))
     this.setOpen(true)
+    window.addEventListener('scroll', this.hide, SCROLL_OPTIONS)
   }
 
   hide = () => {
     this.cancel()
-    this.setOpen(false)
+    this.setClosed()
   }
 
   linger() {
@@ -62,18 +57,32 @@ export class TouchController {
 
   dispose() {
     this.cancel()
+    this.stopWatchingScroll()
     releaseIfActive(this)
   }
 
   private close = () => {
-    this.setOpen(false)
+    this.setClosed()
     releaseIfActive(this)
+  }
+
+  private setClosed() {
+    this.stopWatchingScroll()
+    this.setOpen(false)
+  }
+
+  private stopWatchingScroll() {
+    window.removeEventListener('scroll', this.hide, SCROLL_OPTIONS)
   }
 
   private cancel() {
     window.clearTimeout(this.closeTimer)
     cancelAnimationFrame(this.frame)
   }
+}
+
+function releaseIfActive(controller: TouchController) {
+  if (session.active?.controller === controller) session.active = null
 }
 
 export function replaceTrigger(
