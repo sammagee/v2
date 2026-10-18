@@ -17,9 +17,9 @@ const PALETTES = {
   // Lighter, brighter tints of the same hues so they read on near-black.
   dark: ['#8aa8ff', '#b79cff', '#ff8cc0', '#ffa47a', '#4fdcb0', '#6fd0f5'],
 }
-const RADIUS = 11 // px from the cursor path, about a character or two
-const TOUCH_RADIUS = 18 // fingers hide the exact spot
-const TAP_RADIUS = 26 // a small burst on tap
+const RADIUS = 11 / 16 // rem from the cursor path, about a character or two
+const TOUCH_RADIUS = 18 // px; fingers don't scale with the type
+const TAP_RADIUS = 26 // px, a small burst on tap
 const HOLD = 600 // ms at full color before the fade starts
 const DURATION = 800 // ms of fade back to the normal color
 const STEPS = 10 // fade steps (one highlight per color x base x step)
@@ -79,7 +79,10 @@ export function CharTrail() {
     }
 
     let chars: Char[] = []
+    let rootSize = 16
     const measure = () => {
+      rootSize =
+        parseFloat(getComputedStyle(document.documentElement).fontSize) || 16
       chars.forEach(
         (char) => char.key && highlights.get(char.key)?.delete(char.range)
       )
@@ -209,7 +212,7 @@ export function CharTrail() {
       // Touch is handled by the touch listeners, which keep firing while the
       // page scrolls (pointer events get cancelled when a pan starts).
       if (event.pointerType === 'touch') return
-      pointer = { x: event.pageX, y: event.pageY, r: RADIUS }
+      pointer = { x: event.pageX, y: event.pageY, r: RADIUS * rootSize }
       start()
     }
     const onLeave = () => {

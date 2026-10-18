@@ -301,7 +301,20 @@ function TooltipContent({
         align={point ? 'center' : align}
         alignOffset={alignOffset}
         side={side}
-        sideOffset={point ? 28 : sideOffset}
+        // Cursor offset is in px at a 16px root and scales with the fluid
+        // root size; the touch offset is physical (fingers don't scale).
+        sideOffset={
+          point
+            ? 28
+            : typeof sideOffset === 'number'
+              ? () =>
+                  (sideOffset *
+                    parseFloat(
+                      getComputedStyle(document.documentElement).fontSize
+                    )) /
+                  16
+              : sideOffset
+        }
         anchor={anchor}
         className="isolate z-50 transition-[top,left] duration-100 ease-out motion-reduce:transition-none"
       >

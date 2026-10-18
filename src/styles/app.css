@@ -7,7 +7,7 @@
 /*
   Tokens follow emilkowal.ski: a Radix "sand" gray scale (dark values are
   the sand dark scale that ships, unused, in that site's CSS), Inter with cv01/ss03 and optical
-  sizing, 16px everywhere.
+  sizing, 1rem everywhere (16px root on mobile, fluid up to 18px).
 */
 @theme {
   --color-gray-*: initial;
@@ -248,6 +248,13 @@
 
   html {
     color-scheme: light;
+    /* Fluid root size: 16px up to ~1000px wide (all phones/tablets keep
+       today's look), then grows ~0.2px per 100px to 18px at ~2000px+.
+       Relative to the user's default size, so browser zoom/font settings
+       still apply. Everything sized in rem (type, spacing, column,
+       avatar, logos, tooltip offset, trail radius) scales with it;
+       hairlines, rings and shadows stay in px. */
+    font-size: clamp(1rem, 0.875rem + 0.2vw, 1.125rem);
   }
 
   html.dark {

@@ -99,9 +99,9 @@ export default function Home() {
         <div className="md:flex md:min-h-dvh md:flex-col md:justify-center-safe">
           <div
             aria-hidden="true"
-            className="h-[71px] min-[440px]:h-12 md:hidden"
+            className="h-[4.4375rem] min-[440px]:h-12 md:hidden"
           />
-          <div className="mx-auto w-full max-w-[692px] overflow-x-hidden px-6 py-12 text-gray-1200 antialiased sm:py-32 md:overflow-x-visible md:py-16">
+          <div className="mx-auto w-full max-w-[43.25rem] overflow-x-hidden px-6 py-12 text-gray-1200 antialiased sm:py-32 md:overflow-x-visible md:py-16">
             <header className="mb-21 md:mb-14 flex items-center gap-3">
               <ThemeToggleAvatar />
               <div className="flex flex-col items-start">

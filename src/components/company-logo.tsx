@@ -71,25 +71,25 @@ export function CompanyLogoWithTooltip({
 }
 
 /**
- * A 22px round logo inside a 2px ring. The ring is the wrapper's own
+ * A 1.375rem (22px at 16px) round logo inside a 2px ring. The ring is the wrapper's own
  * background (padding), not a box-shadow spread, and the art is opaque
  * full-bleed square artwork clipped once by the img's radius, with no fill
  * under it (a fill would get anti-aliased twice and fringe the edge). So
  * there's one anti-aliased edge between art and ring and one between ring
  * and page, never two coincident ones. The shadow is a drop-shadow filter
  * on the ring circle (follows its painted edge, adds no second edge) and
- * grows a hair on hover/focus. -m-[2px] keeps the layout box at 22px.
+ * grows a hair on hover/focus. -m-[2px] keeps the layout box at the art size.
  */
 export function CompanyLogo({ company }: { company: ICompany }) {
   return (
-    <span className="-m-[2px] block size-[26px] rounded-full bg-(--logo-ring) p-[2px] drop-shadow-[0_1px_1px_var(--logo-shadow)] transition-[filter] duration-200 ease-out group-hover:drop-shadow-[0_1.5px_2px_var(--logo-shadow)] group-focus-visible:drop-shadow-[0_1.5px_2px_var(--logo-shadow)] motion-reduce:transition-none">
+    <span className="-m-[2px] block size-[calc(1.375rem+4px)] rounded-full bg-(--logo-ring) p-[2px] drop-shadow-[0_1px_1px_var(--logo-shadow)] transition-[filter] duration-200 ease-out group-hover:drop-shadow-[0_1.5px_2px_var(--logo-shadow)] group-focus-visible:drop-shadow-[0_1.5px_2px_var(--logo-shadow)] motion-reduce:transition-none">
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src={company.logo}
         alt=""
         width={22}
         height={22}
-        className="block size-[22px] rounded-full object-cover"
+        className="block size-[1.375rem] rounded-full object-cover"
       />
     </span>
   )
