@@ -4,6 +4,7 @@ import type { Point } from './types'
 
 const TOUCH_SIDE_OFFSET_PX = 28
 const TOUCH_SIDE_OFFSETS_PX: Partial<Record<Side, number>> = { bottom: 44 }
+const CURSOR_CLEARANCE_PX: Partial<Record<Side, number>> = { bottom: 18 }
 const POSITION_DEFAULTS = {
   side: 'top',
   sideOffset: 6,
@@ -16,8 +17,9 @@ export type PositionProps = Pick<
   'align' | 'alignOffset' | 'side' | 'sideOffset'
 >
 
-export interface TouchPlacementProps {
-  touchSide?: Side
+export interface PlacementSource {
+  point: Point | null
+  cursor: boolean
 }
 
 type Side = NonNullable<PositionProps['side']>
@@ -25,32 +27,40 @@ type Placement = Required<PositionProps>
 
 export function placementFor(
   props: PositionProps,
-  { touchSide = 'top' }: TouchPlacementProps,
-  point: Point | null
+  { point, cursor }: PlacementSource
 ) {
   const placement = { ...POSITION_DEFAULTS, ...definedOnly(props) } as Placement
   return point
-    ? touchPlacement(placement.alignOffset, touchSide, point)
-    : { ...placement, sideOffset: cursorSideOffset(placement.sideOffset) }
+    ? touchPlacement(placement, point)
+    : {
+        ...placement,
+        sideOffset: cursorSideOffset(
+          placement.sideOffset,
+          cursorClearance(placement.side, cursor)
+        ),
+      }
 }
 
-function touchPlacement(
-  alignOffset: Placement['alignOffset'],
-  touchSide: Side,
-  point: Point
-) {
+function touchPlacement({ side, alignOffset }: Placement, point: Point) {
   return {
-    side: touchSide,
+    side,
     align: 'center' as const,
     alignOffset,
-    sideOffset: TOUCH_SIDE_OFFSETS_PX[touchSide] ?? TOUCH_SIDE_OFFSET_PX,
+    sideOffset: TOUCH_SIDE_OFFSETS_PX[side] ?? TOUCH_SIDE_OFFSET_PX,
     anchor: pointAnchor(point),
   }
 }
 
-function cursorSideOffset(sideOffset: PositionProps['sideOffset']) {
+function cursorClearance(side: Side, cursor: boolean) {
+  return cursor ? (CURSOR_CLEARANCE_PX[side] ?? 0) : 0
+}
+
+function cursorSideOffset(
+  sideOffset: PositionProps['sideOffset'],
+  clearance: number
+) {
   return typeof sideOffset === 'number'
-    ? () => sideOffset * rootFontScale()
+    ? () => sideOffset * rootFontScale() + clearance
     : sideOffset
 }
 

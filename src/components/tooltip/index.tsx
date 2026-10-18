@@ -3,11 +3,7 @@ import { useContext, useState } from 'react'
 
 import { GlassPopup } from './glass-popup'
 import { useDragReveal } from './hooks/use-drag-reveal'
-import {
-  placementFor,
-  type PositionProps,
-  type TouchPlacementProps,
-} from './lib/position'
+import { placementFor, type PositionProps } from './lib/position'
 import { RevealContext } from './lib/reveal-context'
 
 export function Tooltip({
@@ -16,6 +12,7 @@ export function Tooltip({
   ...props
 }: TooltipPrimitive.Root.Props) {
   const [open, setOpen] = useState(false)
+  const [cursor, setCursor] = useState(false)
   const [trigger, setTrigger] = useState<Element | null>(null)
   const point = useDragReveal(trigger)
 
@@ -24,11 +21,12 @@ export function Tooltip({
     details
   ) => {
     setOpen(next)
+    setCursor(details.reason === 'trigger-hover' && Boolean(trackCursorAxis))
     onOpenChange?.(next, details)
   }
 
   return (
-    <RevealContext.Provider value={{ point, setTrigger }}>
+    <RevealContext.Provider value={{ point, cursor, setTrigger }}>
       <TooltipPrimitive.Root
         data-slot="tooltip"
         open={open || point !== null}
@@ -69,14 +67,12 @@ export function TooltipContent({
   sideOffset,
   align,
   alignOffset,
-  touchSide,
   ...props
-}: TooltipPrimitive.Popup.Props & PositionProps & TouchPlacementProps) {
-  const { point } = useContext(RevealContext)
+}: TooltipPrimitive.Popup.Props & PositionProps) {
+  const { point, cursor } = useContext(RevealContext)
   const placement = placementFor(
     { side, sideOffset, align, alignOffset },
-    { touchSide },
-    point
+    { point, cursor }
   )
 
   return (
