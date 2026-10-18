@@ -42,7 +42,7 @@ function PostRow({ post, builtAt }: { post: PostMeta; builtAt: number }) {
           href={postPath(post.slug)}
           className="rounded-sm text-gray-1100 no-underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gray-1200"
         >
-          {post.title}{' '}
+          <span className="font-medium">{post.title}</span>{' '}
           <time
             dateTime={post.date}
             title={FULL_DATE.format(new Date(post.date))}
