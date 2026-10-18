@@ -4,9 +4,9 @@ Sam Magee's personal site ([sammagee/sammagee.me](https://github.com/sammagee/sa
 
 ## Checks
 
-- `pnpm check` runs `pnpm format:check` (oxfmt) and `pnpm lint` (oxlint, which fails on warnings).
+- `pnpm check` runs `pnpm format:check` (oxfmt), `pnpm lint` (oxlint, which fails on warnings) and `pnpm run doctor` (react-doctor, which fails on any warning or error; offline, no score upload or telemetry). Use `pnpm run doctor`, because pnpm's built-in `pnpm doctor` shadows the script.
 - `pnpm format` and `pnpm lint:fix` fix issues in place.
-- A pre-commit hook (simple-git-hooks, installed by `pnpm install`) runs the same checks and blocks the commit if either fails.
+- A pre-commit hook (simple-git-hooks, installed by `pnpm install`) runs `pnpm check` and blocks the commit if any check fails.
 - Limits, enforced as errors in `.oxlintrc.json`:
   - `max-lines`: 500 lines per file
   - `complexity`: at most 3 per function
@@ -14,7 +14,12 @@ Sam Magee's personal site ([sammagee/sammagee.me](https://github.com/sammagee/sa
 
   Fix a violation by splitting files, components and helpers, or by using lookup tables and early returns.
 
-- Inline lint-disable comments (`eslint-disable*`, `oxlint-disable*`) are banned, with no exceptions. `pnpm lint` fails if one appears in a source file. Fix the code instead. If a rule is genuinely wrong for this project, turn it off or configure it in `.oxlintrc.json`.
+- Inline lint-disable comments (`eslint-disable*`, `oxlint-disable*`, `react-doctor-disable*`) are banned, with no exceptions. `pnpm lint` fails if one appears in a source file. Fix the code instead. If a rule is genuinely wrong for this project, turn it off or configure it in `.oxlintrc.json` or `doctor.config.json`.
+
+## React Compiler
+
+- The React Compiler is on (`reactCompiler: true`), and its oxlint rules (`react/purity`, `react/refs`, `react/immutability`, and the rest) run as errors.
+- Don't hand-memoize. Skip `useMemo`, `useCallback` and `memo` unless identity matters for correctness, and prefer module-level functions for handlers that close over nothing.
 
 ## Skills
 

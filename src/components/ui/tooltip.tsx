@@ -1,10 +1,8 @@
 import { Tooltip as TooltipPrimitive } from '@base-ui/react/tooltip'
 import {
   createContext,
-  useCallback,
   useContext,
   useEffect,
-  useMemo,
   useRef,
   useState,
   type ReactNode,
@@ -72,32 +70,17 @@ function TooltipProvider({
 
 function useTouchTooltip(controller: TouchController) {
   const entry = useRef<ReturnType<typeof replaceTrigger>>(null)
-  const triggerRef = useCallback(
-    (node: Element | null) => {
-      entry.current = replaceTrigger(entry.current, node, controller)
-    },
-    [controller]
-  )
-  const handlers = useMemo<TouchHandlers>(
-    () => ({
-      onTouchStart: (event) => startTouch(entry.current, touchPoint(event)),
-      onTouchMove: (event) => moveTouch(touchPoint(event)),
-      onTouchEnd: releaseTouch,
-      onTouchCancel: releaseTouch,
-    }),
-    []
-  )
+  const triggerRef = (node: Element | null) => {
+    entry.current = replaceTrigger(entry.current, node, controller)
+  }
+  const handlers: TouchHandlers = {
+    onTouchStart: (event) => startTouch(entry.current, touchPoint(event)),
+    onTouchMove: (event) => moveTouch(touchPoint(event)),
+    onTouchEnd: releaseTouch,
+    onTouchCancel: releaseTouch,
+  }
   useEffect(() => () => controller.dispose(), [controller])
   return { triggerRef, handlers }
-}
-
-function useHideOnScroll(active: boolean, hide: () => void) {
-  useEffect(() => {
-    if (!active) return
-    const options = { passive: true, capture: true }
-    window.addEventListener('scroll', hide, options)
-    return () => window.removeEventListener('scroll', hide, options)
-  }, [active, hide])
 }
 
 function Tooltip({
@@ -109,27 +92,19 @@ function Tooltip({
   const [point, setPoint] = useState<Point | null>(null)
   const [controller] = useState(() => new TouchController(setOpen, setPoint))
   const { triggerRef, handlers } = useTouchTooltip(controller)
-  useHideOnScroll(open && point !== null, controller.hide)
 
-  const handleOpenChange = useCallback<
-    NonNullable<TooltipPrimitive.Root.Props['onOpenChange']>
-  >(
-    (next, details) => {
-      if (touchOwnsTooltips()) return
-      setPoint(null)
-      setOpen(next)
-      onOpenChange?.(next, details)
-    },
-    [onOpenChange]
-  )
-
-  const context = useMemo(
-    () => ({ point, handlers, triggerRef }),
-    [point, handlers, triggerRef]
-  )
+  const handleOpenChange: TooltipPrimitive.Root.Props['onOpenChange'] = (
+    next,
+    details
+  ) => {
+    if (touchOwnsTooltips()) return
+    setPoint(null)
+    setOpen(next)
+    onOpenChange?.(next, details)
+  }
 
   return (
-    <TouchTooltipContext.Provider value={context}>
+    <TouchTooltipContext.Provider value={{ point, handlers, triggerRef }}>
       <TooltipPrimitive.Root
         data-slot="tooltip"
         open={open}
@@ -175,6 +150,9 @@ const pointAnchor = ({ x, y }: Point) => ({
   getBoundingClientRect: () => DOMRect.fromRect({ x, y, width: 0, height: 0 }),
 })
 
+const anchorAt = (point: Point | null) =>
+  point ? pointAnchor(point) : undefined
+
 function GlassPopup({
   className,
   style,
@@ -208,10 +186,7 @@ function TooltipContent({
   ...props
 }: TooltipPrimitive.Popup.Props & PositionProps) {
   const { point } = useContext(TouchTooltipContext)
-  const anchor = useMemo(
-    () => (point ? pointAnchor(point) : undefined),
-    [point]
-  )
+  const anchor = anchorAt(point)
   const position = {
     ...POSITION_DEFAULTS,
     ...definedOnly({ side, sideOffset, align, alignOffset }),

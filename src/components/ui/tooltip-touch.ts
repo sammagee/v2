@@ -8,6 +8,7 @@ export interface Point {
 const LINGER_MS = 600
 const TOLERANCE_PX = 6
 const MOUSE_COMPAT_MS = 800
+const SCROLL_OPTIONS = { passive: true, capture: true }
 const TRIGGER_SELECTOR = '[data-slot="tooltip-trigger"]'
 
 type SetOpen = (open: boolean) => void
@@ -48,11 +49,12 @@ export class TouchController {
     this.cancel()
     this.frame = requestAnimationFrame(() => this.setPoint(point))
     this.setOpen(true)
+    window.addEventListener('scroll', this.hide, SCROLL_OPTIONS)
   }
 
   hide = () => {
     this.cancel()
-    this.setOpen(false)
+    this.setClosed()
   }
 
   linger() {
@@ -62,12 +64,22 @@ export class TouchController {
 
   dispose() {
     this.cancel()
+    this.stopWatchingScroll()
     releaseIfActive(this)
   }
 
   private close = () => {
-    this.setOpen(false)
+    this.setClosed()
     releaseIfActive(this)
+  }
+
+  private setClosed() {
+    this.stopWatchingScroll()
+    this.setOpen(false)
+  }
+
+  private stopWatchingScroll() {
+    window.removeEventListener('scroll', this.hide, SCROLL_OPTIONS)
   }
 
   private cancel() {

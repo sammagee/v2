@@ -1,9 +1,6 @@
-import {
-  COMPANIES,
-  CompanyLogoWithTooltip,
-  CompanyStack,
-} from '@/components/company-logo'
+import { CompanyLogoWithTooltip, CompanyStack } from '@/components/company-logo'
 import { InlineAvatar } from '@/components/inline-avatar'
+import { COMPANIES } from '@/lib/companies'
 
 const PREVIOUS = [
   COMPANIES.uber,

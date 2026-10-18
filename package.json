@@ -7,12 +7,13 @@
     "build": "next build",
     "start": "next start",
     "lint": "oxlint --deny-warnings && pnpm lint:no-disables",
-    "lint:no-disables": "! git grep -nE '(eslint|oxlint)-disable' -- '*.js' '*.cjs' '*.mjs' '*.ts' '*.tsx' '*.css'",
+    "lint:no-disables": "! git grep -nE '(eslint|oxlint|react-doctor)-disable' -- '*.js' '*.cjs' '*.mjs' '*.ts' '*.tsx' '*.css'",
     "lint:fix": "oxlint --fix --deny-warnings",
     "format": "oxfmt",
     "format:check": "oxfmt --check",
-    "check": "pnpm format:check && pnpm lint",
-    "prepare": "simple-git-hooks"
+    "check": "pnpm format:check && pnpm lint && pnpm run doctor",
+    "prepare": "simple-git-hooks",
+    "doctor": "react-doctor --yes --no-score --no-supply-chain --blocking warning"
   },
   "dependencies": {
     "@base-ui/react": "^1.9.0",
@@ -30,16 +31,18 @@
     "@tailwindcss/postcss": "^4.3.3",
     "@types/node": "^26.6.5",
     "@types/react": "^19.3.0",
+    "babel-plugin-react-compiler": "^1.0.0",
     "oxfmt": "^0.73.0",
     "oxlint": "^1.88.0",
     "postcss": "^8.5.30",
+    "react-doctor": "0.9.18",
     "shadcn": "^4.22.0",
     "simple-git-hooks": "^2.14.0",
     "tailwindcss": "^4.3.3",
     "typescript": "^6.0.3"
   },
   "simple-git-hooks": {
-    "pre-commit": "pnpm format:check && pnpm lint"
+    "pre-commit": "pnpm check"
   },
   "engines": {
     "node": "22.x"

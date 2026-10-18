@@ -1,4 +1,4 @@
-import { useCallback, useSyncExternalStore } from 'react'
+import { useSyncExternalStore } from 'react'
 
 export type Theme = 'light' | 'dark'
 
@@ -82,12 +82,13 @@ function subscribe(listener: () => void) {
   return () => unsubscribe(listener)
 }
 
+function toggle() {
+  const next = opposite(current())
+  persist(next)
+  applyTheme(next)
+}
+
 export function useTheme() {
   const theme = useSyncExternalStore<Theme>(subscribe, current, () => 'light')
-  const toggle = useCallback(() => {
-    const next = opposite(current())
-    persist(next)
-    applyTheme(next)
-  }, [])
   return { theme, toggle }
 }
