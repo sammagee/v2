@@ -38,16 +38,16 @@ function PostRow({ post, builtAt }: { post: PostMeta; builtAt: number }) {
     <li>
       <Link
         href={postPath(post.slug)}
-        className="flex items-baseline gap-5 rounded-sm text-gray-1100 no-underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gray-1200"
+        className="rounded-sm text-gray-1100 no-underline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-gray-1200"
       >
+        {post.title}{' '}
         <time
           dateTime={post.date}
           title={FULL_DATE.format(new Date(post.date))}
-          className="w-12 shrink-0 text-gray-1000 tabular-nums"
+          className="text-gray-1000 tabular-nums"
         >
           {age}
         </time>
-        <span className="min-w-0">{post.title}</span>
       </Link>
     </li>
   )
