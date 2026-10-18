@@ -2,7 +2,8 @@ import Head from 'next/head'
 import type { ReactNode } from 'react'
 import Link from 'next/link'
 
-import { ThemeToggleAvatar } from '@/components/theme-toggle-avatar'
+import { InlineAvatar } from '@/components/inline-avatar'
+import { ThemeSurface } from '@/components/theme-surface'
 import { CharTrail } from '../components/char-trail'
 import {
   COMPANIES,
@@ -95,37 +96,34 @@ export default function Home() {
             (safe-centered: taller content falls back to top-aligned flow with
             the normal padding, never clipped); the top spacer that mirrors
             Emil's announcement bar only applies to the top-aligned mobile
-            layout. */}
-        <div className="md:flex md:min-h-dvh md:flex-col md:justify-center-safe">
+            layout. The surface fills the viewport at every size so the
+            empty page around the content is a click/tap theme toggle. */}
+        <ThemeSurface className="min-h-dvh md:flex md:flex-col md:justify-center-safe">
           <div
             aria-hidden="true"
+            data-theme-bg=""
             className="h-[4.4375rem] min-[440px]:h-12 md:hidden"
           />
           <div className="mx-auto w-full max-w-[43.25rem] overflow-x-hidden px-6 py-12 text-gray-1200 antialiased sm:py-32 md:overflow-x-visible md:py-16">
-            {/* lg+: hang the avatar in the left margin so the name/title line up
-                with the body text: -ml = avatar layout width (2.75rem; its 2px
-                ring sits outside and is cancelled in layout) + gap-3 (0.75rem).
-                From 1024px there's ~8rem of side margin, so the ring and
-                shadow stay well clear of the viewport edge. */}
-            <header className="mb-21 flex items-center gap-3 md:mb-14 lg:-ml-14">
-              <ThemeToggleAvatar />
-              <div className="flex flex-col items-start">
-                <Link
-                  href="/"
-                  className="inline-block font-medium no-underline"
-                >
-                  Sam Magee
-                </Link>
-                <span className="font-medium leading-none text-gray-1100">
-                  Senior Software Engineer
-                </span>
-              </div>
+            <header className="mb-21 flex flex-col items-start md:mb-14">
+              <Link href="/" className="inline-block font-medium no-underline">
+                Sam Magee
+              </Link>
+              <span className="font-medium leading-none text-gray-1100">
+                Senior Software Engineer
+              </span>
             </header>
 
             <main>
               <h2 className="mb-3.5 block font-medium sm:mb-4">Who</h2>
               <p className="text-gray-1100">
-                I&apos;m a Senior Software Engineer at{' '}
+                Hey, my name is{' '}
+                {/* Same construction as the inline Vanta logo + name below. */}
+                <span className="inline-flex items-baseline gap-[0.3em]">
+                  <InlineAvatar className="self-center" />
+                  <span>Sam</span>
+                </span>
+                ! I&apos;m a Senior Software Engineer at{' '}
                 <a
                   href={COMPANIES.vanta.href}
                   target="_blank"
@@ -195,7 +193,7 @@ export default function Home() {
               </section>
             </main>
           </div>
-        </div>
+        </ThemeSurface>
       </TooltipProvider>
     </>
   )
