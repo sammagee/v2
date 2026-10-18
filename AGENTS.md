@@ -31,20 +31,34 @@ src/
       lib/position.ts
   hooks/use-theme.ts         hooks shared by 2+ owners
   lib/theme.ts               code shared by 2+ owners, or used by a page
+  posts/<slug>/              one blog post (see Writing posts)
+    post.mdx
+    counter.tsx              component used only by this post
   pages/ styles/             Next.js, unchanged
 ```
 
-- Components (`.tsx`) live only in `src/components` (and Next's `src/pages`). There's no `ui/` folder: shadcn installs into `src/components` (`aliases.ui` in `components.json`). Restructure a multi-file shadcn component into a folder.
+- Components (`.tsx`) live only in `src/components` (and Next's `src/pages`), with one exception: a post's one-off components sit beside its `post.mdx` (see Writing posts). There's no `ui/` folder: shadcn installs into `src/components` (`aliases.ui` in `components.json`). Restructure a multi-file shadcn component into a folder.
 - A one-file component is `src/components/<name>.tsx`. Two or more files make a folder with an `index.tsx` entry. Sub-component `.tsx` files sit beside it, hooks go in `hooks/use-*.ts`, and constants and helpers go in `lib/*.ts`. Nothing else, and no deeper nesting.
 - Hooks (`use*`) are declared only in `hooks/` folders.
 - Only a component's own files import its internals. Everyone else imports its `index.tsx`.
 - `src/lib` and `src/hooks` hold only code used by two or more owners, or by a page. Code used by one component moves into that component's folder.
 - Each file goes in this order: imports, constants, types, then functions. The main export comes first among the functions: the default export, else the export named after the file (or folder, for `index.tsx`), else any export.
 
+## Writing posts
+
+- A post is a folder `src/posts/<slug>/` holding `post.mdx`; the slug is the folder name (kebab-case) and the URL is `/words/<slug>`.
+- Frontmatter: `title` and `date` (`YYYY-MM-DD`) are required. `subtitle`, `description` (defaults to the subtitle, then the title), `updated` (`YYYY-MM-DD`) and `draft: true` are optional. Bad frontmatter fails the build with the file name.
+- Drafts show in `next dev` and Vercel preview deploys, and are left out of production (`VERCEL_ENV=production`): no home row, no page, no sitemap entry.
+- Write plain Markdown with GFM (tables, task lists, strikethrough, footnotes). Use `##` and `###` for sections (the title is the page's `h1`); fenced code is highlighted at build time with Shiki. Images go in `public/` and are referenced by absolute path.
+- One-off interactive components are kebab-case `.tsx` files in the post folder, default-exported and imported from the MDX (`import Counter from './counter'`). They follow every other rule here (order, complexity, no hooks declared outside `hooks/`), use Tailwind classes, and may import `@/components/<name>` entries.
+- `pnpm lint:structure` enforces the exception narrowly: post folders contain only `post.mdx` plus kebab-case `.ts`/`.tsx` files, no subfolders; `.mdx` files exist nowhere else; and only files in the same post folder may import a post's files.
+- Posts are bundled with mdx-bundler (esbuild) in `getStaticProps` (`src/lib/post-bundle.ts`), so colocated imports work with full static generation. `src/lib/posts.ts` reads and validates frontmatter for the home list, the post pages and the sitemap.
+
 ## SEO
 
 - The canonical origin is `https://sammagee.me`. `next.config.js` 308-redirects the alias hosts there, and the home page sets the canonical, Open Graph and Twitter tags, plus Person JSON-LD (`src/components/home/lib`).
-- `public/robots.txt` and `public/sitemap.xml` are static; update the sitemap `lastmod` when content changes.
+- `public/robots.txt` is static. `pnpm build` runs `pnpm sitemap` first, which writes `public/sitemap.xml` (gitignored) with the home page and every non-draft post; bump `HOME_LASTMOD` in `scripts/sitemap/index.ts` when the home page changes.
+- Each post page sets its title, description, canonical, Open Graph (`article`) and Twitter tags, plus BlogPosting JSON-LD that points at the home page's Person (`src/components/post/lib/metadata.ts`). Drafts also get `noindex`.
 - `pnpm social-images` regenerates `public/images/social/card.png` and `avatar.png` with Playwright (run `pnpm exec playwright install chromium` once).
 
 ## React Compiler

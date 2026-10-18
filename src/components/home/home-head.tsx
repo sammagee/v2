@@ -1,12 +1,8 @@
 import Head from 'next/head'
 
-import {
-  DESCRIPTION,
-  OPEN_GRAPH,
-  SITE_URL,
-  TITLE,
-  TWITTER,
-} from './lib/metadata'
+import { SITE_URL } from '@/lib/site'
+
+import { DESCRIPTION, OPEN_GRAPH, TITLE, TWITTER } from './lib/metadata'
 import { STRUCTURED_DATA_JSON } from './lib/structured-data'
 
 export function HomeHead() {

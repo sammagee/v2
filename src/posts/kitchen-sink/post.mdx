@@ -1,0 +1,83 @@
+---
+title: Kitchen sink
+subtitle: Every element a post can use
+date: 2026-10-18
+description: A tour of every MDX element and a couple of colocated interactive components.
+draft: true
+---
+
+import Counter from './counter'
+import HueSlider from './hue-slider'
+
+This post exercises everything a post can use. Paragraphs come first, with **bold**, _italic_, ~~struck~~ and `inline code`, plus [an internal link](/) and [an external one](https://github.com/sammagee).
+
+## Interactive components
+
+Components that live next to `post.mdx` can be imported and dropped straight in:
+
+<Counter start={3} />
+
+They can hold any state they like:
+
+<HueSlider />
+
+## Lists
+
+- Unordered lists
+- With a few items
+  - And a nested one
+- Back out again
+
+1. Ordered lists
+2. Count up
+3. On their own
+
+- [x] Task lists work
+- [ ] Unchecked ones too
+
+### A smaller heading
+
+Smaller headings break up longer sections.
+
+## Quotes
+
+> Simplicity is prerequisite for reliability.
+>
+> — Edsger W. Dijkstra
+
+## Code
+
+```tsx
+import { useState } from 'react'
+
+export function Counter() {
+  const [count, setCount] = useState(0)
+  return <button onClick={() => setCount(count + 1)}>{count}</button>
+}
+```
+
+```bash
+pnpm dev
+```
+
+## Images
+
+![The site's social card](/images/social/card.png)
+
+## Tables
+
+| Element    | Markdown     | Notes              |
+| ---------- | ------------ | ------------------ |
+| Heading    | `## Title`   | Use `##` and `###` |
+| Emphasis   | `_text_`     | Or `*text*`        |
+| Code block | Triple fence | Highlighted        |
+
+---
+
+## Footnotes
+
+Footnotes are cheap with GFM.[^1] They collect at the end of the post.[^2]
+
+[^1]: Like this one.
+
+[^2]: And this one, with [a link](https://mdxjs.com).

@@ -1,16 +1,8 @@
-export const SITE_URL = 'https://sammagee.me/'
-export const NAME = 'Sam Magee'
+import { NAME, SITE_URL, SOCIAL_CARD, X_HANDLE } from '@/lib/site'
+
 export const TITLE = 'Sam Magee – Senior Software Engineer at Vanta'
 export const DESCRIPTION =
   'Sam Magee is a senior software engineer at Vanta, building compliance and trust software. Previously at Uber, Marqeta, and Principal.'
-export const SOCIAL_CARD = {
-  url: `${SITE_URL}images/social/card.png`,
-  width: '1200',
-  height: '630',
-  alt: "Sam Magee, Senior Software Engineer. Hey, my name is Sam! I'm a senior software engineer at Vanta, building compliance and trust software for the future.",
-}
-export const AVATAR_URL = `${SITE_URL}images/social/avatar.png`
-export const X_HANDLE = '@sammagee'
 export const PROFILES = [
   'https://github.com/sammagee',
   'https://www.linkedin.com/in/sammagee',

@@ -1,4 +1,4 @@
-import { readdirSync, statSync } from 'node:fs'
+import { existsSync, readdirSync, statSync } from 'node:fs'
 import { join, sep } from 'node:path'
 
 const SOURCE_EXTENSIONS = /\.(ts|tsx)$/
@@ -15,6 +15,7 @@ export function listFiles(root: string, dir: string): string[] {
 }
 
 export function listDirectories(root: string, dir: string): string[] {
+  if (!existsSync(join(root, dir))) return []
   return readdirSync(join(root, dir))
     .map((name) => join(dir, name))
     .filter((path) => statSync(join(root, path)).isDirectory())
