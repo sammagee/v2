@@ -7,7 +7,7 @@ export default function Document() {
     <Html lang="en-US" suppressHydrationWarning>
       <Head>
         <meta name="theme-color" content={THEME_COLORS.light} />
-        {/* Sets html.dark + color-scheme before first paint (no theme flash). */}
+        {/* Must stay a blocking inline script: it sets the theme before first paint. */}
         <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
         <link
           rel="icon"

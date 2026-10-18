@@ -4,11 +4,6 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
-/*
-  Tokens follow emilkowal.ski: a Radix "sand" gray scale (dark values are
-  the sand dark scale that ships, unused, in that site's CSS), Inter with cv01/ss03 and optical
-  sizing, 1rem everywhere (16px root on mobile, fluid up to 18px).
-*/
 @theme {
   --color-gray-*: initial;
   --color-gray-100: #fdfdfc;
@@ -26,7 +21,6 @@
   --color-hover: #f5f4f4;
 }
 
-/* Theme-dependent values that aren't on the gray scale. */
 :root {
   --avatar-from: #e3eeff;
   --avatar-to: #c9dcff;
@@ -35,7 +29,6 @@
   --glass-tint: rgb(253 253 252 / 0.12);
 }
 
-/* Dark: Radix sand dark. Set on html by the head script / avatar toggle. */
 :root.dark {
   --color-gray-100: #111110;
   --color-gray-200: #191918;
@@ -51,10 +44,9 @@
   --color-gray-1200: #eeeeec;
   --color-hover: #191918;
 
-  /* The light pastel, a touch muted, so the memoji still pops on #111110. */
   --avatar-from: #c9dcff;
   --avatar-to: #a9c4f5;
-  --logo-ring: #2a2a28; /* gray-400: a hair lighter than the page so black marks (Uber) keep an edge */
+  --logo-ring: #2a2a28;
   --logo-shadow: rgb(0 0 0 / 0.6);
   --glass-tint: rgb(25 25 24 / 0.35);
 
@@ -77,15 +69,7 @@
   --ring: #6f6d66;
 }
 
-/*
-  Theme switch. Every themed color is a registered <color> custom property,
-  and on toggle only :root transitions them (class added by JS for ~250ms,
-  never under reduced motion). Each element just reads var(), so text,
-  backgrounds, underlines, rings and shadows all interpolate on the same
-  clock. (Transitioning `color` on every element instead made inheriting
-  children, e.g. the name and section titles, re-start their own
-  transition each frame as the parent's color moved, so they lagged.)
-*/
+/* Theme colors transition on :root only; per-element color transitions lag on inherited text. */
 @property --color-gray-100 {
   syntax: '<color>';
   inherits: true;
@@ -188,7 +172,6 @@
   transition-timing-function: ease-out;
 }
 
-/* shadcn/ui semantic tokens, mapped onto the sand scale (dark above). */
 :root {
   --background: #fdfdfc;
   --foreground: #21201c;
@@ -240,20 +223,12 @@
 @layer base {
   html,
   body {
-    /* No rubber-band bounce or pull-to-refresh; the canvas behind any
-       overscroll matches the page. */
     overscroll-behavior: none;
     background-color: var(--color-gray-100);
   }
 
   html {
     color-scheme: light;
-    /* Fluid root size: 16px up to ~1000px wide (all phones/tablets keep
-       today's look), then grows ~0.2px per 100px to 18px at ~2000px+.
-       Relative to the user's default size, so browser zoom/font settings
-       still apply. Everything sized in rem (type, spacing, column,
-       avatar, logos, tooltip offset, trail radius) scales with it;
-       hairlines, rings and shadows stay in px. */
     font-size: clamp(1rem, 0.875rem + 0.2vw, 1.125rem);
   }
 
@@ -271,24 +246,6 @@
     line-height: 1.65;
   }
 
-  /*
-    Dotted underline drawn as an ::after strip (text-decoration can't be
-    inset, faded or given round dots). The strip is the dot color
-    (--color-gray-800, a registered @property, so it tracks theme
-    transitions in sync) shown through two intersected masks:
-    1. Round dots: an SVG circle tile (1.3px across on a 2.5px period, about
-       the old 1px-on-2px square's weight),
-       rasterized at device resolution so it stays a crisp circle at 2x/3x,
-       repeated with `round` so the run holds a whole number of evenly
-       spaced dots and none is clipped at either end.
-    2. A fade from transparent to opaque over the first and last ~14px
-       (capped at 40% so short links like 'X' still show dots).
-    The mask is on the pseudo-element only, so the link text and the
-    char-trail highlights are never faded. Links don't wrap (nowrap; they're
-    one or two short words), so a single strip per link is exact. It sits
-    ~3.5px in from each end, centered 0.75px above the box bottom where
-    Inter's underline sat.
-  */
   a,
   .link-dotted {
     position: relative;
@@ -354,12 +311,6 @@
   }
 }
 
-/*
-  Liquid glass surface. This is the frosted fallback; in Chromium
-  useLiquidGlass() layers an SVG displacement filter on top (inline
-  backdrop-filter). The specular rim is inset shadows, so it shows in
-  every browser.
-*/
 .liquid-glass {
   background: rgb(253 253 252 / 0.55);
   backdrop-filter: blur(8px) saturate(1.8);
@@ -372,7 +323,6 @@
     0 1px 2px rgb(33 32 28 / 0.08);
 }
 
-/* Dark glass: a smoky tint with a fainter rim and a deeper drop shadow. */
 .dark .liquid-glass {
   background: rgb(25 25 24 / 0.55);
   box-shadow:
