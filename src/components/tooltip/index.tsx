@@ -3,7 +3,14 @@ import { useContext, useState } from 'react'
 
 import { GlassPopup } from './glass-popup'
 import { useDragReveal } from './hooks/use-drag-reveal'
-import { placementFor, type PositionProps } from './lib/position'
+import {
+  anchorAt,
+  cursorSideOffset,
+  definedOnly,
+  POSITION_DEFAULTS,
+  TOUCH_SIDE_OFFSET_PX,
+  type PositionProps,
+} from './lib/position'
 import { RevealContext } from './lib/reveal-context'
 
 export function Tooltip({
@@ -12,7 +19,6 @@ export function Tooltip({
   ...props
 }: TooltipPrimitive.Root.Props) {
   const [open, setOpen] = useState(false)
-  const [cursor, setCursor] = useState(false)
   const [trigger, setTrigger] = useState<Element | null>(null)
   const point = useDragReveal(trigger)
 
@@ -21,12 +27,11 @@ export function Tooltip({
     details
   ) => {
     setOpen(next)
-    setCursor(details.reason === 'trigger-hover' && Boolean(trackCursorAxis))
     onOpenChange?.(next, details)
   }
 
   return (
-    <RevealContext.Provider value={{ point, cursor, setTrigger }}>
+    <RevealContext.Provider value={{ point, setTrigger }}>
       <TooltipPrimitive.Root
         data-slot="tooltip"
         open={open || point !== null}
@@ -69,16 +74,22 @@ export function TooltipContent({
   alignOffset,
   ...props
 }: TooltipPrimitive.Popup.Props & PositionProps) {
-  const { point, cursor } = useContext(RevealContext)
-  const placement = placementFor(
-    { side, sideOffset, align, alignOffset },
-    { point, cursor }
-  )
+  const { point } = useContext(RevealContext)
+  const position = {
+    ...POSITION_DEFAULTS,
+    ...definedOnly({ side, sideOffset, align, alignOffset }),
+  }
 
   return (
     <TooltipPrimitive.Portal>
       <TooltipPrimitive.Positioner
-        {...placement}
+        side={position.side}
+        align={point ? 'center' : position.align}
+        alignOffset={position.alignOffset}
+        sideOffset={
+          point ? TOUCH_SIDE_OFFSET_PX : cursorSideOffset(position.sideOffset)
+        }
+        anchor={anchorAt(point)}
         className="isolate z-50 transition-[top,left] duration-100 ease-out motion-reduce:transition-none"
       >
         <GlassPopup {...props} />
